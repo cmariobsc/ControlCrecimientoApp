@@ -1,0 +1,175 @@
+﻿<div header-proyecto></div>
+<div class="container">
+    <h1 style="text-align:center">Datos del Niño</h1>
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form class="form-horizontal datosForm" name="datosChildrenForm">
+                        <div data-ng-hide="message == ''" class="alert alert-danger">
+                            {{message}}
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="control-label col-md-3">Identificación:</label>
+                                    <div class="col-md-9">
+                                        <input numbers-only ng-maxlength="10" ng-minlength="10" name="identificacion" class="form-control"
+                                               maxlength="10" placeholder="Identificacion" ng-model="datoChildren.identificacion" />
+                                        <span class="messages" ng-show="datosChildrenForm.$submitted || datosChildrenForm.identificacion.$touched">
+                                            <span class="text-danger" ng-show="datosChildrenForm.identificacion.$error.maxlength">Máximo 10 caracteres.</span>
+                                            <span class="text-danger" ng-show="datosChildrenForm.identificacion.$error.minlength">Ingrese 10 dígitos.</span>
+                                            <span class="text-danger" ng-show="validaIdentificacion.validarCedula(datoChildren.identificacion) == false">Identificación Invalida.</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="control-label col-md-3">Nacionalidad:</label>
+                                    <div class="col-md-9">
+                                        <select class="form-control" name="nacionalidad" ng-model="datoChildren.nacionalidad"
+                                                ng-options="option.descripcion for option in listNacionalidad" required>
+                                            <option value="" selected hidden />
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="control-label col-md-3">Nombres:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" ng-maxlength="100" maxlength="100" name="nombres" ng-pattern="/^[a-zA-Z0-9 ]*$/" class="form-control" placeholder="Nombres del Niño"
+                                               ng-model="datoChildren.nombres" required />
+                                        <span class="messages" ng-show="datosChildrenForm.$submitted || datosChildrenForm.nombres.$touched">
+                                            <span class="text-danger" ng-show="datosChildrenForm.nombres.$error.required">El campo es obligatorio.</span>
+                                            <span class="text-danger" ng-show="datosChildrenForm.nombres.$error.maxlength">Máximo 100 caracteres.</span>
+                                            <span class="text-danger" ng-show="datosChildrenForm.nombres.$error.pattern">Ingrese solo letras y números.</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="control-label col-md-3">Apellidos:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" ng-maxlength="100" maxlength="100" name="apellidos" ng-pattern="/^[a-zA-Z0-9 ]*$/" class="form-control" placeholder="Apellidos del Niño"
+                                               ng-model="datoChildren.apellidos" required />
+                                        <span class="messages" ng-show="datosChildrenForm.$submitted || datosChildrenForm.apellidos.$touched">
+                                            <span class="text-danger" ng-show="datosChildrenForm.apellidos.$error.required">El campo es obligatorio.</span>
+                                            <span class="text-danger" ng-show="datosChildrenForm.apellidos.$error.maxlength">Máximo 100 caracteres.</span>
+                                            <span class="text-danger" ng-show="datosChildrenForm.apellidos.$error.pattern">Ingrese solo letras y números.</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="control-label col-md-3">Fecha Nacimiento:</label>
+                                    <div class="col-md-9">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" datepicker-popup-template-url="app/components/calendar.html" uib-datepicker-popup="dd/MM/yyyy" 
+                                                   ng-model="datoChildren.fechaNacimiento" is-open="popup.opened"
+                                                   datepicker-options="dateOptions" close-text="Cerrar" current-text="Hoy" popup-placement="bottom" show-button-bar="true"
+                                                   readonly="readonly" ng-change="calculateAge(datoChildren.fechaNacimiento)" />
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-default" ng-click="abrirCalendario()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="control-label col-md-3">Edad (años):</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" disabled
+                                               ng-model="datoChildren.edad" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="control-label col-md-3">Talla:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" name="talla" class="form-control" placeholder="Talla"
+                                               ng-model="datoChildren.talla" autofocus
+                                               maxlength="4" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" required />
+                                        <span class="small">Formato 0.00 mts.</span>
+                                        <span class="messages" ng-show="datosChildrenForm.$submitted || datosChildrenForm.talla.$touched">
+                                            <span class="text-danger" ng-show="datosChildrenForm.talla.$error.required">El campo es obligatorio.</span>
+                                            <span class="text-danger" ng-show="datosChildrenForm.talla.$error.pattern">Formato incorrecto.</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="control-label col-md-3">Peso:</label>
+                                    <div class="col-md-9">
+                                        <input numbers-only name="peso" class="form-control" placeholder="Peso"
+                                               ng-model="datoChildren.peso" maxlength="3" required />
+                                        <span class="small">Kg</span>
+                                        <span class="messages" ng-show="datosChildrenForm.$submitted || datosChildrenForm.peso.$touched">
+                                            <span class="text-danger" ng-show="datosChildrenForm.peso.$error.required">El campo es obligatorio.</span>
+                                            <span class="text-danger" ng-show="datosChildrenForm.peso.$error.pattern">Formato incorrecto.</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="text-align: center">
+                            <button type="submit" class="btn btn-primary glyphicon glyphicon-floppy-disk"
+                                    ng-click="guardar()" ng-disabled="!datosChildrenForm.$valid || verificador(datoChildren.identificacionCliente) == false">
+                                Guardar
+                            </button>
+                            <a class="btn btn-primary glyphicon glyphicon-trash" ng-click="limpiar()"> Limpiar</a>
+                            <a class="btn btn-primary glyphicon glyphicon-chevron-left" ng-click="regresar()"> Regresar</a>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="text-center">Listado de Niños</h3>
+                                <div class="alert alert-info">{{children_message}}</div>
+                                <div>
+                                    <table ng-table="tableParams" class="table table-condensed table-bordered table-striped table-hover" show-filter="false">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th class="hidden-sm hidden-xs" ng-click="sortType = 'identificacion'; sortReverse = !sortReverse">Identificación</th>
+                                                <th class="hidden-sm hidden-xs" ng-click="sortType = 'nacionalidad'; sortReverse = !sortReverse">Nacionalidad</th>
+                                                <th ng-click="sortType = 'nombres'; sortReverse = !sortReverse">Nombres</th>
+                                                <th ng-click="sortType = 'apellidos'; sortReverse = !sortReverse">Apellidos</th>
+                                                <th class="hidden-sm hidden-xs" ng-click="sortType = 'fechaNacimiento'; sortReverse = !sortReverse">Fecha de Nacimiento</th>
+                                                <th ng-click="sortType = 'edad'; sortReverse = !sortReverse">Edad</th>
+                                                <th ng-click="sortType = 'talla'; sortReverse = !sortReverse">Talla (mts)</th>
+                                                <th ng-click="sortType = 'peso'; sortReverse = !sortReverse">Peso (kg)</th>
+                                                <th ng-show="modificando == 'true'"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in $data | orderBy:sortType:sortReverse">
+                                                <td>{{ $index + 1 }}</td>
+                                                <td class="hidden-sm hidden-xs">{{item.identificacion}}</td>
+                                                <td ng-hide="true">{{item.DatoNacionalidad.id}}</td>
+                                                <td class="hidden-sm hidden-xs">{{item.DatoNacionalidad.descripcion}}</td>
+                                                <td>{{item.nombres}}</td>
+                                                <td>{{item.apellidos}}</td>
+                                                <td class="hidden-sm hidden-xs">{{item.fechaNacimiento}}</td>
+                                                <td>{{item.edad}}</td>
+                                                <td>{{item.talla}}</td>
+                                                <td>{{item.peso}}</td>
+                                                <td class="text-nowrap icon-wrap" ng-show="modificando == 'true'">
+                                                    <a class="btn btn-primary btn-xs glyphicon glyphicon-pencil" ng-click="editar(item.id)"></a>
+                                                    <a class="btn btn-primary btn-xs glyphicon glyphicon-remove" ng-click="eliminar(item.id, item.opid)"></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

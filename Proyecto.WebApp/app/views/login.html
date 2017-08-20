@@ -1,0 +1,45 @@
+﻿<div header-anon-proyecto></div>
+<div class="container-fluid">
+    <h1 style="text-align:center">Control de Nutrición y Crecimiento Infantil</h1>
+    <br />
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form name="loginForm">
+                        <fieldset>
+                            <legend>Ingrese con sus credenciales</legend>
+                            <div data-ng-hide="message == ''" class="alert alert-danger">
+                                {{message}}
+                            </div>
+                            <div class="form-group">
+                                <label>Usuario:</label>
+                                <input type="text" disallow-spaces name="username" class="form-control" ng-maxlength="19" maxlength="19" ng-minlength="3" placeholder="Usuario"
+                                       data-ng-model="loginData.username" required autofocus />
+                                <span class="messages" ng-show="loginForm.$submitted || loginForm.username.$touched">
+                                    <span class="text-danger" ng-show="loginForm.username.$error.maxlength">Máximo 19 caracteres.</span>
+                                    <span class="text-danger" ng-show="loginForm.username.$error.minlength">Mínimo 3 caracteres.</span>
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <label>Contraseña:</label>
+                                <input type="password" disallow-spaces name="password" class="form-control" ng-maxlength="20" ng-minlength="6" maxlength="20" placeholder="Contraseña"
+                                       data-ng-model="loginData.password" required />
+                                <span class="messages" ng-show="loginForm.$submitted || loginForm.password.$touched">
+                                    <span class="text-danger" ng-show="loginForm.password.$error.maxlength">Máximo 20 caracteres.</span>
+                                    <span class="text-danger" ng-show="loginForm.password.$error.minlength">Mínimo 6 caracteres.</span>
+                                </span>
+                            </div>
+                            <div class="form-group" style="text-align:center">
+                                <button type="submit" class="btn btn-primary"
+                                        ng-click="login()" ng-disabled="!loginForm.$valid">
+                                    Ingresar
+                                </button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

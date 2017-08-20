@@ -1,0 +1,239 @@
+﻿<div header-proyecto></div>
+<div class="container">
+    <h1 style="text-align:center">Datos del Representante</h1>
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form class="form-horizontal datosForm" name="datosRepresentanteForm">
+                        <div data-ng-hide="message == ''" class="alert alert-danger">
+                            {{message}}
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="control-label col-md-3">Parentesco:</label>
+                                    <div class="col-md-9">
+                                        <select class="form-control" ng-model="datoRepresentante.parentesco" required
+                                                ng-options="option.codigo as option.descripcion for option in listParentesco">
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="control-label col-md-3">Identificación:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" ng-maxlength="10" ng-minlength="10" name="identificacion" class="form-control"
+                                               maxlength="10" placeholder="Identificacion" ng-model="datoRepresentante.identificacion" required />
+                                        <span class="messages" ng-show="datosRepresentanteForm.$submitted || datosRepresentanteForm.identificacion.$touched">
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.identificacion.$error.required">El campo es obligatorio.</span>
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.identificacion.$error.maxlength">Máximo 10 caracteres.</span>
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.identificacion.$error.minlength">Ingrese 10 dígitos.</span>
+                                            <span class="text-danger" ng-show="validaIdentificacion.validarCedula(datoRepresentante.identificacion) == false">Identificación Invalida.</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="control-label col-md-3">Nombre del Representante:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" ng-maxlength="100" maxlength="100" name="nombre" ng-pattern="/^[a-zA-Z0-9 ]*$/" class="form-control" placeholder="Nombre del Representante"
+                                               ng-model="datoRepresentante.nombre" required />
+                                        <span class="messages" ng-show="datosRepresentanteForm.$submitted || datosRepresentanteForm.nombre.$touched">
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.nombre.$error.required">El campo es obligatorio.</span>
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.nombre.$error.maxlength">Máximo 100 caracteres.</span>
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.nombre.$error.pattern">Ingrese solo letras y números.</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="control-label col-md-3">Nacionalidad:</label>
+                                    <div class="col-md-9">
+                                        <select class="form-control" ng-model="datoRepresentante.nacionalidad" required
+                                                ng-options="option.codigo as option.descripcion for option in listNacionalidad">
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="control-label col-md-3">Fecha Nacimiento:</label>
+                                    <div class="col-md-9">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" datepicker-popup-template-url="app/components/calendar.html" uib-datepicker-popup="dd/MM/yyyy" ng-model="datoRepresentante.fechaNacimiento" is-open="popup.opened"
+                                                   datepicker-options="dateOptions" close-text="Cerrar" current-text="Hoy" popup-placement="bottom" show-button-bar="true"
+                                                   readonly="readonly" />
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-default" ng-click="abrirCalendario()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="control-label col-md-3">Edad:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" disabled
+                                               ng-model="datoRepresentante.edad" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="control-label col-md-3">Dirección:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" id="direccion" name="direccion" ng-maxlength="100" maxlength="100" minlength="10"
+                                               ng-model="datoRepresentante.direccion" class="form-control" placeholder="Dirección" required />
+                                        <span class="messages" ng-show="datosRepresentanteForm.$submitted || datosRepresentanteForm.direccion.$touched">
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.direccion.$error.required">El campo es obligatorio.</span>
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.direccion.$error.minlength">Mínimo 10 caracteres.</span>
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.direccion.$invalid">Máximo 100 caracteres.</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="control-label col-md-3">Email:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" ng-maxlength="100" maxlength="30" name="email" class="form-control" placeholder="Email"
+                                               ng-pattern='/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i'
+                                               ng-model="datoRepresentante.email" required />
+                                        <span class="messages" ng-show="datosRepresentanteForm.$submitted || datosRepresentanteForm.email.$touched">
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.email.$error.required">El campo es obligatorio.</span>
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.email.$error.maxlength">Máximo 30 caracteres.</span>
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.email.$error.pattern">Ingrese un email válido.</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="control-label col-md-3">Teléfono Uno:</label>
+                                    <div class="col-md-3">
+                                        <input type="text" class="pais form-control" name="codPais" ng-model="datoRepresentante.codPais" ng-maxlength="3"
+                                               ng-minlength="3" minlength="3" maxlength="3" ng-pattern="/^(?!000$)[0-9]*$/" required ng-disabled="edicion == 'true'" />
+                                        <span class="messages" ng-show="datosRepresentanteForm.$submitted || datosRepresentanteForm.codPais.$touched">
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.codPais.$error.required">El campo es obligatorio.</span>
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.codPais.$error.pattern">Formato incorrecto.</span>
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.codPais.$error.minlength">Ingrese 3 dígitos.</span>
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.codPais.$error.maxlength">Ingrese 3 dígitos.</span>
+
+                                        </span>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input numbers-only type="text" class="form-control" name="codArea" ng-model="datoRepresentante.codArea" ng-maxlength="2"
+                                               ng-minlength="2" minlength="2" maxlength="2" ng-pattern="/^(?!00$)[0-9]*$/" required ng-disabled="edicion == 'true'" />
+                                        <span class="messages" ng-show="datosRepresentanteForm.$submitted || datosRepresentanteForm.codArea.$touched">
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.codArea.$error.required">El campo es obligatorio.</span>
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.codArea.$error.pattern">Formato incorrecto.</span>
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.codArea.$error.minlength">Ingrese 2 dígitos.</span>
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.codArea.$error.maxlength">Ingrese 2 dígitos.</span>
+                                        </span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="telefono form-control" name="numTelefono" ng-model="datoRepresentante.numTelefono" ng-maxlength="10"
+                                                maxlength="10" ng-pattern="/^(?!0000000000$)[0-9]*$/" required ng-disabled="edicion == 'true'" />
+                                        <span class="messages" ng-show="datosRepresentanteForm.$submitted || datosRepresentanteForm.numTelefono.$touched">
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.numTelefono.$error.required">El campo es obligatorio.</span>
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.numTelefono.$error.pattern">Formato incorrecto.</span>
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.numTelefono.$error.minlength">Ingrese 10 dígitos.</span>
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.numTelefono.$error.maxlength">Ingrese 10 dígitos.</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="control-label col-md-3">Teléfono Dos:</label>
+                                    <div class="col-md-3">
+                                        <input type="text" class="pais form-control" name="codPais2" ng-model="datoRepresentante.codPais2" ng-maxlength="3" ng-minlength="3"
+                                               ng-pattern="/^(?!000$)[0-9]*$/" maxlength="3" />
+                                        <span class="messages" ng-show="datosRepresentanteForm.$submitted || datosRepresentanteForm.codPais2.$touched">
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.codPais2.$error.required">El campo es obligatorio.</span>
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.codPais2.$error.pattern">Formato incorrecto.</span>
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.codPais2.$error.minlength">Ingrese 3 dígitos.</span>
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.codPais2.$error.maxlength">Ingrese 3 dígitos.</span>
+                                        </span>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" class="area form-control" name="codArea2" ng-model="datoRepresentante.codArea2" ng-maxlength="2" ng-minlength="2"
+                                               ng-pattern="/^(?!00$)[0-9]*$/" maxlength="2" />
+                                        <span class="messages" ng-show="datosRepresentanteForm.$submitted || datosRepresentanteForm.codArea2.$touched">
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.codArea2.$error.required">El campo es obligatorio.</span>
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.codArea2.$error.pattern">Formato incorrecto.</span>
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.codArea2.$error.minlength">Ingrese 2 dígitos.</span>
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.codArea2.$error.maxlength">Ingrese 2 dígitos.</span>
+                                        </span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="telefono form-control" name="numTelefono2" ng-model="datoRepresentante.numTelefono2" ng-maxlength="10"
+                                               ng-pattern="/^(?!0000000000$)[0-9]*$/" maxlength="10"  />
+                                        <span class="messages" ng-show="datosRepresentanteForm.$submitted || datosRepresentanteForm.numTelefono2.$touched">
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.numTelefono2.$error.required">El campo es obligatorio.</span>
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.numTelefono2.$error.pattern">Formato incorrecto.</span>
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.numTelefono2.$error.minlength">Ingrese 10 dígitos.</span>
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.numTelefono2.$error.maxlength">Ingrese 10 dígitos.</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="control-label col-md-3">Talla:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" name="talla" class="form-control" placeholder="Talla"
+                                               ng-model="datoRepresentante.talla" autofocus
+                                               maxlength="4" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" />
+                                        <span class="small">Formato 0.00 mts.</span>
+                                        <span class="messages" >
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.talla.$error.pattern">Formato incorrecto.</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="control-label col-md-3">Peso:</label>
+                                    <div class="col-md-9">
+                                        <input numbers-only name="peso" class="form-control" placeholder="Peso"
+                                               ng-model="datoRepresentante.peso" maxlength="3" />
+                                        <span class="small">Kg</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="control-label col-md-3">N° de Hijos:</label>
+                                    <div class="col-md-9">
+                                        <input numbers-only name="hijos" class="form-control" placeholder="N° de Hijos"
+                                               ng-model="datoRepresentante.hijos" maxlength="2" required />
+                                        <span class="messages" ng-show="datosRepresentanteForm.$submitted || datosRepresentanteForm.hijos.$touched">
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.hijos.$error.required">El campo es obligatorio.</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="text-align: center">
+                            <button type="submit" class="btn btn-primary glyphicon glyphicon-floppy-disk"
+                                    ng-click="Guardar()" ng-disabled="!datosRepresentanteForm.$valid || verificador(datoRepresentante.identificacionCliente) == false">
+                                Guardar
+                            </button>
+                            <a class="btn btn-primary glyphicon glyphicon-trash" ng-click="limpiar()"> Limpiar</a>
+                            <a class="btn btn-primary glyphicon glyphicon-chevron-left" ng-click="regresar()"> Regresar</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
