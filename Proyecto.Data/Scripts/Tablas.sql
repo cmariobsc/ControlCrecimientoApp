@@ -32,11 +32,24 @@ insert into Nacionalidad values ('Venezolana')
 insert into Nacionalidad values ('Peruana')
 go
 
+create table Usuario
+(
+IdUsuario			int not null identity(1,1) primary key,
+Usuario				varchar(20) not null,
+Contrasenia			binary(64) NOT NULL,
+Nombres			    varchar(100)  not null,
+Apellidos			varchar(100)  not null,
+Email				varchar(50)  not null,
+Habilitado			bit not null,
+FechaCreacion		date  not null
+)
+
 create table Representante
 (
-IdRepresentante		int not null primary key,
+IdRepresentante		int not null identity(1,1) primary key,
 Identificacion      varchar(10) not null unique,
 Nombres			    varchar(100)  not null,
+Apellidos			varchar(100)  not null,
 FechaNacimiento     date  not null,
 Edad				int  not null,
 Direccion			varchar(100)  not null,
@@ -46,8 +59,12 @@ Telefono2			varchar(10) null,
 Talla		        decimal(2,2) null,
 Peso			    int  null,
 NHijos			    int  not null,
+FechaCreacion		date  not null,
+FechaModificacion	date  not null,
+IdUsuario			int  not null,
 IdParentesco		int  not null,
 IdNacionalidad      int  not null,
+foreign key (IdUsuario)references Usuario,
 foreign key (IdParentesco)references Parentesco,
 foreign key (IdNacionalidad) references Nacionalidad,
 )
@@ -55,7 +72,7 @@ go
 
 create table Children
 (
-IdChildren		int not null primary key,
+IdChildren			int not null identity(1,1) primary key,
 Identificacion      varchar(10) null unique,
 Nombres			    varchar(100)  not null,
 Apellidos			varchar(100)  not null,
@@ -63,11 +80,20 @@ FechaNacimiento     date  not null,
 Edad				int  not null,
 Talla		        decimal(2,2) null,
 Peso			    int  null,
+FechaCreacion		date  not null,
+FechaModificacion	date  not null,
 IdRepresentante		int  not null,
 IdNacionalidad      int  not null,
 foreign key (IdRepresentante)references Representante,
 foreign key (IdNacionalidad) references Nacionalidad,
 )
 go
+
+
+--drop table Parentesco
+--drop table Nacionalidad
+--drop table Usuario
+--drop table Representante
+--drop table children
 
 --drop database DB_CNCAPP

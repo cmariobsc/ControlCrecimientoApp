@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{CB9DB2F2-EDA0-4441-BA22-D3CD72F8A4D7}"
 EndProject
@@ -68,5 +68,8 @@ Global
 		{8A8A5117-054C-431B-BD35-3D92224DCF06} = {9D7E2D14-9766-4604-9972-185EE0B3E6C2}
 		{EBBE0498-BD79-428C-9F80-95156DB596F1} = {CB9DB2F2-EDA0-4441-BA22-D3CD72F8A4D7}
 		{8C3A038F-CA78-4BEA-A186-B5D6B41D3894} = {5DFFA14C-5C8D-481D-BA68-31CD82CD58D2}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45
 	EndGlobalSection
 EndGlobal

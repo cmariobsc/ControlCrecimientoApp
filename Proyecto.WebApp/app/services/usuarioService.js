@@ -36,7 +36,7 @@ proyectoApp.factory('usuarioService',
                         alertaMensaje: result.message,
                         producto: result.data.producto,
                         perfil: result.data.perfil,
-                };
+                    };
                     _estadoUsuario.datosSesion = dataSesion;
                     localStorageService.set("datosSesion", dataSesion);
                 } else {

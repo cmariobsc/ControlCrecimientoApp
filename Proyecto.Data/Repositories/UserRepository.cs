@@ -1,23 +1,21 @@
-﻿using Proyecto.Core.Contracts;
+﻿using Microsoft.Practices.EnterpriseLibrary.Data;
+using Proyecto.Core.Contracts;
 using Proyecto.Core.Contracts.Repositories;
 using Proyecto.Core.Enumerations;
 using Proyecto.Core.Models.Auth;
-//using Proyecto.Data.WsNeoTrack;
-//using Proyecto.Data.Helpers;
 using System;
-using System.Configuration;
-
+using System.Data;
 
 namespace Proyecto.Data.Repositories
 {
     public class UserRepository : IUserRepository, IRepository
     {
-        //private readonly NeoTrackService _wService;
+        private Database _database;
 
         public UserRepository()
         {
-            var url = ConfigurationManager.AppSettings.Get("NeoTrackserviceUrl");
-            //_wService = new NeoTrackService();
+            var _conexion = new Conexion();
+            _database = _conexion.InitDatabase();
         }
 
         public User FindUser(
@@ -27,7 +25,22 @@ namespace Proyecto.Data.Repositories
             User user = null;
             try
             {
-                if (userName == "admin" && password == "123456")
+                var storedProcedure = "[dbo].[SP_AutenticarUsuario]";
+
+                var command = _database.GetStoredProcCommand(storedProcedure);
+                command.CommandType = CommandType.StoredProcedure;
+
+                _database.AddInParameter(command, "@Usuario", DbType.String, userName);
+                _database.AddInParameter(command, "@Contrasenia", DbType.String, password);
+                _database.AddOutParameter(command, "@codError", DbType.String, 3);
+                _database.AddOutParameter(command, "@mensajeRetorno", DbType.String, 100);
+
+                _database.ExecuteNonQuery(command);
+
+                codError = _database.GetParameterValue(command, "@codError").ToString();
+                mensajeRetorno = _database.GetParameterValue(command, "@mensajeRetorno").ToString();
+
+                if (codError == "000")
                 {
                     user = new User
                     {
@@ -37,14 +50,6 @@ namespace Proyecto.Data.Repositories
                         Perfil = (TipoPerfil)1,
                         Producto = "Proyecto"
                     };
-
-                    codError = "000";
-                    mensajeRetorno = "Login Ok";
-                }
-                else
-                {
-                    codError = "001";
-                    mensajeRetorno = "Usuario o Contraseña Inválidos";
                 }
             }
             catch (Exception exception)
