@@ -47,12 +47,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Conexion.cs" />
+    <Compile Include="SqlConnection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ChildrenRepository.cs" />
     <Compile Include="Repositories\ParametroRepository.cs" />
     <Compile Include="Repositories\TokenRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="SqlServices\RepresentanteSqlService.cs" />
+    <Compile Include="SqlServices\UserSqlService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Proyecto.Core\Proyecto.Core.csproj">

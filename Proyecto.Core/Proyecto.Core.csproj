@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\ISqlService.cs" />
     <Compile Include="Contracts\Repositories\IChildrenRepository.cs" />
     <Compile Include="Contracts\Repositories\IParametroRepository.cs" />
     <Compile Include="Contracts\Repositories\ITokenRepository.cs" />
@@ -47,6 +48,8 @@
     <Compile Include="Contracts\Services\IChildrenService.cs" />
     <Compile Include="Contracts\Services\IAuthService.cs" />
     <Compile Include="Contracts\Services\IParametroService.cs" />
+    <Compile Include="Contracts\SqlServices\IRepresentanteSqlService.cs" />
+    <Compile Include="Contracts\SqlServices\IUserSqlService.cs" />
     <Compile Include="Enumerations\ApplicationType.cs" />
     <Compile Include="Contracts\IService.cs" />
     <Compile Include="Contracts\IRepository.cs" />

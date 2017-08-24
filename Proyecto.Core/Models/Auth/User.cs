@@ -5,10 +5,10 @@ namespace Proyecto.Core.Models.Auth
 {
     public class User
     {
-        public string Username { get; set; }
-        public string Nombre { get; set; }
-        public string Ciudad { get; set; }
-        public TipoPerfil Perfil { get; set; }
-        public string Producto { get; set; }
+        public int IdUsuario { get; set; }
+        public string Usuario { get; set; }
+        public string Nombres { get; set; }
+        public string Apellidos { get; set; }
+        public string Email { get; set; }
     }
 }

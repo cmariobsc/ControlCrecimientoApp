@@ -29,13 +29,9 @@ proyectoApp.factory('usuarioService',
                 if (result.errorCode === "000") {
 
                     var dataSesion = {
-                        usuario: result.data.username,
-                        nombre: result.data.nombre,
-                        ciudad: result.data.ciudad,
-                        codigoAlerta: result.errorCode,
-                        alertaMensaje: result.message,
-                        producto: result.data.producto,
-                        perfil: result.data.perfil,
+                        usuario: result.data.usuario,
+                        nombres: result.data.nombres,
+                        apellidos: result.data.apellidos,
                     };
                     _estadoUsuario.datosSesion = dataSesion;
                     localStorageService.set("datosSesion", dataSesion);

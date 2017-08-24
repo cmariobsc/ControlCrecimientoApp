@@ -106,12 +106,10 @@ namespace Proyecto.Web.Core.Providers
 
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
             identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
-            identity.AddClaim(new Claim("username", user.Username));
-            identity.AddClaim(new Claim("sub", context.UserName));
-            identity.AddClaim(new Claim("nombre", user.Nombre));
-            identity.AddClaim(new Claim("usuario", user.Username));
-            identity.AddClaim(new Claim("perfil", user.Perfil.ToString()));
-            identity.AddClaim(new Claim("producto", user.Producto));
+            identity.AddClaim(new Claim("usuario", user.Usuario));
+            identity.AddClaim(new Claim("nombres", user.Nombres));
+            identity.AddClaim(new Claim("apellidos", user.Apellidos));
+            identity.AddClaim(new Claim("email", user.Email));
 
             var props = new AuthenticationProperties(
                 new Dictionary<string, string>

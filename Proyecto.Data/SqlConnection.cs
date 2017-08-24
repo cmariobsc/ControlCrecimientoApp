@@ -5,7 +5,7 @@ using System.Configuration;
 
 namespace Proyecto.Data
 {
-    public class Conexion : IRepository
+    public class SqlConnection : IRepository
     {
         public Database InitDatabase()
         {

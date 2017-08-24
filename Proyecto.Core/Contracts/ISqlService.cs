@@ -1,6 +1,6 @@
 ﻿namespace Proyecto.Core.Contracts
 {
-    public interface IRepository
+    public interface ISqlService
     {
     }
 }

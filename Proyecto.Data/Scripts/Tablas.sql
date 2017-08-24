@@ -32,6 +32,28 @@ insert into Nacionalidad values ('Venezolana')
 insert into Nacionalidad values ('Peruana')
 go
 
+create table Provincia
+(
+	IdProvincia				int not null identity(1,1) primary key,
+	Descripcion				varchar(50) not null
+)
+
+insert into Provincia values ('Guayas')
+insert into Provincia values ('Pichincha')
+go
+
+create table Ciudad
+(
+	IdCiudad				int not null identity(1,1) primary key,
+	Descripcion				varchar(50) not null,
+	IdProvincia				int  not null,
+	foreign key (IdProvincia) references Provincia,
+)
+
+insert into Ciudad values ('Guayaquil', 1)
+insert into Ciudad values ('Quito', 2)
+go
+
 create table Usuario
 (
 IdUsuario			int not null identity(1,1) primary key,
@@ -56,7 +78,7 @@ Direccion			varchar(100)  not null,
 Email               varchar(50)  not null,
 Telefono1           varchar(10) not null,
 Telefono2			varchar(10) null,
-Talla		        decimal(2,2) null,
+Talla		        decimal(6,2) null,
 Peso			    int  null,
 NHijos			    int  not null,
 FechaCreacion		date  not null,
@@ -64,11 +86,19 @@ FechaModificacion	date  not null,
 IdUsuario			int  not null,
 IdParentesco		int  not null,
 IdNacionalidad      int  not null,
-foreign key (IdUsuario)references Usuario,
-foreign key (IdParentesco)references Parentesco,
+IdProvincia			int  not null,
+IdCiudad			int  not null,
+foreign key (IdUsuario) references Usuario,
+foreign key (IdParentesco) references Parentesco,
 foreign key (IdNacionalidad) references Nacionalidad,
+foreign key (IdProvincia) references Provincia,
+foreign key (IdCiudad) references Ciudad
+,
 )
 go
+
+insert into Representante values ('0928133099', 'Carlos', 'Gonzalez', GETDATE(), 27, 'Muey', 'cmario1982@hotmail.com', 
+									'0996368611',NULL, 1.75, 65, 1, GETDATE(), GETDATE(), 1, 2, 1, 1, 1)
 
 create table Children
 (
@@ -84,7 +114,7 @@ FechaCreacion		date  not null,
 FechaModificacion	date  not null,
 IdRepresentante		int  not null,
 IdNacionalidad      int  not null,
-foreign key (IdRepresentante)references Representante,
+foreign key (IdRepresentante) references Representante,
 foreign key (IdNacionalidad) references Nacionalidad,
 )
 go

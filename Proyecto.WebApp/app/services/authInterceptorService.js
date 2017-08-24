@@ -35,32 +35,8 @@
 
             if (rejection.status === 401) {
 
-                //var authService = $injector.get('authService');
-
-                //var token = $window.sessionStorage.token;
-                //var refreshToken = $window.sessionStorage.refreshToken;
-
-                //if (token && refreshToken) {
-
-                //    if (appConfig.useRefreshTokens) {
-
-                //        authService.refreshToken()
-                //            .then(function (response) {
-
-                //                return $q.resolve(response);
-
-                //            }, function (error) {
-
-                //                cleanUserData();
-                //                return $q.reject(rejection);
-
-                //            });
-                //    }
-                //}
-
                 cleanUserData();
                 return $q.reject(rejection);
-
             }
 
             return $q.reject(rejection);
