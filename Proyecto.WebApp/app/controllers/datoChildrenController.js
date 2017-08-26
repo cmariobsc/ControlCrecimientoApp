@@ -1,23 +1,13 @@
 ﻿'use strict';
 proyectoApp.controller('datoChildrenController',
-    ['$location', '$http', '$q', '$ekathuwa', 'validaIdentificacionService', 'childrenService', '$filter', 'NgTableParams', 'localStorageService', '$scope', '$rootScope', '$route', 'AppConfig',
-        function ($location, $http, $q, $ekathuwa, validaIdentificacionService, childrenService, $filter, NgTableParams, localStorageService, $scope, $rootScope, $route, appConfig) {
+    ['$location', '$http', '$q', '$ekathuwa', 'validaIdentificacionService', 'childrenService', '$filter', 'NgTableParams', 'localStorageService', '$scope', '$rootScope', '$route', 'AppConfig', 'catalogoService',
+        function ($location, $http, $q, $ekathuwa, validaIdentificacionService, childrenService, $filter, NgTableParams, localStorageService, $scope, $rootScope, $route, appConfig, catalogoService) {
 
             $scope.message = "";
 
             $scope.validaIdentificacion = validaIdentificacionService;
 
-            $scope.listNacionalidad = [{
-                id: "1",
-                descripcion: 'Ecuatoriana'
-            }, {
-                id: "2",
-                descripcion: 'Colombiana'
-            },
-            {
-                id: "3",
-                descripcion: 'Venezolana'
-            }];
+            $scope.listNacionalidad = catalogoService.catalogoNacionalidad();
 
             var dateNow = new Date();
             var year = dateNow.getFullYear();

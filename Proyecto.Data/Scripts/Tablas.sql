@@ -17,12 +17,14 @@ insert into Parentesco values ('Madre')
 insert into Parentesco values ('Padre')
 insert into Parentesco values ('Abuelo')
 insert into Parentesco values ('Abuela')
+insert into Parentesco values ('Tío')
+insert into Parentesco values ('Tía')
 go
 
 create table Nacionalidad
 (
 	IdNacionalidad			int not null identity(1,1) primary key,
-	Descripcion				varchar(50) not null,
+	Descripcion				varchar(50) not null
 )
 go
 
@@ -46,12 +48,14 @@ create table Ciudad
 (
 	IdCiudad				int not null identity(1,1) primary key,
 	Descripcion				varchar(50) not null,
-	IdProvincia				int  not null,
+	IdProvincia				int  not null
 	foreign key (IdProvincia) references Provincia,
 )
 
 insert into Ciudad values ('Guayaquil', 1)
 insert into Ciudad values ('Quito', 2)
+insert into Ciudad values ('Durán', 1)
+insert into Ciudad values ('Milagro', 1)
 go
 
 create table Usuario
@@ -65,6 +69,9 @@ Email				varchar(50)  not null,
 Habilitado			bit not null,
 FechaCreacion		date  not null
 )
+
+EXEC dbo.SP_RegistrarUsuario 'admin', '123456', 'Carlos Mario', 'Gonzalez Luna', 'cmario1982@hotmail.com';  
+GO
 
 create table Representante
 (
@@ -119,9 +126,11 @@ foreign key (IdNacionalidad) references Nacionalidad,
 )
 go
 
-
+--drop table Catalogo
 --drop table Parentesco
 --drop table Nacionalidad
+--drop table Provincia
+--drop table Ciudad
 --drop table Usuario
 --drop table Representante
 --drop table children

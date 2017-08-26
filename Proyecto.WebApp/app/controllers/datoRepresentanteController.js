@@ -1,21 +1,25 @@
 ﻿'use strict';
 proyectoApp.controller('datoRepresentanteController',
-    ['$location', '$http', '$q', '$ekathuwa', 'validaIdentificacionService', '$filter', 'localStorageService', '$scope', '$rootScope', '$route', 'AppConfig',
-        function ($location, $http, $q, $ekathuwa, validaIdentificacionService, $filter, localStorageService, $scope, $rootScope, $route, appConfig) {
+    ['$location', '$http', '$q', '$ekathuwa', 'validaIdentificacionService', '$filter', 'localStorageService', '$scope', '$rootScope', '$route', 'AppConfig', 'catalogoService',
+        function ($location, $http, $q, $ekathuwa, validaIdentificacionService, $filter, localStorageService, $scope, $rootScope, $route, appConfig, catalogoService) {
 
             $scope.message = "";
 
-            $scope.listParentesco = [{
-                codigo: "1",
-                descripcion: 'Madre'
-            }, {
-                codigo: "2",
-                descripcion: 'Padre'
-            },
-            {
-                codigo: "3",
-                descripcion: 'Tío'
-            }];
+            $scope.listParentesco = catalogoService.catalogoParentesco();
+
+            $scope.listNacionalidad = catalogoService.catalogoNacionalidad();
+
+            $scope.listProvincia = catalogoService.catalogoProvincia();
+
+            var ciudades = catalogoService.catalogoCiudad();
+            $scope.cargaCiudad = function (idProvincia) {
+                $scope.listCiudad = [];
+                angular.forEach(ciudades, function (value, key) {
+                    if (value.idProvincia == idProvincia) {
+                        $scope.listCiudad.push(value);
+                    }
+                });
+            }
 
             $scope.validaIdentificacion = validaIdentificacionService;
 

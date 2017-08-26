@@ -74,8 +74,9 @@
     <Content Include="app\components\validaciones\disallowSpaces.js" />
     <Content Include="app\components\validaciones\numbersOnly.js" />
     <Content Include="app\controllers\datoChildrenController.js" />
+    <Content Include="app\services\catalogoService.js" />
     <Content Include="app\services\childrenService.js" />
-    <Content Include="app\services\validaIdentificacion.js" />
+    <Content Include="app\services\validaIdentificacionService.js" />
     <Content Include="app\controllers\appController.js" />
     <Content Include="app\controllers\homeController.js" />
     <Content Include="app\controllers\datoRepresentanteController.js" />

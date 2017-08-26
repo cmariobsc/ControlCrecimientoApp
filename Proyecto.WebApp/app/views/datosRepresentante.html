@@ -16,7 +16,7 @@
                                     <label class="control-label col-md-3">Parentesco:</label>
                                     <div class="col-md-9">
                                         <select class="form-control" ng-model="datoRepresentante.parentesco" required
-                                                ng-options="option.codigo as option.descripcion for option in listParentesco">
+                                                ng-options="option.idParentesco as option.descripcion for option in listParentesco">
                                             <option value=""></option>
                                         </select>
                                     </div>
@@ -39,24 +39,27 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label class="control-label col-md-3">Nombre del Representante:</label>
+                                    <label class="control-label col-md-3">Nombres:</label>
                                     <div class="col-md-9">
-                                        <input type="text" ng-maxlength="100" maxlength="100" name="nombre" ng-pattern="/^[a-zA-Z0-9 ]*$/" class="form-control" placeholder="Nombre del Representante"
-                                               ng-model="datoRepresentante.nombre" required />
-                                        <span class="messages" ng-show="datosRepresentanteForm.$submitted || datosRepresentanteForm.nombre.$touched">
-                                            <span class="text-danger" ng-show="datosRepresentanteForm.nombre.$error.required">El campo es obligatorio.</span>
-                                            <span class="text-danger" ng-show="datosRepresentanteForm.nombre.$error.maxlength">Máximo 100 caracteres.</span>
-                                            <span class="text-danger" ng-show="datosRepresentanteForm.nombre.$error.pattern">Ingrese solo letras y números.</span>
+                                        <input type="text" ng-maxlength="100" maxlength="100" name="nombres" ng-pattern="/^[a-zA-Z0-9 ]*$/" class="form-control" placeholder="Nombres"
+                                               ng-model="datoRepresentante.nombres" required />
+                                        <span class="messages" ng-show="datosRepresentanteForm.$submitted || datosRepresentanteForm.nombres.$touched">
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.nombres.$error.required">El campo es obligatorio.</span>
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.nombres.$error.maxlength">Máximo 100 caracteres.</span>
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.nombres.$error.pattern">Ingrese solo letras y números.</span>
                                         </span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="control-label col-md-3">Nacionalidad:</label>
+                                    <label class="control-label col-md-3">Apellidos:</label>
                                     <div class="col-md-9">
-                                        <select class="form-control" ng-model="datoRepresentante.nacionalidad" required
-                                                ng-options="option.codigo as option.descripcion for option in listNacionalidad">
-                                            <option value=""></option>
-                                        </select>
+                                        <input type="text" ng-maxlength="100" maxlength="100" name="apellidos" ng-pattern="/^[a-zA-Z0-9 ]*$/" class="form-control" placeholder="Apellidos"
+                                               ng-model="datoRepresentante.apellidos" required />
+                                        <span class="messages" ng-show="datosRepresentanteForm.$submitted || datosRepresentanteForm.apellidos.$touched">
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.apellidos.$error.required">El campo es obligatorio.</span>
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.apellidos.$error.maxlength">Máximo 100 caracteres.</span>
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.apellidos.$error.pattern">Ingrese solo letras y números.</span>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -65,7 +68,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label class="control-label col-md-3">Fecha Nacimiento:</label>
-                                    <div class="col-md-9">
+                                    <div class="col-md-5">
                                         <div class="input-group">
                                             <input type="text" class="form-control" datepicker-popup-template-url="app/components/calendar.html" uib-datepicker-popup="dd/MM/yyyy" ng-model="datoRepresentante.fechaNacimiento" is-open="popup.opened"
                                                    datepicker-options="dateOptions" close-text="Cerrar" current-text="Hoy" popup-placement="bottom" show-button-bar="true"
@@ -75,12 +78,42 @@
                                             </span>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="control-label col-md-3">Edad:</label>
-                                    <div class="col-md-9">
+                                    <label class="control-label col-md-1">Edad:</label>
+                                    <div class="col-md-3">
                                         <input type="text" class="form-control" disabled
                                                ng-model="datoRepresentante.edad" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="control-label col-md-3">Nacionalidad:</label>
+                                    <div class="col-md-9">
+                                        <select class="form-control" ng-model="datoRepresentante.nacionalidad" required
+                                                ng-options="option.idNacionalidad as option.descripcion for option in listNacionalidad">
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="control-label col-md-3">Provincia:</label>
+                                    <div class="col-md-9">
+                                        <select class="form-control" ng-model="datoRepresentante.provincia" 
+                                                ng-change="cargaCiudad(datoRepresentante.provincia)" required
+                                                ng-options="option.idProvincia as option.descripcion for option in listProvincia">
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="control-label col-md-3">Ciudad:</label>
+                                    <div class="col-md-9">
+                                        <select class="form-control" ng-model="datoRepresentante.ciudad" required
+                                                ng-options="option.idCiudad as option.descripcion for option in listCiudad">
+                                            <option value=""></option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -141,7 +174,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <input type="text" class="telefono form-control" name="numTelefono" ng-model="datoRepresentante.numTelefono" ng-maxlength="10"
-                                                maxlength="10" ng-pattern="/^(?!0000000000$)[0-9]*$/" required ng-disabled="edicion == 'true'" />
+                                               maxlength="10" ng-pattern="/^(?!0000000000$)[0-9]*$/" required ng-disabled="edicion == 'true'" />
                                         <span class="messages" ng-show="datosRepresentanteForm.$submitted || datosRepresentanteForm.numTelefono.$touched">
                                             <span class="text-danger" ng-show="datosRepresentanteForm.numTelefono.$error.required">El campo es obligatorio.</span>
                                             <span class="text-danger" ng-show="datosRepresentanteForm.numTelefono.$error.pattern">Formato incorrecto.</span>
@@ -174,7 +207,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <input type="text" class="telefono form-control" name="numTelefono2" ng-model="datoRepresentante.numTelefono2" ng-maxlength="10"
-                                               ng-pattern="/^(?!0000000000$)[0-9]*$/" maxlength="10"  />
+                                               ng-pattern="/^(?!0000000000$)[0-9]*$/" maxlength="10" />
                                         <span class="messages" ng-show="datosRepresentanteForm.$submitted || datosRepresentanteForm.numTelefono2.$touched">
                                             <span class="text-danger" ng-show="datosRepresentanteForm.numTelefono2.$error.required">El campo es obligatorio.</span>
                                             <span class="text-danger" ng-show="datosRepresentanteForm.numTelefono2.$error.pattern">Formato incorrecto.</span>
@@ -194,7 +227,7 @@
                                                ng-model="datoRepresentante.talla" autofocus
                                                maxlength="4" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" />
                                         <span class="small">Formato 0.00 mts.</span>
-                                        <span class="messages" >
+                                        <span class="messages">
                                             <span class="text-danger" ng-show="datosRepresentanteForm.talla.$error.pattern">Formato incorrecto.</span>
                                         </span>
                                     </div>
