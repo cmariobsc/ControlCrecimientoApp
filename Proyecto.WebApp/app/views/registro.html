@@ -1,0 +1,84 @@
+﻿<div header-anon-proyecto></div>
+<div class="container-fluid">
+    <h1 style="text-align:center">Control de Nutrición y Crecimiento Infantil</h1>
+    <br />
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form name="registroForm">
+                        <fieldset>
+                            <legend>Registrarse</legend>
+                            <div data-ng-hide="message == ''" class="alert alert-danger">
+                                {{message}}
+                            </div>
+                            <div class="form-group">
+                                <label>Nombre de usuario:</label>
+                                <input type="text" disallow-spaces name="usuario" class="form-control" ng-maxlength="19" maxlength="19" ng-minlength="5" placeholder="Usuario"
+                                       ng-model="datoRegistro.usuario" required autofocus />
+                                <span class="messages" ng-show="registroForm.$submitted || registroForm.usuario.$touched">
+                                    <span class="text-danger" ng-show="registroForm.usuario.$error.required">El campo es obligatorio.</span>
+                                    <span class="text-danger" ng-show="registroForm.usuario.$error.maxlength">Máximo 19 caracteres.</span>
+                                    <span class="text-danger" ng-show="registroForm.usuario.$error.minlength">Mínimo 5 caracteres.</span>
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <label>Nombres:</label>
+                                <input letters-only type="text" ng-maxlength="100" maxlength="100" name="nombres" class="form-control" placeholder="Nombres"
+                                       ng-model="datoRegistro.nombres" required />
+                                <span class="messages" ng-show="registroForm.$submitted || registroForm.nombres.$touched">
+                                    <span class="text-danger" ng-show="registroForm.nombres.$error.required">El campo es obligatorio.</span>
+                                    <span class="text-danger" ng-show="registroForm.nombres.$error.maxlength">Máximo 100 caracteres.</span>
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <label>Apellidos:</label>
+                                <input letters-only type="text" ng-maxlength="100" maxlength="100" name="apellidos" class="form-control" placeholder="Apellidos"
+                                       ng-model="datoRegistro.apellidos" required />
+                                <span class="messages" ng-show="registroForm.$submitted || registroForm.apellidos.$touched">
+                                    <span class="text-danger" ng-show="registroForm.apellidos.$error.required">El campo es obligatorio.</span>
+                                    <span class="text-danger" ng-show="registroForm.apellidos.$error.maxlength">Máximo 100 caracteres.</span>
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <label>Email:</label>
+                                <input valid-email type="text" ng-maxlength="100" maxlength="30" name="email" class="form-control" placeholder="Email"
+                                       ng-model="datoRegistro.email" required />
+                                <span class="messages" ng-show="registroForm.$submitted || registroForm.email.$touched">
+                                    <span class="text-danger" ng-show="registroForm.email.$error.required">El campo es obligatorio.</span>
+                                    <span class="text-danger" ng-show="registroForm.email.$error.maxlength">Máximo 30 caracteres.</span>
+                                    <span class="text-danger" ng-show="registroForm.email.$error.invalidEmail">Ingrese un email válido.</span>
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <label>Contraseña:</label>
+                                <input type="password" disallow-spaces name="contrasenia" class="form-control" ng-maxlength="20" ng-minlength="6" maxlength="20" placeholder="Contraseña"
+                                       ng-model="datoRegistro.contrasenia" required />
+                                <span class="messages" ng-show="registroForm.$submitted || registroForm.contrasenia.$touched">
+                                    <span class="text-danger" ng-show="registroForm.contrasenia.$error.required">El campo es obligatorio.</span>
+                                    <span class="text-danger" ng-show="registroForm.contrasenia.$error.maxlength">Máximo 20 caracteres.</span>
+                                    <span class="text-danger" ng-show="registroForm.contrasenia.$error.minlength">Mínimo 6 caracteres.</span>
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <label>Confirmar Contraseña:</label>
+                                <input type="password" disallow-spaces name="ccontrasenia" class="form-control" placeholder="Confirmar Contraseña"
+                                       ng-model="datoRegistro.ccontrasenia" password-match="datoRegistro.contrasenia" required />
+                                <span class="messages" ng-show="registroForm.$submitted || registroForm.ccontrasenia.$touched">
+                                    <span class="text-danger" ng-show="registroForm.ccontrasenia.$error.required">El campo es obligatorio.</span>
+                                    <span class="text-danger" ng-show="registroForm.ccontrasenia.$error.unique">Las contraseñas deben coincidir.</span>
+                                </span>
+                            </div>
+                            <div class="form-group" style="text-align:center">
+                                <button type="submit" class="btn btn-primary glyphicon glyphicon-send"
+                                        ng-click="registrar()" ng-disabled="!registroForm.$valid"> Enviar Registro
+                                </button>
+                                <a class="btn btn-primary glyphicon glyphicon-chevron-left" ng-click="regresar()"> Regresar</a>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -11,6 +11,10 @@ proyectoApp.config(
                 {
                     templateUrl: 'app/views/login.html',
                     controller: 'loginController'
+                }).when('/registro',
+                {
+                    templateUrl: 'app/views/registro.html',
+                    controller: 'registroController'
                 })
                 .when('/home',
                 {

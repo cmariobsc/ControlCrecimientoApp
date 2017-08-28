@@ -15,7 +15,7 @@ proyectoApp.factory('catalogoService',
                     crossDomain: true
                 }).then(function (response) {
                     var result = response.data;
-                    if (result.errorCode === "000") {
+                    if (result.codError === "000") {
                         localStorageService.set('catalogoParentesco', result.data);
                     }
                     deferred.resolve(response);
@@ -36,7 +36,7 @@ proyectoApp.factory('catalogoService',
                     crossDomain: true
                 }).then(function (response) {
                     var result = response.data;
-                    if (result.errorCode === "000") {
+                    if (result.codError === "000") {
                         localStorageService.set('catalogoNacionalidad', result.data);
                     }
                     deferred.resolve(response);
@@ -57,7 +57,7 @@ proyectoApp.factory('catalogoService',
                     crossDomain: true
                 }).then(function (response) {
                     var result = response.data;
-                    if (result.errorCode === "000") {
+                    if (result.codError === "000") {
                         localStorageService.set('catalogoProvincia', result.data);
                     }
                     deferred.resolve(response);
@@ -78,7 +78,7 @@ proyectoApp.factory('catalogoService',
                     crossDomain: true
                 }).then(function (response) {
                     var result = response.data;
-                    if (result.errorCode === "000") {
+                    if (result.codError === "000") {
                         localStorageService.set('catalogoCiudad', result.data);
                     }
                     deferred.resolve(response);

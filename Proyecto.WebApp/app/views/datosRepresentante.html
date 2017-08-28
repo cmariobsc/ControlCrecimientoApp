@@ -41,24 +41,22 @@
                                 <div class="col-md-6">
                                     <label class="control-label col-md-3">Nombres:</label>
                                     <div class="col-md-9">
-                                        <input type="text" ng-maxlength="100" maxlength="100" name="nombres" ng-pattern="/^[a-zA-Z0-9 ]*$/" class="form-control" placeholder="Nombres"
+                                        <input letters-only type="text" ng-maxlength="100" maxlength="100" name="nombres" class="form-control" placeholder="Nombres"
                                                ng-model="datoRepresentante.nombres" required />
                                         <span class="messages" ng-show="datosRepresentanteForm.$submitted || datosRepresentanteForm.nombres.$touched">
                                             <span class="text-danger" ng-show="datosRepresentanteForm.nombres.$error.required">El campo es obligatorio.</span>
                                             <span class="text-danger" ng-show="datosRepresentanteForm.nombres.$error.maxlength">Máximo 100 caracteres.</span>
-                                            <span class="text-danger" ng-show="datosRepresentanteForm.nombres.$error.pattern">Ingrese solo letras y números.</span>
                                         </span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="control-label col-md-3">Apellidos:</label>
                                     <div class="col-md-9">
-                                        <input type="text" ng-maxlength="100" maxlength="100" name="apellidos" ng-pattern="/^[a-zA-Z0-9 ]*$/" class="form-control" placeholder="Apellidos"
+                                        <input letters-only type="text" ng-maxlength="100" maxlength="100" name="apellidos" class="form-control" placeholder="Apellidos"
                                                ng-model="datoRepresentante.apellidos" required />
                                         <span class="messages" ng-show="datosRepresentanteForm.$submitted || datosRepresentanteForm.apellidos.$touched">
                                             <span class="text-danger" ng-show="datosRepresentanteForm.apellidos.$error.required">El campo es obligatorio.</span>
                                             <span class="text-danger" ng-show="datosRepresentanteForm.apellidos.$error.maxlength">Máximo 100 caracteres.</span>
-                                            <span class="text-danger" ng-show="datosRepresentanteForm.apellidos.$error.pattern">Ingrese solo letras y números.</span>
                                         </span>
                                     </div>
                                 </div>
@@ -80,7 +78,7 @@
                                     </div>
                                     <label class="control-label col-md-1">Edad:</label>
                                     <div class="col-md-3">
-                                        <input type="text" class="form-control" disabled
+                                        <input numbers-only type="text" class="form-control" disabled
                                                ng-model="datoRepresentante.edad" />
                                     </div>
                                 </div>
@@ -135,13 +133,12 @@
                                 <div class="col-md-6">
                                     <label class="control-label col-md-3">Email:</label>
                                     <div class="col-md-9">
-                                        <input type="text" ng-maxlength="100" maxlength="30" name="email" class="form-control" placeholder="Email"
-                                               ng-pattern='/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i'
+                                        <input valid-email type="text" ng-maxlength="100" maxlength="30" name="email" class="form-control" placeholder="Email"
                                                ng-model="datoRepresentante.email" required />
                                         <span class="messages" ng-show="datosRepresentanteForm.$submitted || datosRepresentanteForm.email.$touched">
                                             <span class="text-danger" ng-show="datosRepresentanteForm.email.$error.required">El campo es obligatorio.</span>
                                             <span class="text-danger" ng-show="datosRepresentanteForm.email.$error.maxlength">Máximo 30 caracteres.</span>
-                                            <span class="text-danger" ng-show="datosRepresentanteForm.email.$error.pattern">Ingrese un email válido.</span>
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.email.$error.invalidEmail">Ingrese un email válido.</span>
                                         </span>
                                     </div>
                                 </div>

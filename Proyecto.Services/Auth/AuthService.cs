@@ -29,6 +29,11 @@ namespace Proyecto.Services.Auth
             return _tokenRepository.FindClientApp(clientId);
         }
 
+        public bool Registro(User usuario, out string codError, out string mensajeRetorno)
+        {
+            return _authRepository.Registro(usuario, out codError, out mensajeRetorno);
+        }
+
         public User FindUser(string userName, string password, string ipAddress, out string codError, out string mensajeRetorno)
         {
             return _authRepository.FindUser(userName, password, ipAddress, out codError, out mensajeRetorno);

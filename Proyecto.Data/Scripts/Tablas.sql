@@ -126,7 +126,6 @@ foreign key (IdNacionalidad) references Nacionalidad,
 )
 go
 
---drop table Catalogo
 --drop table Parentesco
 --drop table Nacionalidad
 --drop table Provincia

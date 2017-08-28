@@ -1,0 +1,21 @@
+﻿<div class="modal fade active" id="ModalOpcionesId" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modalPopup">
+        <div class="modal-content">
+            <div class="header">
+                <button type="button" ng-click="go_back()" aria-hidden="true" data-dismiss="modal" class="close btn btn-primary">
+                    <i class="fa fa-times" title="Cerrar"></i>
+                </button> 
+                
+                <h4 style="font-weight:bold; color:#FFFFFF;">{{header}}</h4>
+            </div>
+
+            <div class="body" style="margin-top:10px;">
+                {{body}}
+            </div>
+            <div class="modal-footer" style="text-align:center">
+                <button type="button" data-dismiss="modal" class="btn btn-primary" id="confirmUno" ng-click="modo(opcion1)">{{ opcion1}}</button>
+                <button type="button" data-dismiss="modal" class="btn btn-primary" id="confirmDos" ng-click="modo(opcion2)">{{opcion2}}</button>
+            </div>
+        </div>
+    </div>
+</div>

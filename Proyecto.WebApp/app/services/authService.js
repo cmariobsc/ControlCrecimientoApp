@@ -54,6 +54,31 @@ proyectoApp.factory('authService',
             return deferred.promise;
         }
 
+        var _Registro = function (usuario) {
+
+            _authentication.isAuth = true;
+
+            var url = serviceUrl + '/auth/registro';
+            var deferred = $q.defer();
+
+            $http({
+                url: url,
+                method: 'POST',
+                headers: {
+                    Authorization: null
+                },
+                data: usuario,
+                dataType: 'json'
+
+            }).then(function (response) {
+                var res = response;
+                deferred.resolve(res);
+            }, function (error) {
+                deferred.reject(error);
+            });
+            return deferred.promise;
+        };
+
         var _logOut = function () {
 
             $window.sessionStorage.removeItem("token");
@@ -125,11 +150,12 @@ proyectoApp.factory('authService',
         var _checkLogin = function () {
             var isLoggedIn = _authentication.isAuth;
             if (!isLoggedIn) {
-                $location.path('/login');
+                //$location.path('/login');
             }
         };
 
         authServiceFactory.checkLogin = _checkLogin;
+        authServiceFactory.Registro = _Registro;
         authServiceFactory.login = _login;
         authServiceFactory.logOut = _logOut;
         authServiceFactory.fillAuthData = _fillAuthData;

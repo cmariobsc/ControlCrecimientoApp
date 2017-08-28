@@ -71,9 +71,16 @@
     <Content Include="app\components\header\header-anon.html" />
     <Content Include="app\components\header\header.directive.js" />
     <Content Include="app\components\header\header.html" />
+    <Content Include="app\components\modals\alerta.html" />
+    <Content Include="app\components\modals\confirmacion.html" />
+    <Content Include="app\components\modals\opciones.html" />
     <Content Include="app\components\validaciones\disallowSpaces.js" />
+    <Content Include="app\components\validaciones\lettersOnly.js" />
+    <Content Include="app\components\validaciones\passwordMatch.js" />
+    <Content Include="app\components\validaciones\validEmail.js" />
     <Content Include="app\components\validaciones\numbersOnly.js" />
     <Content Include="app\controllers\datoChildrenController.js" />
+    <Content Include="app\controllers\registroController.js" />
     <Content Include="app\services\catalogoService.js" />
     <Content Include="app\services\childrenService.js" />
     <Content Include="app\services\validaIdentificacionService.js" />
@@ -89,6 +96,7 @@
     <Content Include="app\views\datosChildren.html" />
     <Content Include="app\views\home.html" />
     <Content Include="app\views\datosRepresentante.html" />
+    <Content Include="app\views\registro.html" />
     <Content Include="app\views\login.html" />
     <Content Include="content\css\bg-theme.css" />
     <Content Include="content\css\styles.css" />

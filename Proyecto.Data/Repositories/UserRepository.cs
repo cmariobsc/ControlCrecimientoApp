@@ -16,6 +16,24 @@ namespace Proyecto.Data.Repositories
             _userSqlService = new UserSqlService();
         }
 
+        public bool Registro(User usuario, out string codError, out string mensajeRetorno)
+        {
+            var response = false;
+            try
+            {
+                _userSqlService.Registro(usuario, out codError, out mensajeRetorno);
+                response = true;
+            }
+            catch (Exception exception)
+            {
+                response = false;
+                codError = "999";
+                mensajeRetorno = exception.Message;
+            }
+
+            return response;
+        }
+
         public User FindUser(
             string usuario, string contrasenia, string ipAddress,
             out string codError, out string mensajeRetorno)

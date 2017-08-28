@@ -14,7 +14,7 @@ proyectoApp.controller('appController',
                 }
 
             } else {
-                $location.path('/login');
+                //$location.path('/login');
             }
         }
     ]);

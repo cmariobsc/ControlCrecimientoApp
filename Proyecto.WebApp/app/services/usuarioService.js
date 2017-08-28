@@ -2,7 +2,7 @@
 proyectoApp.factory('usuarioService',
 [
     '$http', '$q', 'localStorageService', 'AppConfig',
-    function($http, $q, localStorageService, appConfig) {
+    function ($http, $q, localStorageService, appConfig) {
 
         var usuarioServiceFactory = {}
 
@@ -26,7 +26,7 @@ proyectoApp.factory('usuarioService',
             }).then(function(response) {
 
                 var result = response.data;
-                if (result.errorCode === "000") {
+                if (result.codError === "000") {
 
                     var dataSesion = {
                         usuario: result.data.usuario,
@@ -36,7 +36,7 @@ proyectoApp.factory('usuarioService',
                     _estadoUsuario.datosSesion = dataSesion;
                     localStorageService.set("datosSesion", dataSesion);
                 } else {
-                    alert(result.message);
+                    alert(result.mensajeRetorno);
                 }
 
                 deferred.resolve(response);
