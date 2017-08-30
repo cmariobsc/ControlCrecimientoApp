@@ -16,7 +16,7 @@ namespace Proyecto.WebApi.Controllers
             _authService = authService;
         }
 
-        [Authorize]
+        [AllowAnonymous]
         [HttpPost]
         [ActionName("registro")]
         public ApiResult Registro(User usuario)

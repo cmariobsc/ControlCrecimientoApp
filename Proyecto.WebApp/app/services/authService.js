@@ -54,9 +54,7 @@ proyectoApp.factory('authService',
             return deferred.promise;
         }
 
-        var _Registro = function (usuario) {
-
-            _authentication.isAuth = true;
+        var _registro = function (usuario) {
 
             var url = serviceUrl + '/auth/registro';
             var deferred = $q.defer();
@@ -65,7 +63,7 @@ proyectoApp.factory('authService',
                 url: url,
                 method: 'POST',
                 headers: {
-                    Authorization: null
+                    "Content-Type": "application/x-www-form-urlencoded; charset=utf-8"
                 },
                 data: usuario,
                 dataType: 'json'
@@ -150,12 +148,12 @@ proyectoApp.factory('authService',
         var _checkLogin = function () {
             var isLoggedIn = _authentication.isAuth;
             if (!isLoggedIn) {
-                //$location.path('/login');
+                $location.path('/login');
             }
         };
 
         authServiceFactory.checkLogin = _checkLogin;
-        authServiceFactory.Registro = _Registro;
+        authServiceFactory.registro = _registro;
         authServiceFactory.login = _login;
         authServiceFactory.logOut = _logOut;
         authServiceFactory.fillAuthData = _fillAuthData;

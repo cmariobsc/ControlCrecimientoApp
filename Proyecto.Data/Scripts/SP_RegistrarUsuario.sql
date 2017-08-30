@@ -20,11 +20,31 @@ BEGIN
 
     BEGIN TRY
 
-        INSERT INTO Usuario(Usuario, Contrasenia, Nombres, Apellidos, Email, Habilitado, FechaCreacion)
-        VALUES(@Usuario, HASHBYTES('SHA2_512', @Contrasenia), @Nombres, @Apellidos, @Email, 0, GETDATE())
+		IF EXISTS (SELECT 1 FROM Usuario WHERE Usuario = @Usuario) 
+		BEGIN
+			SET @codError='001'
+			SET @mensajeRetorno='El usuario que ingresò ya existe, debe elegir otro.'
+		END
+		ELSE
+		BEGIN
+			DECLARE @idUsuario int
+			DECLARE @idRepresentante int
+			
+			SELECT @idUsuario = COUNT(*) FROM Usuario
+			SET @idUsuario = @idUsuario + 1
 
-        SET @codError='000'
-		SET @mensajeRetorno='Se ha registrado correctamente, ingrese a su correo para activar su cuenta.'
+			SELECT @idRepresentante = COUNT(*) FROM Representante
+			SET @idRepresentante = @idRepresentante + 1
+
+			INSERT INTO Usuario(IdUsuario, Usuario, Contrasenia, Nombres, Apellidos, Email, Habilitado, FechaCreacion)
+			VALUES(@idUsuario, @Usuario, HASHBYTES('SHA2_512', @Contrasenia), @Nombres, @Apellidos, @Email, 0, GETDATE())
+
+			INSERT INTO Representante (IdRepresentante, Nombres, Apellidos, Email, FechaCreacion, FechaModificacion, IdUsuario)
+			VALUES (@idRepresentante, @Nombres, @Apellidos, @Email, GETDATE(), GETDATE(), @idUsuario)
+
+			SET @codError='000'
+			SET @mensajeRetorno='Se ha registrado correctamente, ingrese a su correo para activar su cuenta.'
+		END
 
     END TRY
     BEGIN CATCH

@@ -14,7 +14,7 @@ namespace Proyecto.Data.SqlServices
             _database = _connection.InitDatabase();
         }
 
-        public DataSet ConsultarRepresentante(int idUsuario, out string codError, out string mensajeRetorno)
+        public DataSet GetRepresentante(int idUsuario, out string codError, out string mensajeRetorno)
         {
             var storedProcedure = "[dbo].[SP_ConsultarRepresentante]";
 

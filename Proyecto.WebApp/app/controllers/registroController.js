@@ -14,7 +14,7 @@ proyectoApp.controller('registroController',
                     Email: $scope.datoRegistro.email,
                 });
 
-                authService.Registro(usuario).then(function (response) {
+                authService.registro(usuario).then(function (response) {
                     if (response.data.codError === "000") {
                         $scope.ModalMensaje(response.data.mensajeRetorno);
                     } else {
@@ -32,6 +32,10 @@ proyectoApp.controller('registroController',
                     backdrop: "static",
                     templateURL: "app/components/modals/alerta.html"
                 });
+            }
+
+            $scope.cerrar = function () {
+                $location.path('/login');
             }
      }
     ]);

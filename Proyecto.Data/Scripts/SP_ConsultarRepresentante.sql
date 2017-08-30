@@ -40,7 +40,7 @@ BEGIN
 	  WHERE [IdUsuario] = @IdUsuario
 		
 		SET @codError='000'
-		SET @mensajeRetorno='Consulta Ok.'
+		SET @mensajeRetorno='Consulta Representante Ok.'
 
     END TRY
 

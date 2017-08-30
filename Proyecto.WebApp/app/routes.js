@@ -23,14 +23,14 @@ proyectoApp.config(
                 })
                 .when('/datoRepresentante',
                 {
-                    templateUrl: 'app/views/datosRepresentante.html',
-                    controller: 'datoRepresentanteController'
+                    templateUrl: 'app/views/representante.html',
+                    controller: 'representanteController'
                 })
 
                 .when('/datoChildren',
                 {
-                    templateUrl: 'app/views/datosChildren.html',
-                    controller: 'datoChildrenController'
+                    templateUrl: 'app/views/children.html',
+                    controller: 'childrenController'
                 })
 
         }]);

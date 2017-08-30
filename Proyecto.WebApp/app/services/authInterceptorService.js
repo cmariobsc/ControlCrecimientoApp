@@ -25,7 +25,7 @@
 
                 //var authService = $injector.get('authService');
                 //authService.logOut();
-                //$location.path('/login');
+                $location.path('/login');
                 // alert('antes de salir a login');
             };
 
