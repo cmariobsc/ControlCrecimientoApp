@@ -1,4 +1,5 @@
 ﻿using Proyecto.Core.Contracts;
+using Proyecto.Core.Contracts.Repositories;
 using Proyecto.Core.Contracts.Services;
 using Proyecto.Core.Models;
 
@@ -6,9 +7,9 @@ namespace Proyecto.Services
 {
     public class RepresentanteService : IRepresentanteService, IService
     {
-        private readonly IRepresentanteService _RepresentanteRepository;
+        private readonly IRepresentanteRepository _RepresentanteRepository;
 
-        public RepresentanteService(IRepresentanteService RepresentanteRepository)
+        public RepresentanteService(IRepresentanteRepository RepresentanteRepository)
         {
             _RepresentanteRepository = RepresentanteRepository;
         }
