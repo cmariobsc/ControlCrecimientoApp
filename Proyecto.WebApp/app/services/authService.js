@@ -69,8 +69,7 @@ proyectoApp.factory('authService',
                 dataType: 'json'
 
             }).then(function (response) {
-                var res = response;
-                deferred.resolve(res);
+                deferred.resolve(response);
             }, function (error) {
                 deferred.reject(error);
             });

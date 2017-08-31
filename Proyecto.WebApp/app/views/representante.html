@@ -68,13 +68,18 @@
                                     <label class="control-label col-md-3">Fecha Nacimiento:</label>
                                     <div class="col-md-5">
                                         <div class="input-group">
-                                            <input type="text" class="form-control" datepicker-popup-template-url="app/components/calendar.html" uib-datepicker-popup="dd/MM/yyyy" ng-model="datoRepresentante.fechaNacimiento" is-open="popup.opened"
-                                                   datepicker-options="dateOptions" close-text="Cerrar" current-text="Hoy" popup-placement="bottom" show-button-bar="true"
-                                                   readonly="readonly" />
+                                            <input type="text" class="form-control" datepicker-popup-template-url="app/components/calendar.html" 
+                                                   uib-datepicker-popup="dd/MM/yyyy" datepicker-options="dateOptions" close-text="Cerrar"
+                                                   ng-model="datoRepresentante.fechaNacimiento" is-open="popup.opened"
+                                                   current-text="Hoy" popup-placement="bottom" show-button-bar="true"
+                                                   readonly="readonly" required />
                                             <span class="input-group-btn">
                                                 <button type="button" class="btn btn-default" ng-click="abrirCalendario()"><i class="glyphicon glyphicon-calendar"></i></button>
                                             </span>
                                         </div>
+                                        <span class="messages" ng-show="datosRepresentanteForm.$submitted || datosRepresentanteForm.fechaNacimiento.$touched">
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.fechaNacimiento.$error.required">El campo es obligatorio.</span>
+                                        </span>
                                     </div>
                                     <label class="control-label col-md-1">Edad:</label>
                                     <div class="col-md-3">

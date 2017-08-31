@@ -18,8 +18,7 @@ proyectoApp.factory('representanteService',
                     cache: false,
                     params: { idUsuario: idUsuario }
                 }).then(function (response) {
-                    var result = response.data;
-                    deferred.resolve(result);
+                    deferred.resolve(response);
                 }, function (error) {
                     deferred.reject(error);
                 });
