@@ -45,18 +45,19 @@ proyectoApp.controller('representanteController',
 
             $scope.datoRepresentante = {};
 
-            $scope.datoRepresentante.fechaNacimiento = new Date();
+            $scope.datoRepresentante.fechaNacimiento = dateAgo;
             //////////////////////////////////////
 
             $scope.consultar = function () {
                 representanteService.getRepresentante(1).then(function (response) {
                     if (response.data.codError === "000") {
                         var representante = response.data;
+                        $scope.idRepresentante = representante.data.idRepresentante;
                         $scope.datoRepresentante.parentesco = representante.data.idParentesco;
                         $scope.datoRepresentante.identificacion = representante.data.identificacion;
                         $scope.datoRepresentante.nombres = representante.data.nombres;
                         $scope.datoRepresentante.apellidos = representante.data.apellidos;
-                        $scope.datoRepresentante.fechaNacimiento = representante.data.fechaNacimiento;
+                        $scope.datoRepresentante.fechaNacimiento = new Date(representante.data.fechaNacimiento);
                         $scope.datoRepresentante.edad = representante.data.edad;
                         $scope.datoRepresentante.nacionalidad = representante.data.idNacionalidad;
                         $scope.datoRepresentante.provincia = representante.data.idProvincia;
@@ -72,6 +73,42 @@ proyectoApp.controller('representanteController',
                         $scope.ModalMensaje(response.data.mensajeRetorno);
                     }
                 });
+            }
+
+            $scope.actualizar = function () {
+                var representante = $.param({
+                    IdRepresentante: $scope.idRepresentante,
+                    Identificacion: $scope.datoRepresentante.identificacion,
+                    Nombres: $scope.datoRepresentante.nombres,
+                    Apellidos: $scope.datoRepresentante.apellidos,
+                    FechaNacimiento: $filter('date')($scope.datoRepresentante.fechaNacimiento, 'yyyy/MM/dd'),
+                    Edad: $scope.datoRepresentante.edad,
+                    Direccion: $scope.datoRepresentante.direccion,
+                    Email: $scope.datoRepresentante.email,
+                    Telefono1: $scope.datoRepresentante.numTelefono,
+                    Telefono2: $scope.datoRepresentante.numTelefono2,
+                    Talla: $scope.datoRepresentante.talla,
+                    Peso: $scope.datoRepresentante.peso,
+                    NHijos: $scope.datoRepresentante.hijos,
+                    IdParentesco: $scope.datoRepresentante.parentesco,
+                    IdNacionalidad: $scope.datoRepresentante.nacionalidad,
+                    IdProvincia: $scope.datoRepresentante.provincia,
+                    IdCiudad: $scope.datoRepresentante.ciudad
+                });
+
+                representanteService.editRepresentante(representante).then(function (response) {
+                    if (response.data.codError === "000") {
+                        $scope.ModalMensaje(response.data.mensajeRetorno);
+                    } else {
+                        $scope.ModalMensaje(response.data.mensajeRetorno);
+                    }
+                });
+            }
+
+            $scope.calculateAge = function calculateAge(birthday) {
+                var ageDifMs = Date.now() - birthday.getTime();
+                var ageDate = new Date(ageDifMs);
+                $scope.datoRepresentante.edad = Math.abs(ageDate.getUTCFullYear() - 1970);
             }
 
             $scope.ModalMensaje = function (mensaje) {

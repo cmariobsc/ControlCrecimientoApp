@@ -26,7 +26,30 @@ proyectoApp.factory('representanteService',
                 return deferred.promise;
             };
 
+            var _editRepresentante = function (representante) {
+
+                var url = serviceUrl + '/representante/edit';
+                var deferred = $q.defer();
+
+                $http({
+                    url: url,
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded; charset=utf-8"
+                    },
+                    data: representante,
+                    dataType: 'json'
+
+                }).then(function (response) {
+                    deferred.resolve(response);
+                }, function (error) {
+                    deferred.reject(error);
+                });
+                return deferred.promise;
+            };
+
             representanteServiceFactory.getRepresentante = _getRepresentante;
+            representanteServiceFactory.editRepresentante = _editRepresentante;
 
             return representanteServiceFactory;
         }

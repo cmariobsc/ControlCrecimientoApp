@@ -56,5 +56,23 @@ namespace Proyecto.Data.Repositories
 
             return representante;
         }
+
+        public bool ActualizarRepresentante(Representante representante, out string codError, out string mensajeRetorno)
+        {
+            var response = false;
+            try
+            {
+                _representanteSqlService.ActualizarRepresentante(representante, out codError, out mensajeRetorno);
+                response = true;
+            }
+            catch (Exception exception)
+            {
+                response = false;
+                codError = "999";
+                mensajeRetorno = exception.Message;
+            }
+
+            return response;
+        }
     }
 }

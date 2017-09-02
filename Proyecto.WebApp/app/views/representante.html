@@ -70,7 +70,7 @@
                                         <div class="input-group">
                                             <input type="text" class="form-control" datepicker-popup-template-url="app/components/calendar.html" 
                                                    uib-datepicker-popup="dd/MM/yyyy" datepicker-options="dateOptions" close-text="Cerrar"
-                                                   ng-model="datoRepresentante.fechaNacimiento" is-open="popup.opened"
+                                                   ng-model="datoRepresentante.fechaNacimiento" ng-change="calculateAge(datoRepresentante.fechaNacimiento)" is-open="popup.opened"
                                                    current-text="Hoy" popup-placement="bottom" show-button-bar="true"
                                                    readonly="readonly" required />
                                             <span class="input-group-btn">
@@ -260,7 +260,7 @@
                         </div>
                         <div class="form-group" style="text-align: center">
                             <button type="submit" class="btn btn-primary glyphicon glyphicon-floppy-disk"
-                                    ng-click="Guardar()" ng-disabled="!datosRepresentanteForm.$valid || verificador(datoRepresentante.identificacionCliente) == false">
+                                    ng-click="actualizar()" ng-disabled="!datosRepresentanteForm.$valid || verificador(datoRepresentante.identificacionCliente) == false">
                                 Guardar
                             </button>
                             <a class="btn btn-primary glyphicon glyphicon-trash" ng-click="limpiar()"> Limpiar</a>

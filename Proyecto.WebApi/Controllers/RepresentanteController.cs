@@ -41,30 +41,30 @@ namespace Proyecto.WebApi.Controllers
             return new ApiResult(status, codError, mensajeRetorno, representante);
         }
 
-        //[HttpPost]
-        //[ActionName("edit")]
-        //public ApiResult ActualizarRepresentante(Representante representante)
-        //{
-        //    string codError;
-        //    string mensajeRetorno;
-        //    string status;
-        //    var result = false;
-        //    try
-        //    {
-        //        result = _representanteService.ActualizarRepresentante(representante, out codError, out mensajeRetorno);
+        [HttpPost]
+        [ActionName("edit")]
+        public ApiResult ActualizarRepresentante(Representante representante)
+        {
+            string codError;
+            string mensajeRetorno;
+            string status;
+            var result = false;
+            try
+            {
+                result = _representanteService.ActualizarRepresentante(representante, out codError, out mensajeRetorno);
 
-        //        status = result
-        //            ? JsonStatus.Success()
-        //            : JsonStatus.Error();
-        //    }
-        //    catch (Exception exception)
-        //    {
-        //        status = JsonStatus.Error();
-        //        codError = "999";
-        //        mensajeRetorno = exception.Message;
-        //    }
+                status = result
+                    ? JsonStatus.Success()
+                    : JsonStatus.Error();
+            }
+            catch (Exception exception)
+            {
+                status = JsonStatus.Error();
+                codError = "999";
+                mensajeRetorno = exception.Message;
+            }
 
-        //    return new ApiResult(status, codError, mensajeRetorno, result);
-        //}
+            return new ApiResult(status, codError, mensajeRetorno, result);
+        }
     }
 }
