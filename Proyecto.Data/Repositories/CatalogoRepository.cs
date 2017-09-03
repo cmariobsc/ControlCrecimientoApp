@@ -76,6 +76,7 @@ namespace Proyecto.Data.Repositories
                     {
                         IdProvincia = Convert.ToInt32(dataRow["IdProvincia"]),
                         Descripcion = dataRow["Descripcion"].ToString(),
+                        CodigoArea = dataRow["CodigoArea"].ToString(),
                     });
                 }
             }

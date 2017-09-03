@@ -19,6 +19,11 @@ proyectoApp.controller('representanteController',
                         $scope.listCiudad.push(value);
                     }
                 });
+                angular.forEach($scope.listProvincia, function (value, key) {
+                    if (value.idProvincia == idProvincia) {
+                        $scope.datoRepresentante.codArea = value.codigoArea;
+                    }
+                });
             }
 
             $scope.validaIdentificacion = validaIdentificacionService;
@@ -61,6 +66,7 @@ proyectoApp.controller('representanteController',
                         $scope.datoRepresentante.edad = representante.data.edad;
                         $scope.datoRepresentante.nacionalidad = representante.data.idNacionalidad;
                         $scope.datoRepresentante.provincia = representante.data.idProvincia;
+                        $scope.cargaCiudad(representante.data.idProvincia);
                         $scope.datoRepresentante.ciudad = representante.data.idCiudad;
                         $scope.datoRepresentante.direccion = representante.data.direccion;
                         $scope.datoRepresentante.email = representante.data.email;
@@ -111,6 +117,21 @@ proyectoApp.controller('representanteController',
                 $scope.datoRepresentante.edad = Math.abs(ageDate.getUTCFullYear() - 1970);
             }
 
+            $scope.regresar = function () {
+                $(document).unbind('keydown');
+
+                if ($scope.datosRepresentanteForm.$dirty) {
+                    $scope.modalRegresar("¿Desea regresar sin guardar los cambios?");
+                } else {
+                    $scope.go_back();
+                }
+            }
+
+            $scope.go_back = function () {
+                $location.url("home");
+                window.scrollTo(0, 0);
+            }
+
             $scope.ModalMensaje = function (mensaje) {
                 $scope.header = "Datos del Representante";
                 $scope.body = "" + mensaje;
@@ -119,6 +140,18 @@ proyectoApp.controller('representanteController',
                     scope: $scope,
                     backdrop: "static",
                     templateURL: "app/components/modals/alerta.html"
+                });
+            }
+
+            $scope.modalRegresar = function (mensaje) {
+
+                $scope.header = "Datos del Representante";
+                $scope.body = "" + mensaje;
+                $ekathuwa.modal({
+                    id: "ModalConfirmacionId",
+                    scope: $scope,
+                    backdrop: "static",
+                    templateURL: "app/components/modals/confirmacion.html"
                 });
             }
 

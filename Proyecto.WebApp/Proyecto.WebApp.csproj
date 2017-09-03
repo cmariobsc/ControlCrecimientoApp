@@ -77,6 +77,7 @@
     <Content Include="app\components\validaciones\disallowSpaces.js" />
     <Content Include="app\components\validaciones\lettersOnly.js" />
     <Content Include="app\components\validaciones\passwordMatch.js" />
+    <Content Include="app\components\validaciones\decimalsOnly.js" />
     <Content Include="app\components\validaciones\validEmail.js" />
     <Content Include="app\components\validaciones\numbersOnly.js" />
     <Content Include="app\controllers\childrenController.js" />

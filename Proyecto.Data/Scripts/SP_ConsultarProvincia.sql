@@ -15,7 +15,7 @@ BEGIN
     SET NOCOUNT ON
 
 	BEGIN TRY
-		SELECT [IdProvincia],[Descripcion]
+		SELECT [IdProvincia],[Descripcion],[CodigoArea]
 		FROM [dbo].[Provincia]
 		
 		SET @codError='000'

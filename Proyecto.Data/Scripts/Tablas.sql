@@ -1,8 +1,3 @@
-use master
-if not exists(select * from sys.databases where name='DB_CNCAPP')-- solo existen los objetos sys.databases y sys.sysdatabases
-create database DB_CNCAPP
-go
-
 use DB_CNCAPP
 go
 
@@ -37,11 +32,34 @@ go
 create table Provincia
 (
 	IdProvincia				int not null identity(1,1) primary key,
-	Descripcion				varchar(50) not null
+	Descripcion				varchar(50) not null,
+	CodigoArea				varchar(2) not null
 )
 
-insert into Provincia values ('Guayas')
-insert into Provincia values ('Pichincha')
+insert into Provincia values ('Azuay', '07')
+insert into Provincia values ('Bolívar', '03')
+insert into Provincia values ('Cañar', '07')
+insert into Provincia values ('Carchi', '06')
+insert into Provincia values ('Chimborazo', '03')
+insert into Provincia values ('Cotopaxi', '03')
+insert into Provincia values ('El Oro', '07')
+insert into Provincia values ('Esmeraldas', '06')
+insert into Provincia values ('Galápagos', '05')
+insert into Provincia values ('Guayas', '04')
+insert into Provincia values ('Imbabura', '06')
+insert into Provincia values ('Loja', '07')
+insert into Provincia values ('Los Ríos', '05')
+insert into Provincia values ('Manabí', '05')
+insert into Provincia values ('Morona Santiago', '07')
+insert into Provincia values ('Napo', '06')
+insert into Provincia values ('Orellana', '06')
+insert into Provincia values ('Pastaza', '03')
+insert into Provincia values ('Pichincha', '02')
+insert into Provincia values ('Santa Elena', '04')
+insert into Provincia values ('Santo Domingo', '02')
+insert into Provincia values ('Sucumbíos', '06')
+insert into Provincia values ('Tungurahua', '03')
+insert into Provincia values ('Zamora Chinchipe', '07')
 go
 
 create table Ciudad
@@ -52,10 +70,10 @@ create table Ciudad
 	foreign key (IdProvincia) references Provincia,
 )
 
-insert into Ciudad values ('Guayaquil', 1)
-insert into Ciudad values ('Quito', 2)
-insert into Ciudad values ('Durán', 1)
-insert into Ciudad values ('Milagro', 1)
+insert into Ciudad values ('Guayaquil', 10)
+insert into Ciudad values ('Quito', 19)
+insert into Ciudad values ('Durán', 10)
+insert into Ciudad values ('Milagro', 10)
 go
 
 create table Usuario

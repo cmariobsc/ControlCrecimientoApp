@@ -152,33 +152,15 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label class="control-label col-md-3">Teléfono Uno:</label>
+                                    <label class="control-label col-md-3">Convencional:</label>
                                     <div class="col-md-3">
-                                        <input type="text" class="pais form-control" name="codPais" ng-model="datoRepresentante.codPais" ng-maxlength="3"
-                                               ng-minlength="3" minlength="3" maxlength="3" ng-pattern="/^(?!000$)[0-9]*$/" required ng-disabled="edicion == 'true'" />
-                                        <span class="messages" ng-show="datosRepresentanteForm.$submitted || datosRepresentanteForm.codPais.$touched">
-                                            <span class="text-danger" ng-show="datosRepresentanteForm.codPais.$error.required">El campo es obligatorio.</span>
-                                            <span class="text-danger" ng-show="datosRepresentanteForm.codPais.$error.pattern">Formato incorrecto.</span>
-                                            <span class="text-danger" ng-show="datosRepresentanteForm.codPais.$error.minlength">Ingrese 3 dígitos.</span>
-                                            <span class="text-danger" ng-show="datosRepresentanteForm.codPais.$error.maxlength">Ingrese 3 dígitos.</span>
-
-                                        </span>
-                                    </div>
-                                    <div class="col-md-2">
                                         <input numbers-only type="text" class="form-control" name="codArea" ng-model="datoRepresentante.codArea" ng-maxlength="2"
-                                               ng-minlength="2" minlength="2" maxlength="2" ng-pattern="/^(?!00$)[0-9]*$/" required ng-disabled="edicion == 'true'" />
-                                        <span class="messages" ng-show="datosRepresentanteForm.$submitted || datosRepresentanteForm.codArea.$touched">
-                                            <span class="text-danger" ng-show="datosRepresentanteForm.codArea.$error.required">El campo es obligatorio.</span>
-                                            <span class="text-danger" ng-show="datosRepresentanteForm.codArea.$error.pattern">Formato incorrecto.</span>
-                                            <span class="text-danger" ng-show="datosRepresentanteForm.codArea.$error.minlength">Ingrese 2 dígitos.</span>
-                                            <span class="text-danger" ng-show="datosRepresentanteForm.codArea.$error.maxlength">Ingrese 2 dígitos.</span>
-                                        </span>
+                                               ng-minlength="2" minlength="2" maxlength="2" placeholder="Cod. Área" ng-disabled="true" />
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <input type="text" class="telefono form-control" name="numTelefono" ng-model="datoRepresentante.numTelefono" ng-maxlength="10"
-                                               maxlength="10" ng-pattern="/^(?!0000000000$)[0-9]*$/" required ng-disabled="edicion == 'true'" />
+                                               maxlength="10" ng-pattern="/^(?!0000000000$)[0-9]*$/" placeholder="Número Convencional" ng-disabled="edicion == 'true'" />
                                         <span class="messages" ng-show="datosRepresentanteForm.$submitted || datosRepresentanteForm.numTelefono.$touched">
-                                            <span class="text-danger" ng-show="datosRepresentanteForm.numTelefono.$error.required">El campo es obligatorio.</span>
                                             <span class="text-danger" ng-show="datosRepresentanteForm.numTelefono.$error.pattern">Formato incorrecto.</span>
                                             <span class="text-danger" ng-show="datosRepresentanteForm.numTelefono.$error.minlength">Ingrese 10 dígitos.</span>
                                             <span class="text-danger" ng-show="datosRepresentanteForm.numTelefono.$error.maxlength">Ingrese 10 dígitos.</span>
@@ -186,30 +168,10 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="control-label col-md-3">Teléfono Dos:</label>
-                                    <div class="col-md-3">
-                                        <input type="text" class="pais form-control" name="codPais2" ng-model="datoRepresentante.codPais2" ng-maxlength="3" ng-minlength="3"
-                                               ng-pattern="/^(?!000$)[0-9]*$/" maxlength="3" />
-                                        <span class="messages" ng-show="datosRepresentanteForm.$submitted || datosRepresentanteForm.codPais2.$touched">
-                                            <span class="text-danger" ng-show="datosRepresentanteForm.codPais2.$error.required">El campo es obligatorio.</span>
-                                            <span class="text-danger" ng-show="datosRepresentanteForm.codPais2.$error.pattern">Formato incorrecto.</span>
-                                            <span class="text-danger" ng-show="datosRepresentanteForm.codPais2.$error.minlength">Ingrese 3 dígitos.</span>
-                                            <span class="text-danger" ng-show="datosRepresentanteForm.codPais2.$error.maxlength">Ingrese 3 dígitos.</span>
-                                        </span>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <input type="text" class="area form-control" name="codArea2" ng-model="datoRepresentante.codArea2" ng-maxlength="2" ng-minlength="2"
-                                               ng-pattern="/^(?!00$)[0-9]*$/" maxlength="2" />
-                                        <span class="messages" ng-show="datosRepresentanteForm.$submitted || datosRepresentanteForm.codArea2.$touched">
-                                            <span class="text-danger" ng-show="datosRepresentanteForm.codArea2.$error.required">El campo es obligatorio.</span>
-                                            <span class="text-danger" ng-show="datosRepresentanteForm.codArea2.$error.pattern">Formato incorrecto.</span>
-                                            <span class="text-danger" ng-show="datosRepresentanteForm.codArea2.$error.minlength">Ingrese 2 dígitos.</span>
-                                            <span class="text-danger" ng-show="datosRepresentanteForm.codArea2.$error.maxlength">Ingrese 2 dígitos.</span>
-                                        </span>
-                                    </div>
-                                    <div class="col-md-4">
+                                    <label class="control-label col-md-3">Celular:</label>
+                                    <div class="col-md-9">
                                         <input type="text" class="telefono form-control" name="numTelefono2" ng-model="datoRepresentante.numTelefono2" ng-maxlength="10"
-                                               ng-pattern="/^(?!0000000000$)[0-9]*$/" maxlength="10" />
+                                               ng-pattern="/^(?!0000000000$)[0-9]*$/" maxlength="10" required />
                                         <span class="messages" ng-show="datosRepresentanteForm.$submitted || datosRepresentanteForm.numTelefono2.$touched">
                                             <span class="text-danger" ng-show="datosRepresentanteForm.numTelefono2.$error.required">El campo es obligatorio.</span>
                                             <span class="text-danger" ng-show="datosRepresentanteForm.numTelefono2.$error.pattern">Formato incorrecto.</span>
@@ -225,12 +187,11 @@
                                 <div class="col-md-6">
                                     <label class="control-label col-md-3">Talla:</label>
                                     <div class="col-md-9">
-                                        <input type="text" name="talla" class="form-control" placeholder="Talla"
-                                               ng-model="datoRepresentante.talla" autofocus
-                                               maxlength="4" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" />
+                                        <input decimals-only type="text" name="talla" class="form-control" placeholder="Talla"
+                                               ng-model="datoRepresentante.talla" autofocus maxlength="4" />
                                         <span class="small">Formato 0.00 mts.</span>
                                         <span class="messages">
-                                            <span class="text-danger" ng-show="datosRepresentanteForm.talla.$error.pattern">Formato incorrecto.</span>
+                                            <span class="text-danger" ng-show="datosRepresentanteForm.talla.$error.invalidDecimal">Formato incorrecto.</span>
                                         </span>
                                     </div>
                                 </div>
@@ -263,7 +224,6 @@
                                     ng-click="actualizar()" ng-disabled="!datosRepresentanteForm.$valid || verificador(datoRepresentante.identificacionCliente) == false">
                                 Guardar
                             </button>
-                            <a class="btn btn-primary glyphicon glyphicon-trash" ng-click="limpiar()"> Limpiar</a>
                             <a class="btn btn-primary glyphicon glyphicon-chevron-left" ng-click="regresar()"> Regresar</a>
                         </div>
                     </form>
