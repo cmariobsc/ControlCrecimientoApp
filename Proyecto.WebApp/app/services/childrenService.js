@@ -8,7 +8,7 @@ proyectoApp.factory('childrenService',
         var serviceUrl = appConfig.apiUrl;
 
         var _getListChildren = function (idRepresentante) {
-            var url = serviceUrl + '/children/listChildren';
+            var url = serviceUrl + '/children/getList';
             var deferred = $q.defer();
 
             $http({
@@ -21,6 +21,26 @@ proyectoApp.factory('childrenService',
                 var result = response.data;
                 deferred.resolve(result);
             },function(error) {
+                deferred.reject(error);
+            });
+
+            return deferred.promise;
+        };
+
+        var _getChildren = function (idChildren) {
+            var url = serviceUrl + '/children/get';
+            var deferred = $q.defer();
+
+            $http({
+                method: 'POST',
+                url: url,
+                crossDomain: true,
+                cache: false,
+                params: { idChildren: idChildren }
+            }).then(function (response) {
+                var result = response.data;
+                deferred.resolve(result);
+            }, function (error) {
                 deferred.reject(error);
             });
 
@@ -49,8 +69,53 @@ proyectoApp.factory('childrenService',
             return deferred.promise;
         };
 
+        var _editChildren = function (children) {
+
+            var url = serviceUrl + '/children/edit';
+            var deferred = $q.defer();
+
+            $http({
+                url: url,
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded; charset=utf-8"
+                },
+                data: children,
+                dataType: 'json'
+
+            }).then(function (response) {
+                deferred.resolve(response);
+            }, function (error) {
+                deferred.reject(error);
+            });
+            return deferred.promise;
+        };
+
+        var _deleteChildren = function (idChildren) {
+            var url = serviceUrl + '/children/delete';
+            var deferred = $q.defer();
+
+            $http({
+                method: 'POST',
+                url: url,
+                crossDomain: true,
+                cache: false,
+                params: { idChildren: idChildren }
+            }).then(function (response) {
+                var result = response.data;
+                deferred.resolve(result);
+            }, function (error) {
+                deferred.reject(error);
+            });
+
+            return deferred.promise;
+        };
+
         childrenServiceFactory.getListChildren = _getListChildren;
+        childrenServiceFactory.getChildren = _getChildren;
         childrenServiceFactory.saveChildren = _saveChildren;
+        childrenServiceFactory.editChildren = _editChildren;
+        childrenServiceFactory.deleteChildren = _deleteChildren;
 
         return childrenServiceFactory;
     }

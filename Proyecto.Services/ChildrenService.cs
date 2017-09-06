@@ -16,14 +16,14 @@ namespace Proyecto.Services
             _ChildrenRepository = ChildrenRepository;
         }
 
-        //public Children GetChildren(int idChildren)
-        //{
-        //    return _ChildrenRepository.GetChildren(idChildren);
-        //}
-
         public IList<Children> GetListChildren(int idRepresentante, out string codError, out string mensajeRetorno)
         {
             return _ChildrenRepository.GetListChildren(idRepresentante, out codError, out mensajeRetorno);
+        }
+
+        public Children GetChildren(int idChildren, out string codError, out string mensajeRetorno)
+        {
+            return _ChildrenRepository.GetChildren(idChildren, out codError, out mensajeRetorno);
         }
 
         public bool GuardarChildren(Children Children, out string codError, out string mensajeRetorno)
@@ -31,14 +31,14 @@ namespace Proyecto.Services
             return _ChildrenRepository.GuardarChildren(Children, out codError, out mensajeRetorno);
         }
 
-        //public bool ActualizarChildren(Children Children, out string codError, out string mensajeRetorno)
-        //{
-        //    return _ChildrenRepository.ActualizarChildren(Children, out codError, out mensajeRetorno);
-        //}
+        public bool ActualizarChildren(Children children, out string codError, out string mensajeRetorno)
+        {
+            return _ChildrenRepository.ActualizarChildren(children, out codError, out mensajeRetorno);
+        }
 
-        //public bool EliminarChildren(int id, string usuarioModificacion, out string codError, out string mensajeRetorno)
-        //{
-        //    return _ChildrenRepository.EliminarChildren(id, usuarioModificacion, out codError, out mensajeRetorno);
-        //}
+        public bool EliminarChildren(int idChildren, out string codError, out string mensajeRetorno)
+        {
+            return _ChildrenRepository.EliminarChildren(idChildren, out codError, out mensajeRetorno);
+        }
     }
 }

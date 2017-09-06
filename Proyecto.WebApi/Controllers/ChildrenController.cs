@@ -20,7 +20,7 @@ namespace Proyecto.WebApi.Controllers
         }
 
         [HttpPost]
-        [ActionName("listChildren")]
+        [ActionName("getList")]
         public ApiResult GetListChildren(int idRepresentante)
         {
             string codError;
@@ -44,6 +44,31 @@ namespace Proyecto.WebApi.Controllers
         }
 
         [HttpPost]
+        [ActionName("get")]
+        public ApiResult GetChildren(int idChildren)
+        {
+            string codError;
+            string mensajeRetorno;
+            string status;
+
+            Children children = null;
+
+            try
+            {
+                children = _childrenService.GetChildren(idChildren, out codError, out mensajeRetorno);
+                status = JsonStatus.Success();
+            }
+            catch (Exception exception)
+            {
+                status = JsonStatus.Error();
+                codError = "999";
+                mensajeRetorno = exception.Message;
+            }
+
+            return new ApiResult(status, codError, mensajeRetorno, children);
+        }
+
+        [HttpPost]
         [ActionName("save")]
         public ApiResult GuardarChildren(Children children)
         {
@@ -54,6 +79,58 @@ namespace Proyecto.WebApi.Controllers
             try
             {
                 result = _childrenService.GuardarChildren(children, out codError, out mensajeRetorno);
+
+                status = result
+                    ? JsonStatus.Success()
+                    : JsonStatus.Error();
+            }
+            catch (Exception exception)
+            {
+                status = JsonStatus.Error();
+                codError = "999";
+                mensajeRetorno = exception.Message;
+            }
+
+            return new ApiResult(status, codError, mensajeRetorno, result);
+        }
+
+        [HttpPost]
+        [ActionName("edit")]
+        public ApiResult ActualizarChildren(Children children)
+        {
+            string codError;
+            string mensajeRetorno;
+            string status;
+            var result = false;
+            try
+            {
+                result = _childrenService.ActualizarChildren(children, out codError, out mensajeRetorno);
+
+                status = result
+                    ? JsonStatus.Success()
+                    : JsonStatus.Error();
+            }
+            catch (Exception exception)
+            {
+                status = JsonStatus.Error();
+                codError = "999";
+                mensajeRetorno = exception.Message;
+            }
+
+            return new ApiResult(status, codError, mensajeRetorno, result);
+        }
+
+        [HttpPost]
+        [ActionName("delete")]
+        public ApiResult EliminarChildren(int idChildren)
+        {
+            string codError;
+            string mensajeRetorno;
+            string status;
+            var result = false;
+            try
+            {
+                result = _childrenService.EliminarChildren(idChildren, out codError, out mensajeRetorno);
 
                 status = result
                     ? JsonStatus.Success()

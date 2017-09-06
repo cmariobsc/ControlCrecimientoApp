@@ -14,6 +14,7 @@ namespace Proyecto.Data.SqlServices
             var _connection = new SqlConnection();
             _database = _connection.InitDatabase();
         }
+        
         public DataSet GetListChildren(int idRepresentante, out string codError, out string mensajeRetorno)
         {
             var storedProcedure = "[dbo].[SP_ListarChildren]";
@@ -32,6 +33,26 @@ namespace Proyecto.Data.SqlServices
 
             return result;
         }
+
+        public DataSet GetChildren(int idChildren, out string codError, out string mensajeRetorno)
+        {
+            var storedProcedure = "[dbo].[SP_ConsultarChildren]";
+
+            var command = _database.GetStoredProcCommand(storedProcedure);
+            command.CommandType = CommandType.StoredProcedure;
+
+            _database.AddInParameter(command, "@IdChildren", DbType.Int32, idChildren);
+            _database.AddOutParameter(command, "@codError", DbType.String, 3);
+            _database.AddOutParameter(command, "@mensajeRetorno", DbType.String, 100);
+
+            var result = _database.ExecuteDataSet(command);
+
+            codError = _database.GetParameterValue(command, "@codError").ToString();
+            mensajeRetorno = _database.GetParameterValue(command, "@mensajeRetorno").ToString();
+
+            return result;
+        }
+
         public void GuardarChildren(Children children, out string codError, out string mensajeRetorno)
         {
             var storedProcedure = "[dbo].[SP_GuardarChildren]";
@@ -48,6 +69,49 @@ namespace Proyecto.Data.SqlServices
             _database.AddInParameter(command, "@Peso", DbType.Int32, children.Peso);
             _database.AddInParameter(command, "@IdRepresentante", DbType.Int32, children.IdRepresentante);
             _database.AddInParameter(command, "@IdNacionalidad", DbType.Int32, children.IdNacionalidad);
+            _database.AddOutParameter(command, "@codError", DbType.String, 3);
+            _database.AddOutParameter(command, "@mensajeRetorno", DbType.String, 100);
+
+            _database.ExecuteNonQuery(command);
+
+            codError = _database.GetParameterValue(command, "@codError").ToString();
+            mensajeRetorno = _database.GetParameterValue(command, "@mensajeRetorno").ToString();
+        }
+
+        public void ActualizarChildren(Children children, out string codError, out string mensajeRetorno)
+        {
+            var storedProcedure = "[dbo].[SP_ActualizarChildren]";
+
+            var command = _database.GetStoredProcCommand(storedProcedure);
+            command.CommandType = CommandType.StoredProcedure;
+
+            _database.AddInParameter(command, "@IdChildren", DbType.Int32, children.IdChildren);
+            _database.AddInParameter(command, "@Identificacion", DbType.String, children.Identificacion);
+            _database.AddInParameter(command, "@Nombres", DbType.String, children.Nombres);
+            _database.AddInParameter(command, "@Apellidos", DbType.String, children.Apellidos);
+            _database.AddInParameter(command, "@FechaNacimiento", DbType.DateTime, children.FechaNacimiento);
+            _database.AddInParameter(command, "@Edad", DbType.Int32, children.Edad);
+            _database.AddInParameter(command, "@Talla", DbType.Decimal, children.Talla);
+            _database.AddInParameter(command, "@Peso", DbType.Int32, children.Peso);
+            _database.AddInParameter(command, "@FechaCreacion", DbType.DateTime, children.FechaCreacion);
+            _database.AddInParameter(command, "@IdNacionalidad", DbType.Int32, children.IdNacionalidad);
+            _database.AddOutParameter(command, "@codError", DbType.String, 3);
+            _database.AddOutParameter(command, "@mensajeRetorno", DbType.String, 100);
+
+            _database.ExecuteNonQuery(command);
+
+            codError = _database.GetParameterValue(command, "@codError").ToString();
+            mensajeRetorno = _database.GetParameterValue(command, "@mensajeRetorno").ToString();
+        }
+
+        public void EliminarChildren(int idChildren, out string codError, out string mensajeRetorno)
+        {
+            var storedProcedure = "[dbo].[SP_EliminarChildren]";
+
+            var command = _database.GetStoredProcCommand(storedProcedure);
+            command.CommandType = CommandType.StoredProcedure;
+
+            _database.AddInParameter(command, "@IdChildren", DbType.Int32, idChildren);
             _database.AddOutParameter(command, "@codError", DbType.String, 3);
             _database.AddOutParameter(command, "@mensajeRetorno", DbType.String, 100);
 

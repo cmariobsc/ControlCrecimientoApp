@@ -117,9 +117,13 @@
                             </div>
                         </div>
                         <div class="form-group" style="text-align: center">
-                            <button type="submit" class="btn btn-primary glyphicon glyphicon-floppy-disk"
+                            <button ng-show="modificando == false" type="submit" class="btn btn-primary glyphicon glyphicon-floppy-disk"
                                     ng-click="guardar()" ng-disabled="!datosChildrenForm.$valid || verificador(datoChildren.identificacionCliente) == false">
                                 Guardar
+                            </button>
+                            <button ng-show="modificando == true" type="submit" class="btn btn-primary glyphicon glyphicon-refresh"
+                                    ng-click="actualizar()" ng-disabled="!datosChildrenForm.$valid || verificador(datoChildren.identificacionCliente) == false">
+                                Actualizar
                             </button>
                             <a class="btn btn-primary glyphicon glyphicon-trash" ng-click="limpiar()"> Limpiar</a>
                             <a class="btn btn-primary glyphicon glyphicon-chevron-left" ng-click="regresar()"> Regresar</a>
@@ -127,7 +131,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <h3 class="text-center">Listado de Niños</h3>
-                                <div class="alert alert-info">{{children_message}}</div>
+                                <div class="alert alert-info">{{mensajeRetorno}}</div>
                                 <div>
                                     <table ng-table="tableParams" class="table table-condensed table-bordered table-striped table-hover" show-filter="false">
                                         <thead>
@@ -147,6 +151,7 @@
                                         <tbody>
                                             <tr ng-repeat="item in $data | orderBy:sortType:sortReverse">
                                                 <td>{{ $index + 1 }}</td>
+                                                <td ng-hide="true">{{item.idChildren}}</td>
                                                 <td class="hidden-sm hidden-xs">{{item.identificacion}}</td>
                                                 <td ng-hide="true">{{item.idNacionalidad}}</td>
                                                 <td class="hidden-sm hidden-xs">{{obtenerNacionalidad(item.idNacionalidad)}}</td>
@@ -156,9 +161,9 @@
                                                 <td>{{item.edad}}</td>
                                                 <td>{{item.talla}}</td>
                                                 <td>{{item.peso}}</td>
-                                                <td class="text-nowrap icon-wrap" ng-show="modificando == 'true'">
-                                                    <a class="btn btn-primary btn-xs glyphicon glyphicon-pencil" ng-click="editar(item.id)"></a>
-                                                    <a class="btn btn-primary btn-xs glyphicon glyphicon-remove" ng-click="eliminar(item.id, item.opid)"></a>
+                                                <td class="text-nowrap icon-wrap" ng-show="modificando == false">
+                                                    <a class="btn btn-primary btn-xs glyphicon glyphicon-pencil" ng-click="editar(item.idChildren)"></a>
+                                                    <a class="btn btn-primary btn-xs glyphicon glyphicon-remove" ng-click="eliminar(item.idChildren)"></a>
                                                 </td>
                                             </tr>
                                         </tbody>

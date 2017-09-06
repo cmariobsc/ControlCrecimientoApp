@@ -48,8 +48,9 @@ proyectoApp.controller('childrenController',
             $scope.getListChildren = function () {
                 childrenService.getListChildren($rootScope.idRepresentante)
                     .then(function (response) {
-                        $scope.children_message = response.mensajeRetorno;
+                        $scope.mensajeRetorno = response.mensajeRetorno;
                         var data = response.data;
+
                         $scope.tableParams = new NgTableParams({
                             page: 1,
                             count: 10
@@ -57,10 +58,34 @@ proyectoApp.controller('childrenController',
                             {
                                 dataset: data
                             });
+
+                        $scope.modificando = false;
                     }, function (error) { });
             }
 
             $scope.getListChildren();
+
+            $scope.editar = function (idChildren) {
+                childrenService.getChildren(idChildren).then(function (response) {
+                    if (response.data.codError === "000") {
+                        var children = response.data;
+                        $scope.idChildren = children.data.idChildren;
+                        $scope.datoChildren.identificacion = children.data.identificacion;
+                        $scope.datoChildren.nombres = children.data.nombres;
+                        $scope.datoChildren.apellidos = children.data.apellidos;
+                        $scope.datoChildren.fechaNacimiento = new Date(children.data.fechaNacimiento);
+                        $scope.datoChildren.edad = children.data.edad;
+                        $scope.datoChildren.talla = children.data.talla;
+                        $scope.datoChildren.peso = children.data.peso;
+                        $scope.fechaCreacion = children.data.fechaCreacion;
+                        $scope.datoChildren.nacionalidad = children.data.idNacionalidad;
+
+                        $scope.modificando = true;
+                    } else {
+                        $scope.ModalMensaje(response.data.mensajeRetorno);
+                    }
+                });
+            }
 
             $scope.guardar = function () {
                 var children = $.param({
@@ -83,6 +108,39 @@ proyectoApp.controller('childrenController',
                     }
                 });
             };
+
+            $scope.actualizar = function () {
+                var children = $.param({
+                    IdChildren: $scope.idChildren,
+                    Identificacion: $scope.datoChildren.identificacion,
+                    Nombres: $scope.datoChildren.nombres,
+                    Apellidos: $scope.datoChildren.apellidos,
+                    FechaNacimiento: $filter('date')($scope.datoChildren.fechaNacimiento, 'yyyy/MM/dd'),
+                    Edad: $scope.datoChildren.edad,
+                    Talla: $scope.datoChildren.talla,
+                    Peso: $scope.datoChildren.peso,
+                    FechaCreacion: $scope.fechaCreacion,
+                    IdNacionalidad: $scope.datoChildren.nacionalidad
+                });
+
+                childrenService.editChildren(children).then(function (response) {
+                    if (response.data.codError === "000") {
+                        $scope.ModalMensaje(response.data.mensajeRetorno);
+                    } else {
+                        $scope.ModalMensaje(response.data.mensajeRetorno);
+                    }
+                });
+            };
+
+            $scope.eliminar = function (idChildren) {
+                childrenService.deleteChildren(idChildren).then(function (response) {
+                    if (response.data.codError === "000") {
+                        $scope.ModalMensaje(response.data.mensajeRetorno);
+                    } else {
+                        $scope.ModalMensaje(response.data.mensajeRetorno);
+                    }
+                });
+            }
 
             $scope.obtenerNacionalidad = function (idNacionalidad) {
                 var descripcion = "";

@@ -28,6 +28,7 @@ namespace Bg.NeoTrack.Data.Repositories
                 {
                     var children = new Children
                     {
+                        IdChildren = Convert.ToInt32(dataRow["IdChildren"]),
                         Identificacion = dataRow["Identificacion"].ToString(),
                         Nombres = dataRow["Nombres"].ToString(),
                         Apellidos = dataRow["Apellidos"].ToString(),
@@ -53,6 +54,41 @@ namespace Bg.NeoTrack.Data.Repositories
             return listaChildren;
         }
 
+        public Children GetChildren(int idChildren, out string codError, out string mensajeRetorno)
+        {
+            Children children = null;
+            try
+            {
+                var response = _childrenSqlService.GetChildren(idChildren, out codError, out mensajeRetorno);
+
+                foreach (DataRow dataRow in response.Tables[0].Rows)
+                {
+                    children = new Children
+                    {
+                        IdChildren = Convert.ToInt32(dataRow["IdChildren"]),
+                        Identificacion = dataRow["Identificacion"].ToString(),
+                        Nombres = dataRow["Nombres"].ToString(),
+                        Apellidos = dataRow["Apellidos"].ToString(),
+                        FechaNacimiento = Convert.ToDateTime(dataRow["FechaNacimiento"].ToString()),
+                        Edad = Convert.ToInt32(dataRow["Edad"].ToString()),
+                        Talla = Convert.ToDecimal(dataRow["Talla"].ToString()),
+                        Peso = Convert.ToInt32(dataRow["Peso"].ToString()),
+                        FechaCreacion = Convert.ToDateTime(dataRow["FechaCreacion"].ToString()),
+                        FechaModificacion = Convert.ToDateTime(dataRow["FechaModificacion"].ToString()),
+                        IdRepresentante = Convert.ToInt32(dataRow["IdRepresentante"]),
+                        IdNacionalidad = Convert.ToInt32(dataRow["IdNacionalidad"].ToString()),
+                    };
+                }
+            }
+            catch (Exception exception)
+            {
+                codError = "999";
+                mensajeRetorno = exception.Message;
+            }
+
+            return children;
+        }
+
         public bool GuardarChildren(Children children, out string codError, out string mensajeRetorno)
         {
             var response = false;
@@ -71,37 +107,40 @@ namespace Bg.NeoTrack.Data.Repositories
             return response;
         }
 
-        //public bool ActualizarChildren(Children Children, out string codError, out string mensajeRetorno)
-        //{
-        //    var response = false;
-        //    try
-        //    {
-        //        var request = ChildrenHelper.ChildrenToWsChildren(Children);
-        //        response = _wService.ActualizarChildren(request, out codError, out mensajeRetorno);
-        //    }
-        //    catch (Exception exception)
-        //    {
-        //        codError = "999";
-        //        mensajeRetorno = exception.Message;
-        //    }
+        public bool ActualizarChildren(Children children, out string codError, out string mensajeRetorno)
+        {
+            var response = false;
+            try
+            {
+                _childrenSqlService.ActualizarChildren(children, out codError, out mensajeRetorno);
+                response = true;
+            }
+            catch (Exception exception)
+            {
+                response = false;
+                codError = "999";
+                mensajeRetorno = exception.Message;
+            }
 
-        //    return response;
-        //}
+            return response;
+        }
 
-        //public bool EliminarChildren(int id, string usuarioModificacion, out string codError, out string mensajeRetorno)
-        //{
-        //    var response = false;
-        //    try
-        //    {
-        //        response = _wService.EliminarChildren(id, usuarioModificacion, out codError, out mensajeRetorno);
-        //    }
-        //    catch (Exception exception)
-        //    {
-        //        codError = "999";
-        //        mensajeRetorno = exception.Message;
-        //    }
+        public bool EliminarChildren(int idChildren, out string codError, out string mensajeRetorno)
+        {
+            var response = false;
+            try
+            {
+                _childrenSqlService.EliminarChildren(idChildren, out codError, out mensajeRetorno);
+                response = true;
+            }
+            catch (Exception exception)
+            {
+                response = false;
+                codError = "999";
+                mensajeRetorno = exception.Message;
+            }
 
-        //    return response;
-        //}
+            return response;
+        }
     }
 }
