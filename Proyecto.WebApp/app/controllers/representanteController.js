@@ -54,7 +54,7 @@ proyectoApp.controller('representanteController',
             //////////////////////////////////////
 
             $scope.consultar = function () {
-                representanteService.getRepresentante(1).then(function (response) {
+                representanteService.getRepresentante($rootScope.datosSesion.idUsuario).then(function (response) {
                     if (response.data.codError === "000") {
                         var representante = response.data;
                         $scope.idRepresentante = representante.data.idRepresentante;

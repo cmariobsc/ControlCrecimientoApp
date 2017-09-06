@@ -127,14 +127,14 @@ go
 
 create table Children
 (
-IdChildren			int not null identity(1,1) primary key,
+IdChildren			int not null primary key,
 Identificacion      varchar(10) null unique,
 Nombres			    varchar(100)  not null,
 Apellidos			varchar(100)  not null,
 FechaNacimiento     date  not null,
 Edad				int  not null,
-Talla		        decimal(2,2) null,
-Peso			    int  null,
+Talla		        decimal(6,2) not null,
+Peso			    int  not null,
 FechaCreacion		date  not null,
 FechaModificacion	date  not null,
 IdRepresentante		int  not null,
@@ -144,12 +144,26 @@ foreign key (IdNacionalidad) references Nacionalidad,
 )
 go
 
+create table HistorialChildren
+(
+IdHistorialChildren		int not null identity(1,1) primary key,
+Edad					int  not null,
+Talla					decimal(6,2) not null,
+Peso					int  not null,
+FechaCreacion			date  not null,
+FechaModificacion		date  not null,
+IdChildren				int  not null,
+foreign key (IdChildren) references Children
+)
+go
+
 --drop table Parentesco
 --drop table Nacionalidad
 --drop table Provincia
 --drop table Ciudad
 --drop table Usuario
 --drop table Representante
---drop table children
+--drop table Children
+--drop table HistorialChildren
 
 --drop database DB_CNCAPP

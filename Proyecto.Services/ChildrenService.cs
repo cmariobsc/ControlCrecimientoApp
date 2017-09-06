@@ -21,15 +21,15 @@ namespace Proyecto.Services
         //    return _ChildrenRepository.GetChildren(idChildren);
         //}
 
-        public IList<Children> GetListChildren(int IdRepresentante, out string codError, out string mensajeRetorno)
+        public IList<Children> GetListChildren(int idRepresentante, out string codError, out string mensajeRetorno)
         {
-            return _ChildrenRepository.GetListChildren(IdRepresentante, out codError, out mensajeRetorno);
+            return _ChildrenRepository.GetListChildren(idRepresentante, out codError, out mensajeRetorno);
         }
 
-        //public bool InsertarChildren(Children Children, out string codError, out string mensajeRetorno)
-        //{
-        //   return   _ChildrenRepository.InsertarChildren(Children, out codError, out mensajeRetorno);
-        //}
+        public bool GuardarChildren(Children Children, out string codError, out string mensajeRetorno)
+        {
+            return _ChildrenRepository.GuardarChildren(Children, out codError, out mensajeRetorno);
+        }
 
         //public bool ActualizarChildren(Children Children, out string codError, out string mensajeRetorno)
         //{

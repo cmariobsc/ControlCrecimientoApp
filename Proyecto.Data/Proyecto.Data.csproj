@@ -56,6 +56,7 @@
     <Compile Include="Repositories\TokenRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="SqlServices\CatalogoSqlService.cs" />
+    <Compile Include="SqlServices\ChildrenSqlService.cs" />
     <Compile Include="SqlServices\RepresentanteSqlService.cs" />
     <Compile Include="SqlServices\UserSqlService.cs" />
   </ItemGroup>

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Proyecto.Core.Models
 {
@@ -15,7 +11,10 @@ namespace Proyecto.Core.Models
         public string Apellidos { get; set; }
         public DateTime FechaNacimiento { get; set; }
         public int Edad { get; set; }
-        public double Talla { get; set; }
+        public decimal Talla { get; set; }
         public int Peso { get; set; }
+        public DateTime FechaCreacion { get; set; }
+        public DateTime FechaModificacion { get; set; }
+        public int IdRepresentante { get; set; }
     }
 }

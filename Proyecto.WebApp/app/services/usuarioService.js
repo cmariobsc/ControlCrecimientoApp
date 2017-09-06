@@ -29,6 +29,7 @@ proyectoApp.factory('usuarioService',
                 if (result.codError === "000") {
 
                     var dataSesion = {
+                        idUsuario: result.data.idUsuario,
                         usuario: result.data.usuario,
                         nombres: result.data.nombres,
                         apellidos: result.data.apellidos,

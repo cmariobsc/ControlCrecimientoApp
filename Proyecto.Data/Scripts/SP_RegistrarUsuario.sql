@@ -23,24 +23,24 @@ BEGIN
 		IF EXISTS (SELECT 1 FROM Usuario WHERE Usuario = @Usuario) 
 		BEGIN
 			SET @codError='001'
-			SET @mensajeRetorno='El usuario que ingresò ya existe, debe elegir otro.'
+			SET @mensajeRetorno='El usuario que ingresó ya existe, debe elegir otro.'
 		END
 		ELSE
 		BEGIN
-			DECLARE @idUsuario int
-			DECLARE @idRepresentante int
+			DECLARE @IdUsuario int
+			DECLARE @IdRepresentante int
 			
-			SELECT @idUsuario = COUNT(*) FROM Usuario
-			SET @idUsuario = @idUsuario + 1
+			SELECT @IdUsuario = COUNT(*) FROM Usuario
+			SET @IdUsuario = @IdUsuario + 1
 
-			SELECT @idRepresentante = COUNT(*) FROM Representante
-			SET @idRepresentante = @idRepresentante + 1
+			SELECT @IdRepresentante = COUNT(*) FROM Representante
+			SET @IdRepresentante = @IdRepresentante + 1
 
 			INSERT INTO Usuario(IdUsuario, Usuario, Contrasenia, Nombres, Apellidos, Email, Habilitado, FechaCreacion)
-			VALUES(@idUsuario, @Usuario, HASHBYTES('SHA2_512', @Contrasenia), @Nombres, @Apellidos, @Email, 0, GETDATE())
+			VALUES(@IdUsuario, @Usuario, HASHBYTES('SHA2_512', @Contrasenia), @Nombres, @Apellidos, @Email, 0, GETDATE())
 
 			INSERT INTO Representante (IdRepresentante, Nombres, Apellidos, Email, FechaCreacion, FechaModificacion, IdUsuario)
-			VALUES (@idRepresentante, @Nombres, @Apellidos, @Email, GETDATE(), GETDATE(), @idUsuario)
+			VALUES (@IdRepresentante, @Nombres, @Apellidos, @Email, GETDATE(), GETDATE(), @IdUsuario)
 
 			SET @codError='000'
 			SET @mensajeRetorno='Se ha registrado correctamente, ingrese a su correo para activar su cuenta.'

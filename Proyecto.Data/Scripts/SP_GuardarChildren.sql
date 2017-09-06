@@ -23,11 +23,33 @@ BEGIN
     SET NOCOUNT ON
 
     BEGIN TRY
-		INSERT INTO Children(Identificacion, Nombres, Apellidos, FechaNacimiento, Edad, Talla, Peso, FechaCreacion, FechaModificacion, IdRepresentante, IdNacionalidad)
-			VALUES (@Identificacion, @Nombres, @Apellidos, @FechaNacimiento, @Edad, @Talla, @Peso, GETDATE(), GETDATE(), @IdRepresentante, @IdNacionalidad)
+		DECLARE @contador int
 
-		SET @codError='000'
-		SET @mensajeRetorno='Se ha registrado al niño correctamente.'
+		SELECT @contador = COUNT(*)
+		  FROM [dbo].[Children] 
+		  WHERE [IdRepresentante] = @IdRepresentante
+
+		IF @contador >= (SELECT NHijos FROM Representante WHERE IdRepresentante = @IdRepresentante)
+		BEGIN
+			SET @codError='001'
+			SET @mensajeRetorno='Sólo puede ingresar la cantidad de hijos que especificó en los Datos del Representante.'
+		END
+		ELSE
+		BEGIN
+			DECLARE @IdChildren int
+
+			SELECT @IdChildren = COUNT(*) FROM Children
+			SET @IdChildren = @IdChildren + 1
+
+			INSERT INTO Children(IdChildren, Identificacion, Nombres, Apellidos, FechaNacimiento, Edad, Talla, Peso, FechaCreacion, FechaModificacion, IdRepresentante, IdNacionalidad)
+			VALUES (@IdChildren, @Identificacion, @Nombres, @Apellidos, @FechaNacimiento, @Edad, @Talla, @Peso, GETDATE(), GETDATE(), @IdRepresentante, @IdNacionalidad)
+
+			INSERT INTO HistorialChildren(Edad, Talla, Peso, FechaCreacion, FechaModificacion, IdChildren)
+			VALUES (@Edad, @Talla, @Peso, GETDATE(), GETDATE(), @IdChildren)
+
+			SET @codError='000'
+			SET @mensajeRetorno='Se ha registrado al niño correctamente.'
+		END
     END TRY
     BEGIN CATCH
 		SET @codError='999'

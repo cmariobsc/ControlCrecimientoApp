@@ -1,63 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
 using Proyecto.Core.Contracts;
 using Proyecto.Core.Contracts.Repositories;
 using Proyecto.Core.Models;
-//using Proyecto.Data.Helpers;
+using Proyecto.Data.SqlServices;
+using System.Data;
 
 namespace Bg.NeoTrack.Data.Repositories
 {
     public class ChildrenRepository : IChildrenRepository, IRepository
     {
-        //private readonly ProyectoService _wService;
+        private readonly ChildrenSqlService _childrenSqlService;
 
         public ChildrenRepository()
         {
-            var url = ConfigurationManager.AppSettings.Get("NeoTrackserviceUrl");
-            //_wService = new NeoTrackService();
+            _childrenSqlService = new ChildrenSqlService();
         }
 
-        //public Children GetChildren(int idChildren)
-        //{
-        //    string codError;
-        //    string mensajeRetorno;
-
-        //    var Children = new Children();
-
-        //    var response = _wService.ConsultaChildren(idChildren, out codError, out mensajeRetorno);
-
-        //    foreach (DataRow dataRow in response.Tables[0].Rows)
-        //    {
-        //        Children = ChildrenHelper.WsChildrenToChildren(dataRow);
-        //    }
-
-        //    return Children;
-        //}
-
-        public IList<Children> GetListChildren(int IdRepresentante, out string codError, out string mensajeRetorno)
+        public IList<Children> GetListChildren(int idRepresentante, out string codError, out string mensajeRetorno)
         {
             var listaChildren = new List<Children>();
             try
             {
-                for (var i = 0; i < 2; i++)
+                var response = _childrenSqlService.GetListChildren(idRepresentante, out codError, out mensajeRetorno);
+
+                foreach (DataRow dataRow in response.Tables[0].Rows)
                 {
-                    listaChildren.Add(new Children
+                    var children = new Children
                     {
-                        IdChildren = i,
-                        Identificacion = "Value_" + i,
-                        IdNacionalidad = i,
-                        Nombres = "Value_" + i,
-                        Apellidos = "Value_" + i,
-                        FechaNacimiento = new DateTime(),
-                        Edad = i,
-                        Talla = i,
-                        Peso = i
-                    });
+                        Identificacion = dataRow["Identificacion"].ToString(),
+                        Nombres = dataRow["Nombres"].ToString(),
+                        Apellidos = dataRow["Apellidos"].ToString(),
+                        FechaNacimiento = Convert.ToDateTime(dataRow["FechaNacimiento"].ToString()),
+                        Edad = Convert.ToInt32(dataRow["Edad"].ToString()),
+                        Talla = Convert.ToDecimal(dataRow["Talla"].ToString()),
+                        Peso = Convert.ToInt32(dataRow["Peso"].ToString()),
+                        FechaCreacion = Convert.ToDateTime(dataRow["FechaCreacion"].ToString()),
+                        FechaModificacion = Convert.ToDateTime(dataRow["FechaModificacion"].ToString()),
+                        IdRepresentante = Convert.ToInt32(dataRow["IdRepresentante"]),
+                        IdNacionalidad = Convert.ToInt32(dataRow["IdNacionalidad"].ToString()),
+                    };
+
+                    listaChildren.Add(children);
                 }
-                codError = "000";
-                mensajeRetorno = "Consulta Ok";
             }
             catch (Exception exception)
             {
@@ -68,22 +53,23 @@ namespace Bg.NeoTrack.Data.Repositories
             return listaChildren;
         }
 
-        //public bool InsertarChildren(Children Children, out string codError, out string mensajeRetorno)
-        //{
-        //    var response = false;
-        //    try
-        //    {
-        //        var request = ChildrenHelper.ChildrenToWsChildren(Children);
-        //        response = _wService.CrearChildren(request, out codError, out mensajeRetorno);
-        //    }
-        //    catch (Exception exception)
-        //    {
-        //        codError = "999";
-        //        mensajeRetorno = exception.Message;
-        //    }
+        public bool GuardarChildren(Children children, out string codError, out string mensajeRetorno)
+        {
+            var response = false;
+            try
+            {
+                _childrenSqlService.GuardarChildren(children, out codError, out mensajeRetorno);
+                response = true;
+            }
+            catch (Exception exception)
+            {
+                response = false;
+                codError = "999";
+                mensajeRetorno = exception.Message;
+            }
 
-        //    return response;
-        //}
+            return response;
+        }
 
         //public bool ActualizarChildren(Children Children, out string codError, out string mensajeRetorno)
         //{

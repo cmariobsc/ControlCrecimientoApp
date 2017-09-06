@@ -28,7 +28,7 @@
                                     <label class="control-label col-md-3">Nacionalidad:</label>
                                     <div class="col-md-9">
                                         <select class="form-control" name="nacionalidad" ng-model="datoChildren.nacionalidad"
-                                                ng-options="option.descripcion for option in listNacionalidad" required>
+                                                ng-options="option.idNacionalidad as option.descripcion for option in listNacionalidad">
                                             <option value="" selected hidden />
                                         </select>
                                     </div>
@@ -93,13 +93,12 @@
                                 <div class="col-md-6">
                                     <label class="control-label col-md-3">Talla:</label>
                                     <div class="col-md-9">
-                                        <input type="text" name="talla" class="form-control" placeholder="Talla"
-                                               ng-model="datoChildren.talla" autofocus
-                                               maxlength="4" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" required />
+                                        <input decimals-only type="text" name="talla" class="form-control" placeholder="Talla"
+                                               ng-model="datoChildren.talla" autofocus maxlength="4" />
                                         <span class="small">Formato 0.00 mts.</span>
-                                        <span class="messages" ng-show="datosChildrenForm.$submitted || datosChildrenForm.talla.$touched">
+                                        <span class="messages">
                                             <span class="text-danger" ng-show="datosChildrenForm.talla.$error.required">El campo es obligatorio.</span>
-                                            <span class="text-danger" ng-show="datosChildrenForm.talla.$error.pattern">Formato incorrecto.</span>
+                                            <span class="text-danger" ng-show="datosChildrenForm.talla.$error.invalidDecimal">Formato incorrecto.</span>
                                         </span>
                                     </div>
                                 </div>
@@ -149,11 +148,11 @@
                                             <tr ng-repeat="item in $data | orderBy:sortType:sortReverse">
                                                 <td>{{ $index + 1 }}</td>
                                                 <td class="hidden-sm hidden-xs">{{item.identificacion}}</td>
-                                                <td ng-hide="true">{{item.DatoNacionalidad.id}}</td>
-                                                <td class="hidden-sm hidden-xs">{{item.DatoNacionalidad.descripcion}}</td>
+                                                <td ng-hide="true">{{item.idNacionalidad}}</td>
+                                                <td class="hidden-sm hidden-xs">{{obtenerNacionalidad(item.idNacionalidad)}}</td>
                                                 <td>{{item.nombres}}</td>
                                                 <td>{{item.apellidos}}</td>
-                                                <td class="hidden-sm hidden-xs">{{item.fechaNacimiento}}</td>
+                                                <td class="hidden-sm hidden-xs">{{item.fechaNacimiento | date : "dd/MM/yyyy"}}</td>
                                                 <td>{{item.edad}}</td>
                                                 <td>{{item.talla}}</td>
                                                 <td>{{item.peso}}</td>
