@@ -40,5 +40,10 @@ namespace Proyecto.Services
         {
             return _ChildrenRepository.EliminarChildren(idChildren, out codError, out mensajeRetorno);
         }
+
+        public IList<HistorialChildren> GetListHistorialChildren(int idChildren, out string codError, out string mensajeRetorno)
+        {
+            return _ChildrenRepository.GetListHistorialChildren(idChildren, out codError, out mensajeRetorno);
+        }
     }
 }

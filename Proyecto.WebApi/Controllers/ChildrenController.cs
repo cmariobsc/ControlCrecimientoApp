@@ -145,5 +145,29 @@ namespace Proyecto.WebApi.Controllers
 
             return new ApiResult(status, codError, mensajeRetorno, result);
         }
+
+        [HttpPost]
+        [ActionName("getListHistorial")]
+        public ApiResult GetListHistorialChildren(int idChildren)
+        {
+            string codError;
+            string mensajeRetorno;
+            string status;
+            IList<HistorialChildren> listaHistorialChildren = null;
+
+            try
+            {
+                listaHistorialChildren = _childrenService.GetListHistorialChildren(idChildren, out codError, out mensajeRetorno);
+                status = JsonStatus.Success();
+            }
+            catch (Exception exception)
+            {
+                status = JsonStatus.Error();
+                codError = "999";
+                mensajeRetorno = exception.Message;
+            }
+
+            return new ApiResult(status, codError, mensajeRetorno, listaHistorialChildren);
+        }
     }
 }

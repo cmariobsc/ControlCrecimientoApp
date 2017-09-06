@@ -120,5 +120,24 @@ namespace Proyecto.Data.SqlServices
             codError = _database.GetParameterValue(command, "@codError").ToString();
             mensajeRetorno = _database.GetParameterValue(command, "@mensajeRetorno").ToString();
         }
+
+        public DataSet GetListHistorialChildren(int idChildren, out string codError, out string mensajeRetorno)
+        {
+            var storedProcedure = "[dbo].[SP_ListarHistorialChildren]";
+
+            var command = _database.GetStoredProcCommand(storedProcedure);
+            command.CommandType = CommandType.StoredProcedure;
+
+            _database.AddInParameter(command, "@IdChildren", DbType.Int32, idChildren);
+            _database.AddOutParameter(command, "@codError", DbType.String, 3);
+            _database.AddOutParameter(command, "@mensajeRetorno", DbType.String, 100);
+
+            var result = _database.ExecuteDataSet(command);
+
+            codError = _database.GetParameterValue(command, "@codError").ToString();
+            mensajeRetorno = _database.GetParameterValue(command, "@mensajeRetorno").ToString();
+
+            return result;
+        }
     }
 }

@@ -68,6 +68,7 @@
     <Compile Include="Models\Catalogos\Nacionalidad.cs" />
     <Compile Include="Models\Catalogos\Parentesco.cs" />
     <Compile Include="Models\Catalogos\Provincia.cs" />
+    <Compile Include="Models\HistorialChildren.cs" />
     <Compile Include="Models\Children.cs" />
     <Compile Include="Models\Parametro.cs" />
     <Compile Include="Models\Representante.cs" />

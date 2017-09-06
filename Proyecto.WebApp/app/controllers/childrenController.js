@@ -154,7 +154,20 @@ proyectoApp.controller('childrenController',
             }
 
             $scope.cerrar = function () {
+                $scope.limpiar();
                 $scope.getListChildren();
+            }
+
+            $scope.limpiar = function () {
+                $scope.idChildren = "";
+                $scope.datoChildren.identificacion = "";
+                $scope.datoChildren.nombres = "";
+                $scope.datoChildren.apellidos = "";
+                $scope.datoChildren.fechaNacimiento = dateAgo;
+                $scope.datoChildren.talla = "";
+                $scope.datoChildren.peso = "";
+                $scope.fechaCreacion = "";
+                $scope.datoChildren.nacionalidad = "";
             }
 
             $scope.ModalMensaje = function (mensaje) {

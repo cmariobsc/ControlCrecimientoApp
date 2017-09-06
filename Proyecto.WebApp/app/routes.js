@@ -21,16 +21,19 @@ proyectoApp.config(
                     templateUrl: 'app/views/home.html',
                     controller: 'homeController'
                 })
-                .when('/datoRepresentante',
+                .when('/representante',
                 {
                     templateUrl: 'app/views/representante.html',
                     controller: 'representanteController'
                 })
-
-                .when('/datoChildren',
+                .when('/children',
                 {
                     templateUrl: 'app/views/children.html',
                     controller: 'childrenController'
                 })
-
+                .when('/historialChildren',
+                {
+                    templateUrl: 'app/views/historialChildren.html',
+                    controller: 'historialChildrenController'
+                })
         }]);

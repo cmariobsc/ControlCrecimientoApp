@@ -151,9 +151,7 @@
                                         <tbody>
                                             <tr ng-repeat="item in $data | orderBy:sortType:sortReverse">
                                                 <td>{{ $index + 1 }}</td>
-                                                <td ng-hide="true">{{item.idChildren}}</td>
                                                 <td class="hidden-sm hidden-xs">{{item.identificacion}}</td>
-                                                <td ng-hide="true">{{item.idNacionalidad}}</td>
                                                 <td class="hidden-sm hidden-xs">{{obtenerNacionalidad(item.idNacionalidad)}}</td>
                                                 <td>{{item.nombres}}</td>
                                                 <td>{{item.apellidos}}</td>

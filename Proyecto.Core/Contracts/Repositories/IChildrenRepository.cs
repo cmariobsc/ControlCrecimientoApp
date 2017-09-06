@@ -10,5 +10,6 @@ namespace Proyecto.Core.Contracts.Repositories
         bool GuardarChildren(Children children, out string codError, out string mensajeRetorno);
         bool ActualizarChildren(Children children, out string codError, out string mensajeRetorno);
         bool EliminarChildren(int idChildren, out string codError, out string mensajeRetorno);
+        IList<HistorialChildren> GetListHistorialChildren(int idChildren, out string codError, out string mensajeRetorno);
     }
 }

@@ -15,6 +15,7 @@ CREATE PROCEDURE SP_ActualizarChildren
 	@Edad int,
 	@Talla decimal(6,2),
 	@Peso int,
+	@Observaciones varchar(100),
 	@FechaCreacion date,
 	@IdNacionalidad int,
     @codError varchar(3) = '' OUTPUT,
@@ -26,19 +27,19 @@ BEGIN
     BEGIN TRY
 		UPDATE Children SET Identificacion = @Identificacion, Nombres = @Nombres, Apellidos = @Apellidos, 
 								FechaNacimiento = @FechaNacimiento, Edad = @Edad, Talla = @Talla, Peso = @Peso,
-								FechaModificacion = GETDATE(), IdNacionalidad = @IdNacionalidad
+								Observaciones = @Observaciones, FechaModificacion = GETDATE(), IdNacionalidad = @IdNacionalidad
 				WHERE IdChildren = @IdChildren
 
 		IF @FechaCreacion = GETDATE()
 		BEGIN
-			UPDATE HistorialChildren SET Edad = @Edad, Talla = @Talla, Peso = @Peso,
+			UPDATE HistorialChildren SET Edad = @Edad, Talla = @Talla, Peso = @Peso, Observaciones = @Observaciones,
 								FechaModificacion = GETDATE(), IdNacionalidad = @IdNacionalidad
 				WHERE IdChildren = @IdChildren AND FechaCreacion = @FechaCreacion
 		END
 		ELSE
 		BEGIN
-			INSERT INTO HistorialChildren(Edad, Talla, Peso, FechaCreacion, FechaModificacion, IdChildren)
-			VALUES (@Edad, @Talla, @Peso, GETDATE(), GETDATE(), @IdChildren)
+			INSERT INTO HistorialChildren(Edad, Talla, Peso, Observaciones, FechaCreacion, FechaModificacion, IdChildren)
+			VALUES (@Edad, @Talla, @Peso, @Observaciones, GETDATE(), GETDATE(), @IdChildren)
 		END
 
 		SET @codError='000'

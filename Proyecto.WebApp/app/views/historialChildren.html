@@ -1,0 +1,85 @@
+﻿<div header-proyecto></div>
+<div class="container">
+    <h1 style="text-align:center">Historial de Crecimientos</h1>
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form class="form-horizontal datosForm" name="datosHistorialChildrenForm">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="text-center">Listado de Niños</h3>
+                                <div class="alert alert-info">{{children_message}}</div>
+                                <div>
+                                    <table ng-table="childrenTable" class="table table-condensed table-bordered table-striped table-hover" show-filter="false">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th class="hidden-sm hidden-xs" ng-click="sortType = 'identificacion'; sortReverse = !sortReverse">Identificación</th>
+                                                <th class="hidden-sm hidden-xs" ng-click="sortType = 'nacionalidad'; sortReverse = !sortReverse">Nacionalidad</th>
+                                                <th ng-click="sortType = 'nombres'; sortReverse = !sortReverse">Nombres</th>
+                                                <th ng-click="sortType = 'apellidos'; sortReverse = !sortReverse">Apellidos</th>
+                                                <th class="hidden-sm hidden-xs" ng-click="sortType = 'fechaNacimiento'; sortReverse = !sortReverse">Fecha de Nacimiento</th>
+                                                <th ng-click="sortType = 'edad'; sortReverse = !sortReverse">Edad</th>
+                                                <th ng-click="sortType = 'talla'; sortReverse = !sortReverse">Talla (mts)</th>
+                                                <th ng-click="sortType = 'peso'; sortReverse = !sortReverse">Peso (kg)</th>
+                                                <th ng-show="modificando == 'true'"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in $data | orderBy:sortType:sortReverse">
+                                                <td>{{ $index + 1 }}</td>
+                                                <td class="hidden-sm hidden-xs">{{item.identificacion}}</td>
+                                                <td class="hidden-sm hidden-xs">{{obtenerNacionalidad(item.idNacionalidad)}}</td>
+                                                <td>{{item.nombres}}</td>
+                                                <td>{{item.apellidos}}</td>
+                                                <td class="hidden-sm hidden-xs">{{item.fechaNacimiento | date : "dd/MM/yyyy"}}</td>
+                                                <td>{{item.edad}}</td>
+                                                <td>{{item.talla}}</td>
+                                                <td>{{item.peso}}</td>
+                                                <td class="text-nowrap icon-wrap">
+                                                    <a class="btn btn-primary btn-xs glyphicon glyphicon-th-list" ng-click="consultar(item.idChildren)">Ver Historial</a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="text-center">Historial de Crecimiento del Niño</h3>
+                                <h3 class="text-center">{{nombres}}</h3>
+                                <div class="alert alert-info">{{history_message}}</div>
+                                <div>
+                                    <table ng-table="historyTable" class="table table-condensed table-bordered table-striped table-hover" show-filter="false">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th class="hidden-sm hidden-xs" ng-click="sortType = 'fechaCreacion'; sortReverse = !sortReverse">Fecha</th>
+                                                <th ng-click="sortType = 'edad'; sortReverse = !sortReverse">Edad</th>
+                                                <th ng-click="sortType = 'talla'; sortReverse = !sortReverse">Talla (mts)</th>
+                                                <th ng-click="sortType = 'peso'; sortReverse = !sortReverse">Peso (kg)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in $data | orderBy:sortType:sortReverse">
+                                                <td>{{ $index + 1 }}</td>
+                                                <td class="hidden-sm hidden-xs">{{item.fechaCreacion | date : "dd/MM/yyyy"}}</td>
+                                                <td>{{item.edad}}</td>
+                                                <td>{{item.talla}}</td>
+                                                <td>{{item.peso}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

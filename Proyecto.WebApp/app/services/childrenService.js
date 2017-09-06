@@ -111,11 +111,32 @@ proyectoApp.factory('childrenService',
             return deferred.promise;
         };
 
+        var _getListHistorialChildren = function (idChildren) {
+            var url = serviceUrl + '/children/getListHistorial';
+            var deferred = $q.defer();
+
+            $http({
+                method: 'POST',
+                url: url,
+                crossDomain: true,
+                cache: false,
+                params: { idChildren: idChildren }
+            }).then(function (response) {
+                var result = response.data;
+                deferred.resolve(result);
+            }, function (error) {
+                deferred.reject(error);
+            });
+
+            return deferred.promise;
+        };
+
         childrenServiceFactory.getListChildren = _getListChildren;
         childrenServiceFactory.getChildren = _getChildren;
         childrenServiceFactory.saveChildren = _saveChildren;
         childrenServiceFactory.editChildren = _editChildren;
-        childrenServiceFactory.deleteChildren = _deleteChildren;
+        childrenServiceFactory.deleteChildren = _deleteChildren
+        childrenServiceFactory.getListHistorialChildren = _getListHistorialChildren;
 
         return childrenServiceFactory;
     }

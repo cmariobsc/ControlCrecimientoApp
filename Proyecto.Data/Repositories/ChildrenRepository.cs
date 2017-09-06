@@ -142,5 +142,37 @@ namespace Bg.NeoTrack.Data.Repositories
 
             return response;
         }
+
+        public IList<HistorialChildren> GetListHistorialChildren(int idChildren, out string codError, out string mensajeRetorno)
+        {
+            var listaHistorialChildren = new List<HistorialChildren>();
+            try
+            {
+                var response = _childrenSqlService.GetListHistorialChildren(idChildren, out codError, out mensajeRetorno);
+
+                foreach (DataRow dataRow in response.Tables[0].Rows)
+                {
+                    var historialChildren = new HistorialChildren
+                    {
+                        IdHistorialChildren = Convert.ToInt32(dataRow["IdHistorialChildren"]),
+                        Edad = Convert.ToInt32(dataRow["Edad"].ToString()),
+                        Talla = Convert.ToDecimal(dataRow["Talla"].ToString()),
+                        Peso = Convert.ToInt32(dataRow["Peso"].ToString()),
+                        FechaCreacion = Convert.ToDateTime(dataRow["FechaCreacion"].ToString()),
+                        FechaModificacion = Convert.ToDateTime(dataRow["FechaModificacion"].ToString()),
+                        IdChildren = Convert.ToInt32(dataRow["IdChildren"]),
+                    };
+
+                    listaHistorialChildren.Add(historialChildren);
+                }
+            }
+            catch (Exception exception)
+            {
+                codError = "999";
+                mensajeRetorno = exception.Message;
+            }
+
+            return listaHistorialChildren;
+        }
     }
 }
