@@ -30,10 +30,10 @@ BEGIN
 								Observaciones = @Observaciones, FechaModificacion = GETDATE(), IdNacionalidad = @IdNacionalidad
 				WHERE IdChildren = @IdChildren
 
-		IF @FechaCreacion = GETDATE()
+		IF @FechaCreacion =  CONVERT(date, GETDATE(), 111)
 		BEGIN
 			UPDATE HistorialChildren SET Edad = @Edad, Talla = @Talla, Peso = @Peso, Observaciones = @Observaciones,
-								FechaModificacion = GETDATE(), IdNacionalidad = @IdNacionalidad
+								FechaModificacion = GETDATE()
 				WHERE IdChildren = @IdChildren AND FechaCreacion = @FechaCreacion
 		END
 		ELSE

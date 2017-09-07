@@ -77,6 +77,7 @@ proyectoApp.controller('childrenController',
                         $scope.datoChildren.edad = children.data.edad;
                         $scope.datoChildren.talla = children.data.talla;
                         $scope.datoChildren.peso = children.data.peso;
+                        $scope.datoChildren.observaciones = children.data.observaciones;
                         $scope.fechaCreacion = children.data.fechaCreacion;
                         $scope.datoChildren.nacionalidad = children.data.idNacionalidad;
 
@@ -97,6 +98,7 @@ proyectoApp.controller('childrenController',
                     Edad: $scope.datoChildren.edad,
                     Talla: $scope.datoChildren.talla,
                     Peso: $scope.datoChildren.peso,
+                    Observaciones: $scope.datoChildren.observaciones,
                     IdRepresentante: $rootScope.idRepresentante
                 });
 
@@ -119,6 +121,7 @@ proyectoApp.controller('childrenController',
                     Edad: $scope.datoChildren.edad,
                     Talla: $scope.datoChildren.talla,
                     Peso: $scope.datoChildren.peso,
+                    Observaciones: $scope.datoChildren.observaciones,
                     FechaCreacion: $scope.fechaCreacion,
                     IdNacionalidad: $scope.datoChildren.nacionalidad
                 });
@@ -133,7 +136,12 @@ proyectoApp.controller('childrenController',
             };
 
             $scope.eliminar = function (idChildren) {
-                childrenService.deleteChildren(idChildren).then(function (response) {
+                $scope.idChildrenDel = idChildren;
+                $scope.ModalConfirmacion();
+            }
+
+            $scope.confirm = function () {
+                childrenService.deleteChildren($scope.idChildrenDel).then(function (response) {
                     if (response.data.codError === "000") {
                         $scope.ModalMensaje(response.data.mensajeRetorno);
                     } else {
@@ -166,6 +174,7 @@ proyectoApp.controller('childrenController',
                 $scope.datoChildren.fechaNacimiento = dateAgo;
                 $scope.datoChildren.talla = "";
                 $scope.datoChildren.peso = "";
+                $scope.datoChildren.observaciones = "";
                 $scope.fechaCreacion = "";
                 $scope.datoChildren.nacionalidad = "";
             }
@@ -178,6 +187,17 @@ proyectoApp.controller('childrenController',
                     scope: $scope,
                     backdrop: "static",
                     templateURL: "app/components/modals/alerta.html"
+                });
+            }
+
+            $scope.ModalConfirmacion = function () {
+                $scope.header = "Datos del Niño";
+                $scope.body = "¿Desea eliminar este registro?";
+                $ekathuwa.modal({
+                    id: "ModalConfirmacionId",
+                    scope: $scope,
+                    backdrop: "static",
+                    templateURL: "app/components/modals/confirmacion.html"
                 });
             }
         }]);

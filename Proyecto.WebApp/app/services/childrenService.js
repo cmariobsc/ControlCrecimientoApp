@@ -17,7 +17,7 @@ proyectoApp.factory('childrenService',
                 crossDomain: true,
                 cache: false,
                 params: { idRepresentante: idRepresentante }
-            }).then(function(response) {
+            }).then(function (response) {
                 var result = response.data;
                 deferred.resolve(result);
             },function(error) {
@@ -38,8 +38,7 @@ proyectoApp.factory('childrenService',
                 cache: false,
                 params: { idChildren: idChildren }
             }).then(function (response) {
-                var result = response.data;
-                deferred.resolve(result);
+                deferred.resolve(response);
             }, function (error) {
                 deferred.reject(error);
             });
@@ -102,8 +101,7 @@ proyectoApp.factory('childrenService',
                 cache: false,
                 params: { idChildren: idChildren }
             }).then(function (response) {
-                var result = response.data;
-                deferred.resolve(result);
+                deferred.resolve(response);
             }, function (error) {
                 deferred.reject(error);
             });

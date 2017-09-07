@@ -19,14 +19,18 @@ BEGIN
 		DECLARE @contador int
 
 		SELECT [IdHistorialChildren]
-		  ,[Edad]
-		  ,[Talla]
-		  ,[Peso]
-		  ,[FechaCreacion]
-		  ,[FechaModificacion]
-		  ,[IdChildren]
-		  FROM [dbo].[HistorialChildren] 
-		  WHERE [IdChildren] = @IdChildren
+		  ,C.[Nombres] + ' ' + C.[Apellidos] AS NombreCompleto
+		  ,HC.[Edad]
+		  ,HC.[Talla]
+		  ,HC.[Peso]
+		  ,HC.[Observaciones]
+		  ,HC.[FechaCreacion]
+		  ,HC.[FechaModificacion]
+		  ,HC.[IdChildren]
+		  FROM [dbo].[HistorialChildren] HC
+		  INNER JOIN [dbo].[Children] C
+		  ON HC.[IdChildren] = @IdChildren
+		  AND C.[IdChildren] = @IdChildren
 
 		  SELECT @contador = COUNT(*)
 		  FROM [dbo].[HistorialChildren] 

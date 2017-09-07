@@ -36,6 +36,7 @@ namespace Bg.NeoTrack.Data.Repositories
                         Edad = Convert.ToInt32(dataRow["Edad"].ToString()),
                         Talla = Convert.ToDecimal(dataRow["Talla"].ToString()),
                         Peso = Convert.ToInt32(dataRow["Peso"].ToString()),
+                        Observaciones = dataRow["Observaciones"].ToString(),
                         FechaCreacion = Convert.ToDateTime(dataRow["FechaCreacion"].ToString()),
                         FechaModificacion = Convert.ToDateTime(dataRow["FechaModificacion"].ToString()),
                         IdRepresentante = Convert.ToInt32(dataRow["IdRepresentante"]),
@@ -73,6 +74,7 @@ namespace Bg.NeoTrack.Data.Repositories
                         Edad = Convert.ToInt32(dataRow["Edad"].ToString()),
                         Talla = Convert.ToDecimal(dataRow["Talla"].ToString()),
                         Peso = Convert.ToInt32(dataRow["Peso"].ToString()),
+                        Observaciones = dataRow["Observaciones"].ToString(),
                         FechaCreacion = Convert.ToDateTime(dataRow["FechaCreacion"].ToString()),
                         FechaModificacion = Convert.ToDateTime(dataRow["FechaModificacion"].ToString()),
                         IdRepresentante = Convert.ToInt32(dataRow["IdRepresentante"]),
@@ -155,9 +157,11 @@ namespace Bg.NeoTrack.Data.Repositories
                     var historialChildren = new HistorialChildren
                     {
                         IdHistorialChildren = Convert.ToInt32(dataRow["IdHistorialChildren"]),
+                        NombreCompleto = dataRow["NombreCompleto"].ToString(),
                         Edad = Convert.ToInt32(dataRow["Edad"].ToString()),
                         Talla = Convert.ToDecimal(dataRow["Talla"].ToString()),
                         Peso = Convert.ToInt32(dataRow["Peso"].ToString()),
+                        Observaciones = dataRow["Observaciones"].ToString(),
                         FechaCreacion = Convert.ToDateTime(dataRow["FechaCreacion"].ToString()),
                         FechaModificacion = Convert.ToDateTime(dataRow["FechaModificacion"].ToString()),
                         IdChildren = Convert.ToInt32(dataRow["IdChildren"]),

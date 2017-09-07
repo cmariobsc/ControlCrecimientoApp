@@ -26,6 +26,7 @@ BEGIN
 		  ,[Edad]
 		  ,[Talla]
 		  ,[Peso]
+		  ,[Observaciones]
 		  ,[FechaCreacion]
 		  ,[FechaModificacion]
 		  ,[IdRepresentante]

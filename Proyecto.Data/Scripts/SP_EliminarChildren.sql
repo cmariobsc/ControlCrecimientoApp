@@ -18,6 +18,10 @@ BEGIN
 	BEGIN TRY
 
 		DELETE
+		  FROM [dbo].[HistorialChildren] 
+		  WHERE [IdChildren] = @IdChildren
+
+		DELETE
 		  FROM [dbo].[Children] 
 		  WHERE [IdChildren] = @IdChildren
 		

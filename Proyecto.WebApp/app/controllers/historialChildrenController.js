@@ -31,6 +31,7 @@ proyectoApp.controller('historialChildrenController',
                     .then(function (response) {
                         $scope.history_message = response.mensajeRetorno;
                         var data = response.data;
+                        $scope.nombreCompleto = data[0].nombreCompleto;
 
                         $scope.historyTable = new NgTableParams({
                             page: 1,

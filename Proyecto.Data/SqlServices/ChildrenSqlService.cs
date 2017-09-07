@@ -67,6 +67,7 @@ namespace Proyecto.Data.SqlServices
             _database.AddInParameter(command, "@Edad", DbType.Int32, children.Edad);
             _database.AddInParameter(command, "@Talla", DbType.Decimal, children.Talla);
             _database.AddInParameter(command, "@Peso", DbType.Int32, children.Peso);
+            _database.AddInParameter(command, "@Observaciones", DbType.String, children.Observaciones);
             _database.AddInParameter(command, "@IdRepresentante", DbType.Int32, children.IdRepresentante);
             _database.AddInParameter(command, "@IdNacionalidad", DbType.Int32, children.IdNacionalidad);
             _database.AddOutParameter(command, "@codError", DbType.String, 3);
@@ -93,6 +94,7 @@ namespace Proyecto.Data.SqlServices
             _database.AddInParameter(command, "@Edad", DbType.Int32, children.Edad);
             _database.AddInParameter(command, "@Talla", DbType.Decimal, children.Talla);
             _database.AddInParameter(command, "@Peso", DbType.Int32, children.Peso);
+            _database.AddInParameter(command, "@Observaciones", DbType.String, children.Observaciones);
             _database.AddInParameter(command, "@FechaCreacion", DbType.DateTime, children.FechaCreacion);
             _database.AddInParameter(command, "@IdNacionalidad", DbType.Int32, children.IdNacionalidad);
             _database.AddOutParameter(command, "@codError", DbType.String, 3);
