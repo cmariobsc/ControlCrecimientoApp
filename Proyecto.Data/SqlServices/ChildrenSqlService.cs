@@ -64,7 +64,8 @@ namespace Proyecto.Data.SqlServices
             _database.AddInParameter(command, "@Nombres", DbType.String, children.Nombres);
             _database.AddInParameter(command, "@Apellidos", DbType.String, children.Apellidos);
             _database.AddInParameter(command, "@FechaNacimiento", DbType.DateTime, children.FechaNacimiento);
-            _database.AddInParameter(command, "@Edad", DbType.Int32, children.Edad);
+            _database.AddInParameter(command, "@EdadAnos", DbType.Int32, children.EdadAnos);
+            _database.AddInParameter(command, "@EdadMeses", DbType.Int32, children.EdadMeses);
             _database.AddInParameter(command, "@Talla", DbType.Decimal, children.Talla);
             _database.AddInParameter(command, "@Peso", DbType.Int32, children.Peso);
             _database.AddInParameter(command, "@Observaciones", DbType.String, children.Observaciones);
@@ -91,7 +92,8 @@ namespace Proyecto.Data.SqlServices
             _database.AddInParameter(command, "@Nombres", DbType.String, children.Nombres);
             _database.AddInParameter(command, "@Apellidos", DbType.String, children.Apellidos);
             _database.AddInParameter(command, "@FechaNacimiento", DbType.DateTime, children.FechaNacimiento);
-            _database.AddInParameter(command, "@Edad", DbType.Int32, children.Edad);
+            _database.AddInParameter(command, "@EdadAnos", DbType.Int32, children.EdadAnos);
+            _database.AddInParameter(command, "@EdadMeses", DbType.Int32, children.EdadMeses);
             _database.AddInParameter(command, "@Talla", DbType.Decimal, children.Talla);
             _database.AddInParameter(command, "@Peso", DbType.Int32, children.Peso);
             _database.AddInParameter(command, "@Observaciones", DbType.String, children.Observaciones);

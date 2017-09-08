@@ -74,7 +74,8 @@ proyectoApp.controller('childrenController',
                         $scope.datoChildren.nombres = children.data.nombres;
                         $scope.datoChildren.apellidos = children.data.apellidos;
                         $scope.datoChildren.fechaNacimiento = new Date(children.data.fechaNacimiento);
-                        $scope.datoChildren.edad = children.data.edad;
+                        $scope.datoChildren.edadAnos = children.data.edadAnos;
+                        $scope.datoChildren.edadMeses = children.data.edadMeses;
                         $scope.datoChildren.talla = children.data.talla;
                         $scope.datoChildren.peso = children.data.peso;
                         $scope.datoChildren.observaciones = children.data.observaciones;
@@ -95,7 +96,8 @@ proyectoApp.controller('childrenController',
                     Nombres: $scope.datoChildren.nombres,
                     Apellidos: $scope.datoChildren.apellidos,
                     FechaNacimiento: $filter('date')($scope.datoChildren.fechaNacimiento, 'yyyy/MM/dd'),
-                    Edad: $scope.datoChildren.edad,
+                    EdadAnos: $scope.datoChildren.edadAnos,
+                    EdadMeses: $scope.datoChildren.edadMeses,
                     Talla: $scope.datoChildren.talla,
                     Peso: $scope.datoChildren.peso,
                     Observaciones: $scope.datoChildren.observaciones,
@@ -118,7 +120,8 @@ proyectoApp.controller('childrenController',
                     Nombres: $scope.datoChildren.nombres,
                     Apellidos: $scope.datoChildren.apellidos,
                     FechaNacimiento: $filter('date')($scope.datoChildren.fechaNacimiento, 'yyyy/MM/dd'),
-                    Edad: $scope.datoChildren.edad,
+                    EdadAnos: $scope.datoChildren.edadAnos,
+                    EdadMeses: $scope.datoChildren.edadMeses,
                     Talla: $scope.datoChildren.talla,
                     Peso: $scope.datoChildren.peso,
                     Observaciones: $scope.datoChildren.observaciones,

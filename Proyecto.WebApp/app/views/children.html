@@ -80,10 +80,21 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="control-label col-md-3">Edad (años):</label>
-                                    <div class="col-md-9">
+                                    <label class="control-label col-md-3">Edad:</label>
+                                    <div class="col-md-1">
+                                        <label class="control-label">Años:</label>
+                                    </div>
+                                    <div class="col-md-3">
                                         <input type="text" class="form-control" disabled
-                                               ng-model="datoChildren.edad" />
+                                               ng-model="datoChildren.edadAnos" />
+                                    </div>
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-1">
+                                        <label class="control-label">Meses:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control" disabled
+                                               ng-model="datoChildren.edadMeses" />
                                     </div>
                                 </div>
                             </div>
@@ -171,7 +182,7 @@
                                                 <td>{{item.nombres}}</td>
                                                 <td>{{item.apellidos}}</td>
                                                 <td class="hidden-sm hidden-xs">{{item.fechaNacimiento | date : "dd/MM/yyyy"}}</td>
-                                                <td>{{item.edad}}</td>
+                                                <td>{{item.edadAnos}} (Años) {{item.edadMeses}} (Meses)</td>
                                                 <td>{{item.talla}}</td>
                                                 <td>{{item.peso}}</td>
                                                 <td>{{item.observaciones}}</td>
