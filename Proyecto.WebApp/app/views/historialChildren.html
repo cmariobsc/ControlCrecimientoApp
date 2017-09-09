@@ -24,7 +24,8 @@
                                                 <th ng-click="sortType = 'edad'; sortReverse = !sortReverse">Edad</th>
                                                 <th ng-click="sortType = 'talla'; sortReverse = !sortReverse">Talla (mts)</th>
                                                 <th ng-click="sortType = 'peso'; sortReverse = !sortReverse">Peso (kg)</th>
-                                                <th ng-click="sortType = 'observaciones'; sortReverse = !sortReverse">Observaciones</th>
+                                                <th class="hidden-sm hidden-xs" ng-click="sortType = 'sexo'; sortReverse = !sortReverse">Sexo</th>
+                                                <th class="hidden-sm hidden-xs" ng-click="sortType = 'observaciones'; sortReverse = !sortReverse">Observaciones</th>
                                                 <th>Acciones</th>
                                             </tr>
                                         </thead>
@@ -36,10 +37,11 @@
                                                 <td>{{item.nombres}}</td>
                                                 <td>{{item.apellidos}}</td>
                                                 <td class="hidden-sm hidden-xs">{{item.fechaNacimiento | date : "dd/MM/yyyy"}}</td>
-                                                <td>{{item.edadAnos}} (Años) {{item.edadMeses}} (Meses)</td>
+                                                <td>{{item.edadAnios}} Años {{item.edadMeses}} Meses</td>
                                                 <td>{{item.talla}}</td>
                                                 <td>{{item.peso}}</td>
-                                                <td>{{item.observaciones}}</td>
+                                                <td class="hidden-sm hidden-xs">{{obtenerSexo(item.idSexo)}}</td>
+                                                <td class="hidden-sm hidden-xs">{{item.observaciones}}</td>
                                                 <td class="text-nowrap icon-wrap">
                                                     <a class="btn btn-primary btn-xs glyphicon glyphicon-th-list" ng-click="consultar(item.idChildren)"> Ver</a>
                                                 </td>
@@ -53,7 +55,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <h3 class="text-center">Historial de Crecimiento del Niño</h3>
-                                <h4 class="text-center">{{nombreCompleto}}</h4>
+                                <h4 class="text-center">{{nombreCompleto}} - {{obtenerSexo(idSexo)}}</h4>
                                 <div class="alert alert-info">{{history_message}}</div>
                                 <div>
                                     <table ng-table="historyTable" class="table table-condensed table-bordered table-striped table-hover" show-filter="false">
@@ -64,17 +66,17 @@
                                                 <th ng-click="sortType = 'edad'; sortReverse = !sortReverse">Edad</th>
                                                 <th ng-click="sortType = 'talla'; sortReverse = !sortReverse">Talla (mts)</th>
                                                 <th ng-click="sortType = 'peso'; sortReverse = !sortReverse">Peso (kg)</th>
-                                                <th ng-click="sortType = 'observaciones'; sortReverse = !sortReverse">Observaciones</th>
+                                                <th class="hidden-sm hidden-xs" ng-click="sortType = 'observaciones'; sortReverse = !sortReverse">Observaciones</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr ng-repeat="item in $data | orderBy:sortType:sortReverse">
                                                 <td>{{ $index + 1 }}</td>
                                                 <td class="hidden-sm hidden-xs">{{item.fechaCreacion | date : "dd/MM/yyyy"}}</td>
-                                                <td>{{item.edad}}</td>
+                                                <td>{{item.edadAnios}} Años {{item.edadMeses}} Meses</td>
                                                 <td>{{item.talla}}</td>
                                                 <td>{{item.peso}}</td>
-                                                <td>{{item.observaciones}}</td>
+                                                <td class="hidden-sm hidden-xs">{{item.observaciones}}</td>
                                             </tr>
                                         </tbody>
                                     </table>

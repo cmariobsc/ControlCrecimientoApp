@@ -20,6 +20,10 @@ namespace Proyecto.Services
         {
             return _CatalogoRepository.GetListParentesco(out codError, out mensajeRetorno);
         }
+        public IList<Sexo> GetListSexo(out string codError, out string mensajeRetorno)
+        {
+            return _CatalogoRepository.GetListSexo(out codError, out mensajeRetorno);
+        }
         public IList<Nacionalidad> GetListNacionalidad(out string codError, out string mensajeRetorno)
         {
             return _CatalogoRepository.GetListNacionalidad(out codError, out mensajeRetorno);

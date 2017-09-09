@@ -11,11 +11,12 @@ CREATE PROCEDURE SP_GuardarChildren
     @Nombres varchar(100), 
     @Apellidos varchar(100), 
     @FechaNacimiento date,
-	@EdadAnos int,
+	@EdadAnios int,
 	@EdadMeses int,
 	@Talla decimal(6,2),
 	@Peso int,
 	@Observaciones varchar(100),
+	@IdSexo int,
 	@IdRepresentante int,
 	@IdNacionalidad int,
     @codError varchar(3) = '' OUTPUT,
@@ -43,11 +44,11 @@ BEGIN
 			SELECT @IdChildren = COUNT(*) FROM Children
 			SET @IdChildren = @IdChildren + 1
 
-			INSERT INTO Children(IdChildren, Identificacion, Nombres, Apellidos, FechaNacimiento, EdadAnos, EdadMeses, Talla, Peso, Observaciones, FechaCreacion, FechaModificacion, IdRepresentante, IdNacionalidad)
-			VALUES (@IdChildren, @Identificacion, @Nombres, @Apellidos, @FechaNacimiento, @EdadAnos, @EdadMeses, @Talla, @Peso, @Observaciones, GETDATE(), GETDATE(), @IdRepresentante, @IdNacionalidad)
+			INSERT INTO Children(IdChildren, Identificacion, Nombres, Apellidos, FechaNacimiento, EdadAnios, EdadMeses, Talla, Peso, Observaciones, FechaCreacion, FechaModificacion, IdSexo, IdRepresentante, IdNacionalidad)
+			VALUES (@IdChildren, @Identificacion, @Nombres, @Apellidos, @FechaNacimiento, @EdadAnios, @EdadMeses, @Talla, @Peso, @Observaciones, GETDATE(), GETDATE(), @IdSexo, @IdRepresentante, @IdNacionalidad)
 
-			INSERT INTO HistorialChildren(EdadAnos, EdadMeses, Talla, Peso, Observaciones, FechaCreacion, FechaModificacion, IdChildren)
-			VALUES (@EdadAnos, @EdadMeses, @Talla, @Peso, @Observaciones, GETDATE(), GETDATE(), @IdChildren)
+			INSERT INTO HistorialChildren(EdadAnios, EdadMeses, Talla, Peso, Observaciones, FechaCreacion, FechaModificacion, IdChildren)
+			VALUES (@EdadAnios, @EdadMeses, @Talla, @Peso, @Observaciones, GETDATE(), GETDATE(), @IdChildren)
 
 			SET @codError='000'
 			SET @mensajeRetorno='Se ha registrado al niño correctamente.'

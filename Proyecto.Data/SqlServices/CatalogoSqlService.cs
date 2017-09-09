@@ -31,6 +31,23 @@ namespace Proyecto.Data.SqlServices
 
             return result;
         }
+        public DataSet ConsultarSexo(out string codError, out string mensajeRetorno)
+        {
+            var storedProcedure = "[dbo].[SP_ConsultarSexo]";
+
+            var command = _database.GetStoredProcCommand(storedProcedure);
+            command.CommandType = CommandType.StoredProcedure;
+
+            _database.AddOutParameter(command, "@codError", DbType.String, 3);
+            _database.AddOutParameter(command, "@mensajeRetorno", DbType.String, 100);
+
+            var result = _database.ExecuteDataSet(command);
+
+            codError = _database.GetParameterValue(command, "@codError").ToString();
+            mensajeRetorno = _database.GetParameterValue(command, "@mensajeRetorno").ToString();
+
+            return result;
+        }
         public DataSet ConsultarNacionalidad(out string codError, out string mensajeRetorno)
         {
             var storedProcedure = "[dbo].[SP_ConsultarNacionalidad]";

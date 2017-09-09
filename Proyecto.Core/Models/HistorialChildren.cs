@@ -6,7 +6,8 @@ namespace Proyecto.Core.Models
     {
         public int IdHistorialChildren { get; set; }
         public string NombreCompleto { get; set; }
-        public int EdadAnos { get; set; }
+        public int IdSexo { get; set; }
+        public int EdadAnios { get; set; }
         public int EdadMeses { get; set; }
         public decimal Talla { get; set; }
         public int Peso { get; set; }

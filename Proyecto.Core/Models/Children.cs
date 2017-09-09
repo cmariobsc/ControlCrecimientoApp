@@ -10,13 +10,14 @@ namespace Proyecto.Core.Models
         public string Nombres { get; set; }
         public string Apellidos { get; set; }
         public DateTime FechaNacimiento { get; set; }
-        public int EdadAnos { get; set; }
+        public int EdadAnios { get; set; }
         public int EdadMeses { get; set; }
         public decimal Talla { get; set; }
         public int Peso { get; set; }
         public string Observaciones { get; set; }
         public DateTime FechaCreacion { get; set; }
         public DateTime FechaModificacion { get; set; }
+        public int IdSexo { get; set; }
         public int IdRepresentante { get; set; }
     }
 }

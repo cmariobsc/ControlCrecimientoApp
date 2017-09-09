@@ -16,6 +16,16 @@ insert into Parentesco values ('Tío')
 insert into Parentesco values ('Tía')
 go
 
+create table Sexo
+(
+	IdSexo					int not null identity(1,1) primary key,
+	Descripcion				varchar(50) not null,
+)
+
+insert into Sexo values ('Masculino')
+insert into Sexo values ('Femenino')
+go
+
 create table Nacionalidad
 (
 	IdNacionalidad			int not null identity(1,1) primary key,
@@ -132,15 +142,17 @@ Identificacion      varchar(10) null unique,
 Nombres			    varchar(100)  not null,
 Apellidos			varchar(100)  not null,
 FechaNacimiento     date  not null,
-EdadAnos			int  not null,
+EdadAnios			int  not null,
 EdadMeses			int  not null,
 Talla		        decimal(6,2) not null,
 Peso			    int  not null,
 Observaciones		varchar(100) null,
 FechaCreacion		date  not null,
 FechaModificacion	date  not null,
+IdSexo			    int  not null,
 IdRepresentante		int  not null,
 IdNacionalidad      int  not null,
+foreign key (IdSexo) references Sexo,
 foreign key (IdRepresentante) references Representante,
 foreign key (IdNacionalidad) references Nacionalidad,
 )
@@ -149,7 +161,7 @@ go
 create table HistorialChildren
 (
 IdHistorialChildren		int not null identity(1,1) primary key,
-EdadAnos				int  not null,
+EdadAnios				int  not null,
 EdadMeses				int  not null,
 Talla					decimal(6,2) not null,
 Peso					int  not null,

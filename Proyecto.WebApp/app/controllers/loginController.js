@@ -25,6 +25,7 @@ proyectoApp.controller('loginController',
                 usuarioService.getUserData(loginData.username, loginData.password)
                     .then(function (response) {
                         catalogoService.catalogoParentesco();
+                        catalogoService.catalogoSexo();
                         catalogoService.catalogoNacionalidad();
                         catalogoService.catalogoProvincia();
                         catalogoService.catalogoCiudad();

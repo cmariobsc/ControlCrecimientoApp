@@ -27,6 +27,27 @@ proyectoApp.factory('catalogoService',
                 return deferred.promise;
             };
 
+            var _getSexo = function () {
+                var url = serviceUrl + '/catalogo/listSexo';
+                var deferred = $q.defer();
+                $http({
+                    method: 'POST',
+                    url: url,
+                    crossDomain: true
+                }).then(function (response) {
+                    var result = response.data;
+                    if (result.codError === "000") {
+                        localStorageService.set('catalogoSexo', result.data);
+                    }
+                    deferred.resolve(response);
+
+                }, function (error) {
+                    deferred.reject(error);
+                });
+
+                return deferred.promise;
+            };
+
             var _getNacionalidad = function () {
                 var url = serviceUrl + '/catalogo/listNacionalidad';
                 var deferred = $q.defer();
@@ -103,6 +124,19 @@ proyectoApp.factory('catalogoService',
                 return storageCatalogo;
             };
 
+            var _catalogoSexo = function () {
+                var storageCatalogo = localStorageService.get('catalogoSexo');
+                if (storageCatalogo == null) {
+                    _getSexo().then(function (response) {
+                        storageCatalogo = localStorageService.get('catalogoSexo');
+
+                        return storageCatalogo;
+                    });
+                }
+
+                return storageCatalogo;
+            };
+
             var _catalogoNacionalidad = function () {
                 var storageCatalogo = localStorageService.get('catalogoNacionalidad');
                 if (storageCatalogo == null) {
@@ -143,6 +177,7 @@ proyectoApp.factory('catalogoService',
             };
 
             catalogoServiceFactory.catalogoParentesco = _catalogoParentesco;
+            catalogoServiceFactory.catalogoSexo = _catalogoSexo;
             catalogoServiceFactory.catalogoNacionalidad = _catalogoNacionalidad;
             catalogoServiceFactory.catalogoProvincia = _catalogoProvincia;
             catalogoServiceFactory.catalogoCiudad = _catalogoCiudad;

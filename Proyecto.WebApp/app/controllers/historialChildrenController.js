@@ -4,6 +4,7 @@ proyectoApp.controller('historialChildrenController',
         function ($ekathuwa, childrenService, $filter, NgTableParams, $scope, $rootScope, appConfig, catalogoService) {
 
             $scope.listNacionalidad = catalogoService.catalogoNacionalidad();
+            $scope.listSexo = catalogoService.catalogoSexo();
 
             $scope.datos = [];
 
@@ -32,6 +33,7 @@ proyectoApp.controller('historialChildrenController',
                         $scope.history_message = response.mensajeRetorno;
                         var data = response.data;
                         $scope.nombreCompleto = data[0].nombreCompleto;
+                        $scope.idSexo = data[0].idSexo;
 
                         $scope.historyTable = new NgTableParams({
                             page: 1,
@@ -48,6 +50,17 @@ proyectoApp.controller('historialChildrenController',
                 var descripcion = "";
                 angular.forEach($scope.listNacionalidad, function (value, key) {
                     if (value.idNacionalidad == idNacionalidad) {
+                        descripcion = value.descripcion;
+                    }
+                });
+
+                return descripcion;
+            }
+
+            $scope.obtenerSexo = function (idSexo) {
+                var descripcion = "";
+                angular.forEach($scope.listSexo, function (value, key) {
+                    if (value.idSexo == idSexo) {
                         descripcion = value.descripcion;
                     }
                 });

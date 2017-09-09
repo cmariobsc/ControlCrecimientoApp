@@ -64,11 +64,12 @@ namespace Proyecto.Data.SqlServices
             _database.AddInParameter(command, "@Nombres", DbType.String, children.Nombres);
             _database.AddInParameter(command, "@Apellidos", DbType.String, children.Apellidos);
             _database.AddInParameter(command, "@FechaNacimiento", DbType.DateTime, children.FechaNacimiento);
-            _database.AddInParameter(command, "@EdadAnos", DbType.Int32, children.EdadAnos);
+            _database.AddInParameter(command, "@EdadAnios", DbType.Int32, children.EdadAnios);
             _database.AddInParameter(command, "@EdadMeses", DbType.Int32, children.EdadMeses);
             _database.AddInParameter(command, "@Talla", DbType.Decimal, children.Talla);
             _database.AddInParameter(command, "@Peso", DbType.Int32, children.Peso);
             _database.AddInParameter(command, "@Observaciones", DbType.String, children.Observaciones);
+            _database.AddInParameter(command, "@IdSexo", DbType.Int32, children.IdSexo);
             _database.AddInParameter(command, "@IdRepresentante", DbType.Int32, children.IdRepresentante);
             _database.AddInParameter(command, "@IdNacionalidad", DbType.Int32, children.IdNacionalidad);
             _database.AddOutParameter(command, "@codError", DbType.String, 3);
@@ -92,12 +93,13 @@ namespace Proyecto.Data.SqlServices
             _database.AddInParameter(command, "@Nombres", DbType.String, children.Nombres);
             _database.AddInParameter(command, "@Apellidos", DbType.String, children.Apellidos);
             _database.AddInParameter(command, "@FechaNacimiento", DbType.DateTime, children.FechaNacimiento);
-            _database.AddInParameter(command, "@EdadAnos", DbType.Int32, children.EdadAnos);
+            _database.AddInParameter(command, "@EdadAnios", DbType.Int32, children.EdadAnios);
             _database.AddInParameter(command, "@EdadMeses", DbType.Int32, children.EdadMeses);
             _database.AddInParameter(command, "@Talla", DbType.Decimal, children.Talla);
             _database.AddInParameter(command, "@Peso", DbType.Int32, children.Peso);
             _database.AddInParameter(command, "@Observaciones", DbType.String, children.Observaciones);
             _database.AddInParameter(command, "@FechaCreacion", DbType.DateTime, children.FechaCreacion);
+            _database.AddInParameter(command, "@IdSexo", DbType.Int32, children.IdSexo);
             _database.AddInParameter(command, "@IdNacionalidad", DbType.Int32, children.IdNacionalidad);
             _database.AddOutParameter(command, "@codError", DbType.String, 3);
             _database.AddOutParameter(command, "@mensajeRetorno", DbType.String, 100);

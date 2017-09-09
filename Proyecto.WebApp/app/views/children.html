@@ -1,6 +1,6 @@
 ﻿<div header-proyecto></div>
 <div class="container">
-    <h1 style="text-align:center">Datos del Niño</h1>
+    <h1 style="text-align:center">Ingresar / Actualizar Datos del Niño</h1>
     <br />
     <div class="row">
         <div class="col-md-12">
@@ -86,7 +86,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <input type="text" class="form-control" disabled
-                                               ng-model="datoChildren.edadAnos" />
+                                               ng-model="datoChildren.edadAnios" />
                                     </div>
                                     <div class="col-md-1"></div>
                                     <div class="col-md-1">
@@ -130,6 +130,15 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-6">
+                                    <label class="control-label col-md-3">Sexo:</label>
+                                    <div class="col-md-9">
+                                        <select class="form-control" name="sexo" ng-model="datoChildren.sexo" required
+                                                ng-options="option.idSexo as option.descripcion for option in listSexo">
+                                            <option value="" selected hidden />
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
                                     <label class="control-label col-md-3">Observaciones:</label>
                                     <div class="col-md-9">
                                         <textarea name="observaciones" class="form-control" ng-model="datoChildren.observaciones" placeholder="Observaciones"
@@ -170,8 +179,9 @@
                                                 <th ng-click="sortType = 'edad'; sortReverse = !sortReverse">Edad</th>
                                                 <th ng-click="sortType = 'talla'; sortReverse = !sortReverse">Talla (mts)</th>
                                                 <th ng-click="sortType = 'peso'; sortReverse = !sortReverse">Peso (kg)</th>
-                                                <th ng-click="sortType = 'observaciones'; sortReverse = !sortReverse">Observaciones</th>
-                                                <th ng-show="modificando == 'true'">Acciones</th>
+                                                <th class="hidden-sm hidden-xs" ng-click="sortType = 'sexo'; sortReverse = !sortReverse">Sexo</th>
+                                                <th class="hidden-sm hidden-xs" ng-click="sortType = 'observaciones'; sortReverse = !sortReverse">Observaciones</th>
+                                                <th ng-show="modificando == false">Acciones</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -182,10 +192,11 @@
                                                 <td>{{item.nombres}}</td>
                                                 <td>{{item.apellidos}}</td>
                                                 <td class="hidden-sm hidden-xs">{{item.fechaNacimiento | date : "dd/MM/yyyy"}}</td>
-                                                <td>{{item.edadAnos}} (Años) {{item.edadMeses}} (Meses)</td>
+                                                <td>{{item.edadAnios}} Años {{item.edadMeses}} Meses</td>
                                                 <td>{{item.talla}}</td>
                                                 <td>{{item.peso}}</td>
-                                                <td>{{item.observaciones}}</td>
+                                                <td class="hidden-sm hidden-xs">{{obtenerSexo(item.idSexo)}}</td>
+                                                <td class="hidden-sm hidden-xs">{{item.observaciones}}</td>
                                                 <td class="text-nowrap icon-wrap" ng-show="modificando == false">
                                                     <a class="btn btn-primary btn-xs glyphicon glyphicon-pencil" ng-click="editar(item.idChildren)"></a>
                                                     <a class="btn btn-primary btn-xs glyphicon glyphicon-remove" ng-click="eliminar(item.idChildren)"></a>

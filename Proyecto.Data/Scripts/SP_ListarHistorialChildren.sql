@@ -20,7 +20,8 @@ BEGIN
 
 		SELECT [IdHistorialChildren]
 		  ,C.[Nombres] + ' ' + C.[Apellidos] AS NombreCompleto
-		  ,HC.[EdadAnos]
+		  ,C.[IdSexo]
+		  ,HC.[EdadAnios]
 		  ,HC.[EdadMeses]
 		  ,HC.[Talla]
 		  ,HC.[Peso]

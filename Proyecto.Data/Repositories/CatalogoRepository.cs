@@ -39,6 +39,30 @@ namespace Proyecto.Data.Repositories
 
             return listaParentesco;
         }
+        public IList<Sexo> GetListSexo(out string codError, out string mensajeRetorno)
+        {
+            var listaSexo = new List<Sexo>();
+            try
+            {
+                var response = _catalogoSqlService.ConsultarSexo(out codError, out mensajeRetorno);
+
+                foreach (DataRow dataRow in response.Tables[0].Rows)
+                {
+                    listaSexo.Add(new Sexo
+                    {
+                        IdSexo = Convert.ToInt32(dataRow["IdSexo"]),
+                        Descripcion = dataRow["Descripcion"].ToString(),
+                    });
+                }
+            }
+            catch (Exception exception)
+            {
+                codError = "999";
+                mensajeRetorno = exception.Message;
+            }
+
+            return listaSexo;
+        }
         public IList<Nacionalidad> GetListNacionalidad(out string codError, out string mensajeRetorno)
         {
             var listaNacionalidad = new List<Nacionalidad>();
