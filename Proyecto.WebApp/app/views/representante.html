@@ -74,7 +74,7 @@
                                                    current-text="Hoy" popup-placement="bottom" show-button-bar="true"
                                                    readonly="readonly" required />
                                             <span class="input-group-btn">
-                                                <button type="button" class="btn btn-default" ng-click="abrirCalendario()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                <button type="button" class="btn btn-success" ng-click="abrirCalendario()"><i class="glyphicon glyphicon-calendar"></i></button>
                                             </span>
                                         </div>
                                         <span class="messages" ng-show="datosRepresentanteForm.$submitted || datosRepresentanteForm.fechaNacimiento.$touched">
@@ -185,22 +185,17 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label class="control-label col-md-3">Talla:</label>
+                                    <label class="control-label col-md-3">Talla (cm):</label>
                                     <div class="col-md-9">
-                                        <input decimals-only type="text" name="talla" class="form-control" placeholder="Talla"
-                                               ng-model="datoRepresentante.talla" autofocus maxlength="4" />
-                                        <span class="small">Formato 0.00 mts.</span>
-                                        <span class="messages">
-                                            <span class="text-danger" ng-show="datosRepresentanteForm.talla.$error.invalidDecimal">Formato incorrecto.</span>
-                                        </span>
+                                        <input decimals-only type="text" name="talla" class="form-control" placeholder="Talla (cm)"
+                                               ng-model="datoRepresentante.talla" autofocus maxlength="6" />
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="control-label col-md-3">Peso:</label>
+                                    <label class="control-label col-md-3">Peso (kg):</label>
                                     <div class="col-md-9">
-                                        <input numbers-only name="peso" class="form-control" placeholder="Peso"
-                                               ng-model="datoRepresentante.peso" maxlength="3" />
-                                        <span class="small">Kg</span>
+                                        <input decimals-only name="peso" class="form-control" placeholder="Peso (kg):"
+                                               ng-model="datoRepresentante.peso" maxlength="6" />
                                     </div>
                                 </div>
                             </div>

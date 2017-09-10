@@ -60,6 +60,7 @@ namespace Proyecto.Data.SqlServices
             var command = _database.GetStoredProcCommand(storedProcedure);
             command.CommandType = CommandType.StoredProcedure;
 
+            _database.AddInParameter(command, "@FechaCreacion", DbType.DateTime, children.FechaCreacion);
             _database.AddInParameter(command, "@Identificacion", DbType.String, children.Identificacion);
             _database.AddInParameter(command, "@Nombres", DbType.String, children.Nombres);
             _database.AddInParameter(command, "@Apellidos", DbType.String, children.Apellidos);
@@ -67,7 +68,11 @@ namespace Proyecto.Data.SqlServices
             _database.AddInParameter(command, "@EdadAnios", DbType.Int32, children.EdadAnios);
             _database.AddInParameter(command, "@EdadMeses", DbType.Int32, children.EdadMeses);
             _database.AddInParameter(command, "@Talla", DbType.Decimal, children.Talla);
-            _database.AddInParameter(command, "@Peso", DbType.Int32, children.Peso);
+            _database.AddInParameter(command, "@Peso", DbType.Decimal, children.Peso);
+            _database.AddInParameter(command, "@IMC", DbType.Decimal, children.IMC);
+            _database.AddInParameter(command, "@DetalleIMC", DbType.String, children.DetalleIMC);
+            _database.AddInParameter(command, "@PerimCefalico", DbType.Decimal, children.PerimCefalico);
+            _database.AddInParameter(command, "@PerimMedioBrazo", DbType.Decimal, children.PerimMedioBrazo);
             _database.AddInParameter(command, "@Observaciones", DbType.String, children.Observaciones);
             _database.AddInParameter(command, "@IdSexo", DbType.Int32, children.IdSexo);
             _database.AddInParameter(command, "@IdRepresentante", DbType.Int32, children.IdRepresentante);
@@ -96,7 +101,11 @@ namespace Proyecto.Data.SqlServices
             _database.AddInParameter(command, "@EdadAnios", DbType.Int32, children.EdadAnios);
             _database.AddInParameter(command, "@EdadMeses", DbType.Int32, children.EdadMeses);
             _database.AddInParameter(command, "@Talla", DbType.Decimal, children.Talla);
-            _database.AddInParameter(command, "@Peso", DbType.Int32, children.Peso);
+            _database.AddInParameter(command, "@Peso", DbType.Decimal, children.Peso);
+            _database.AddInParameter(command, "@IMC", DbType.Decimal, children.IMC);
+            _database.AddInParameter(command, "@DetalleIMC", DbType.String, children.DetalleIMC);
+            _database.AddInParameter(command, "@PerimCefalico", DbType.Decimal, children.PerimCefalico);
+            _database.AddInParameter(command, "@PerimMedioBrazo", DbType.Decimal, children.PerimMedioBrazo);
             _database.AddInParameter(command, "@Observaciones", DbType.String, children.Observaciones);
             _database.AddInParameter(command, "@FechaCreacion", DbType.DateTime, children.FechaCreacion);
             _database.AddInParameter(command, "@IdSexo", DbType.Int32, children.IdSexo);

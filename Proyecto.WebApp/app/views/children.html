@@ -13,6 +13,20 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-6">
+                                    <label class="control-label col-md-3">Fecha Registro:</label>
+                                    <div class="col-md-9">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" datepicker-popup-template-url="app/components/calendar.html" uib-datepicker-popup="dd/MM/yyyy"
+                                                   ng-model="datoChildren.fechaCreacion" is-open="popup.openedFC"
+                                                   datepicker-options="dateOptions" close-text="Cerrar" current-text="Hoy" popup-placement="bottom" show-button-bar="true"
+                                                   readonly="readonly" />
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-success" ng-click="abrirCalendarioFC()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
                                     <label class="control-label col-md-3">Identificación:</label>
                                     <div class="col-md-9">
                                         <input numbers-only ng-maxlength="10" ng-minlength="10" name="identificacion" class="form-control"
@@ -22,15 +36,6 @@
                                             <span class="text-danger" ng-show="datosChildrenForm.identificacion.$error.minlength">Ingrese 10 dígitos.</span>
                                             <span class="text-danger" ng-show="validaIdentificacion.validarCedula(datoChildren.identificacion) == false">Identificación Invalida.</span>
                                         </span>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="control-label col-md-3">Nacionalidad:</label>
-                                    <div class="col-md-9">
-                                        <select class="form-control" name="nacionalidad" ng-model="datoChildren.nacionalidad"
-                                                ng-options="option.idNacionalidad as option.descripcion for option in listNacionalidad">
-                                            <option value="" selected hidden />
-                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -70,11 +75,11 @@
                                     <div class="col-md-9">
                                         <div class="input-group">
                                             <input type="text" class="form-control" datepicker-popup-template-url="app/components/calendar.html" uib-datepicker-popup="dd/MM/yyyy" 
-                                                   ng-model="datoChildren.fechaNacimiento" is-open="popup.opened"
+                                                   ng-model="datoChildren.fechaNacimiento" is-open="popup.openedFN"
                                                    datepicker-options="dateOptions" close-text="Cerrar" current-text="Hoy" popup-placement="bottom" show-button-bar="true"
                                                    readonly="readonly" ng-change="calculateAge(datoChildren.fechaNacimiento)" />
                                             <span class="input-group-btn">
-                                                <button type="button" class="btn btn-default" ng-click="abrirCalendario()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                <button type="button" class="btn btn-success" ng-click="abrirCalendarioFN()"><i class="glyphicon glyphicon-calendar"></i></button>
                                             </span>
                                         </div>
                                     </div>
@@ -102,34 +107,6 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label class="control-label col-md-3">Talla:</label>
-                                    <div class="col-md-9">
-                                        <input decimals-only type="text" name="talla" class="form-control" placeholder="Talla"
-                                               ng-model="datoChildren.talla" autofocus maxlength="4" />
-                                        <span class="small">Formato 0.00 mts.</span>
-                                        <span class="messages">
-                                            <span class="text-danger" ng-show="datosChildrenForm.talla.$error.required">El campo es obligatorio.</span>
-                                            <span class="text-danger" ng-show="datosChildrenForm.talla.$error.invalidDecimal">Formato incorrecto.</span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="control-label col-md-3">Peso:</label>
-                                    <div class="col-md-9">
-                                        <input numbers-only name="peso" class="form-control" placeholder="Peso"
-                                               ng-model="datoChildren.peso" maxlength="3" required />
-                                        <span class="small">Kg</span>
-                                        <span class="messages" ng-show="datosChildrenForm.$submitted || datosChildrenForm.peso.$touched">
-                                            <span class="text-danger" ng-show="datosChildrenForm.peso.$error.required">El campo es obligatorio.</span>
-                                            <span class="text-danger" ng-show="datosChildrenForm.peso.$error.pattern">Formato incorrecto.</span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-6">
                                     <label class="control-label col-md-3">Sexo:</label>
                                     <div class="col-md-9">
                                         <select class="form-control" name="sexo" ng-model="datoChildren.sexo" required
@@ -138,6 +115,101 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <label class="control-label col-md-3">Nacionalidad:</label>
+                                    <div class="col-md-9">
+                                        <select class="form-control" name="nacionalidad" ng-model="datoChildren.nacionalidad"
+                                                ng-options="option.idNacionalidad as option.descripcion for option in listNacionalidad">
+                                            <option value="" selected hidden />
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="control-label col-md-3">Talla (cm):</label>
+                                    <div class="col-md-9">
+                                        <input decimals-only type="text" name="talla" class="form-control" placeholder="Talla (cm):"
+                                               ng-model="datoChildren.talla" ng-change="calculaIMC()" autofocus maxlength="6" required />
+                                        <span class="messages" ng-show="datosChildrenForm.$submitted || datosChildrenForm.talla.$touched">
+                                            <span class="text-danger" ng-show="datosChildrenForm.talla.$error.required">El campo es obligatorio.</span>
+                                            <span class="text-danger" ng-show="datoChildren.talla < 20">Ha introducido la talla en metros. Debe multiplicarla por 100 para convertirla a centímetros.</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="control-label col-md-3">Peso (kg):</label>
+                                    <div class="col-md-9">
+                                        <input decimals-only name="peso" class="form-control" placeholder="Peso (kg):"
+                                               ng-model="datoChildren.peso" ng-change="calculaIMC()" autofocus maxlength="6" required />
+                                        <span class="messages" ng-show="datosChildrenForm.$submitted || datosChildrenForm.peso.$touched">
+                                            <span class="text-danger" ng-show="datosChildrenForm.peso.$error.required">El campo es obligatorio.</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="control-label col-md-3">Índice Masa Corporal (IMC):</label>
+                                    <div class="col-md-9">
+                                        <div class="input-group">
+                                            <input type="text" name="imc" class="form-control" placeholder="Índice Masa Corporal (IMC)"
+                                                   ng-model="datoChildren.imc" autofocus disabled />
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-info" ng-click="ayudaIMC()"><i class="glyphicon glyphicon-question-sign"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="control-label col-md-3">Según el IMC, tiene:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" name="detalleIMC" class="form-control" placeholder="Detalle IMC"
+                                               ng-model="datoChildren.detalleIMC" autofocus disabled />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="control-label col-md-3">Perímetro Cefálico (cm):</label>
+                                    <div class="col-md-9">
+                                        <div class="input-group">
+                                            <input decimals-only name="perimCefalico" class="form-control" placeholder="Perímetro Cefálico (PC)"
+                                                   ng-model="datoChildren.perimCefalico" maxlength="5" required />
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-info" ng-click="ayudaPC()"><i class="glyphicon glyphicon-question-sign"></i></button>
+                                            </span>
+                                        </div>
+                                        <span class="messages" ng-show="datosChildrenForm.$submitted || datosChildrenForm.perimCefalico.$touched">
+                                            <span class="text-danger" ng-show="datosChildrenForm.perimCefalico.$error.required">El campo es obligatorio.</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="control-label col-md-3">Perímetro Medio Del Brazo (cm):</label>
+                                    <div class="col-md-9">
+                                        <div class="input-group">
+                                            <input decimals-only type="text" name="perimMedioBrazo" class="form-control" placeholder="Perímetro Medio Del Brazo (PMB)"
+                                                   ng-model="datoChildren.perimMedioBrazo" autofocus maxlength="5" required />
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-info" ng-click="ayudaPMB()"><i class="glyphicon glyphicon-question-sign"></i></button>
+                                            </span>
+                                        </div>
+                                        <span class="messages" ng-show="datosChildrenForm.$submitted || datosChildrenForm.perimMedioBrazo.$touched">
+                                            <span class="text-danger" ng-show="datosChildrenForm.perimMedioBrazo.$error.required">El campo es obligatorio.</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
                                 <div class="col-md-6">
                                     <label class="control-label col-md-3">Observaciones:</label>
                                     <div class="col-md-9">
@@ -152,11 +224,11 @@
                         </div>
                         <div class="form-group" style="text-align: center">
                             <button ng-show="modificando == false" type="submit" class="btn btn-primary glyphicon glyphicon-floppy-disk"
-                                    ng-click="guardar()" ng-disabled="!datosChildrenForm.$valid || verificador(datoChildren.identificacionCliente) == false">
+                                    ng-click="guardar()" ng-disabled="!datosChildrenForm.$valid || validaIdentificacion.validarCedula(datoChildren.identificacion) == false || datoChildren.talla < 20">
                                 Guardar
                             </button>
                             <button ng-show="modificando == true" type="submit" class="btn btn-primary glyphicon glyphicon-refresh"
-                                    ng-click="actualizar()" ng-disabled="!datosChildrenForm.$valid || verificador(datoChildren.identificacionCliente) == false">
+                                    ng-click="actualizar()" ng-disabled="!datosChildrenForm.$valid || validaIdentificacion.validarCedula(datoChildren.identificacion) == false || datoChildren.talla < 20">
                                 Actualizar
                             </button>
                             <a class="btn btn-primary glyphicon glyphicon-trash" ng-click="limpiar()"> Limpiar</a>
@@ -171,15 +243,20 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
+                                                <th class="hidden-sm hidden-xs" ng-click="sortType = 'fechaCreacion'; sortReverse = !sortReverse">Fecha</th>
                                                 <th class="hidden-sm hidden-xs" ng-click="sortType = 'identificacion'; sortReverse = !sortReverse">Identificación</th>
-                                                <th class="hidden-sm hidden-xs" ng-click="sortType = 'nacionalidad'; sortReverse = !sortReverse">Nacionalidad</th>
                                                 <th ng-click="sortType = 'nombres'; sortReverse = !sortReverse">Nombres</th>
                                                 <th ng-click="sortType = 'apellidos'; sortReverse = !sortReverse">Apellidos</th>
                                                 <th class="hidden-sm hidden-xs" ng-click="sortType = 'fechaNacimiento'; sortReverse = !sortReverse">Fecha de Nacimiento</th>
                                                 <th ng-click="sortType = 'edad'; sortReverse = !sortReverse">Edad</th>
-                                                <th ng-click="sortType = 'talla'; sortReverse = !sortReverse">Talla (mts)</th>
-                                                <th ng-click="sortType = 'peso'; sortReverse = !sortReverse">Peso (kg)</th>
                                                 <th class="hidden-sm hidden-xs" ng-click="sortType = 'sexo'; sortReverse = !sortReverse">Sexo</th>
+                                                <th class="hidden-sm hidden-xs" ng-click="sortType = 'nacionalidad'; sortReverse = !sortReverse">Nacionalidad</th>
+                                                <th ng-click="sortType = 'talla'; sortReverse = !sortReverse">Talla (cm)</th>
+                                                <th ng-click="sortType = 'peso'; sortReverse = !sortReverse">Peso (kg)</th>
+                                                <th ng-click="sortType = 'imc'; sortReverse = !sortReverse">IMC (cm)</th>
+                                                <th class="hidden-sm hidden-xs" ng-click="sortType = 'detalleIMC'; sortReverse = !sortReverse">Detalle IMC</th>
+                                                <th ng-click="sortType = 'pc'; sortReverse = !sortReverse">PC (cm)</th>
+                                                <th ng-click="sortType = 'pmb'; sortReverse = !sortReverse">PMB (cm)</th>
                                                 <th class="hidden-sm hidden-xs" ng-click="sortType = 'observaciones'; sortReverse = !sortReverse">Observaciones</th>
                                                 <th ng-show="modificando == false">Acciones</th>
                                             </tr>
@@ -187,15 +264,20 @@
                                         <tbody>
                                             <tr ng-repeat="item in $data | orderBy:sortType:sortReverse">
                                                 <td>{{ $index + 1 }}</td>
+                                                <td class="hidden-sm hidden-xs">{{item.fechaCreacion | date : "dd/MM/yyyy"}}</td>
                                                 <td class="hidden-sm hidden-xs">{{item.identificacion}}</td>
-                                                <td class="hidden-sm hidden-xs">{{obtenerNacionalidad(item.idNacionalidad)}}</td>
                                                 <td>{{item.nombres}}</td>
                                                 <td>{{item.apellidos}}</td>
                                                 <td class="hidden-sm hidden-xs">{{item.fechaNacimiento | date : "dd/MM/yyyy"}}</td>
                                                 <td>{{item.edadAnios}} Años {{item.edadMeses}} Meses</td>
+                                                <td class="hidden-sm hidden-xs">{{obtenerSexo(item.idSexo)}}</td>
+                                                <td class="hidden-sm hidden-xs">{{obtenerNacionalidad(item.idNacionalidad)}}</td>
                                                 <td>{{item.talla}}</td>
                                                 <td>{{item.peso}}</td>
-                                                <td class="hidden-sm hidden-xs">{{obtenerSexo(item.idSexo)}}</td>
+                                                <td>{{item.imc}}</td>
+                                                <td class="hidden-sm hidden-xs">{{item.detalleIMC}}</td>
+                                                <td>{{item.perimCefalico}}</td>
+                                                <td>{{item.perimMedioBrazo}}</td>
                                                 <td class="hidden-sm hidden-xs">{{item.observaciones}}</td>
                                                 <td class="text-nowrap icon-wrap" ng-show="modificando == false">
                                                     <a class="btn btn-primary btn-xs glyphicon glyphicon-pencil" ng-click="editar(item.idChildren)"></a>

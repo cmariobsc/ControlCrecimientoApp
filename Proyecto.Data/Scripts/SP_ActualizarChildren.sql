@@ -15,7 +15,11 @@ CREATE PROCEDURE SP_ActualizarChildren
 	@EdadAnios int,
 	@EdadMeses int,
 	@Talla decimal(6,2),
-	@Peso int,
+	@Peso decimal(6,2),
+	@IMC decimal(6,2),
+	@DetalleIMC varchar(100),
+	@PerimCefalico decimal(6,2),
+	@PerimMedioBrazo decimal(6,2),
 	@Observaciones varchar(100),
 	@FechaCreacion date,
 	@IdNacionalidad int,
@@ -29,19 +33,21 @@ BEGIN
     BEGIN TRY
 		UPDATE Children SET Identificacion = @Identificacion, Nombres = @Nombres, Apellidos = @Apellidos, 
 								FechaNacimiento = @FechaNacimiento, EdadAnios = @EdadAnios, EdadMeses = @EdadMeses, Talla = @Talla, Peso = @Peso,
+								IMC = @IMC, DetalleIMC = @DetalleIMC, PerimCefalico = @PerimCefalico, PerimMedioBrazo = @PerimMedioBrazo,
 								Observaciones = @Observaciones, FechaModificacion = GETDATE(), IdNacionalidad = @IdNacionalidad, IdSexo = @IdSexo
 				WHERE IdChildren = @IdChildren
 
 		IF @FechaCreacion =  CONVERT(date, GETDATE(), 111)
 		BEGIN
-			UPDATE HistorialChildren SET EdadAnios = @EdadAnios, EdadMeses = @EdadMeses, Talla = @Talla, Peso = @Peso, 
+			UPDATE HistorialChildren SET EdadAnios = @EdadAnios, EdadMeses = @EdadMeses, Talla = @Talla, Peso = @Peso,
+										IMC = @IMC, DetalleIMC = @DetalleIMC, PerimCefalico = @PerimCefalico, PerimMedioBrazo = @PerimMedioBrazo,
 										Observaciones = @Observaciones,	FechaModificacion = GETDATE()
 				WHERE IdChildren = @IdChildren AND FechaCreacion = @FechaCreacion
 		END
 		ELSE
 		BEGIN
-			INSERT INTO HistorialChildren(EdadAnios, EdadMeses, Talla, Peso, Observaciones, FechaCreacion, FechaModificacion, IdChildren)
-			VALUES (@EdadAnios, @EdadMeses, @Talla, @Peso, @Observaciones, GETDATE(), GETDATE(), @IdChildren)
+			INSERT INTO HistorialChildren(EdadAnios, EdadMeses, Talla, Peso, IMC, DetalleIMC, PerimCefalico, PerimMedioBrazo, Observaciones, FechaCreacion, FechaModificacion, IdChildren)
+			VALUES (@EdadAnios, @EdadMeses, @Talla, @Peso, @IMC, @DetalleIMC, @PerimCefalico, @PerimMedioBrazo, @Observaciones, @FechaCreacion, GETDATE(), @IdChildren)
 		END
 
 		SET @codError='000'

@@ -72,6 +72,7 @@
     <Content Include="app\components\header\header-anon.html" />
     <Content Include="app\components\header\header.directive.js" />
     <Content Include="app\components\header\header.html" />
+    <Content Include="app\components\modals\ayuda.html" />
     <Content Include="app\components\modals\alerta.html" />
     <Content Include="app\components\modals\confirmacion.html" />
     <Content Include="app\components\modals\opciones.html" />
@@ -105,7 +106,10 @@
     <Content Include="app\views\login.html" />
     <Content Include="content\css\bg-theme.css" />
     <Content Include="content\css\styles.css" />
+    <Content Include="content\images\imcTabla.JPG" />
     <Content Include="content\images\logo_pro.png" />
+    <Content Include="content\images\pc.JPG" />
+    <Content Include="content\images\pmb.JPG" />
     <Content Include="favicon.ico" />
     <Content Include="index.html" />
     <Content Include="lib\css\angular\angular-block-ui.min.css" />

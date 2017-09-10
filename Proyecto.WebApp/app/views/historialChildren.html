@@ -16,15 +16,20 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
+                                                <th class="hidden-sm hidden-xs" ng-click="sortType = 'fechaCreacion'; sortReverse = !sortReverse">Fecha</th>
                                                 <th class="hidden-sm hidden-xs" ng-click="sortType = 'identificacion'; sortReverse = !sortReverse">Identificación</th>
-                                                <th class="hidden-sm hidden-xs" ng-click="sortType = 'nacionalidad'; sortReverse = !sortReverse">Nacionalidad</th>
                                                 <th ng-click="sortType = 'nombres'; sortReverse = !sortReverse">Nombres</th>
                                                 <th ng-click="sortType = 'apellidos'; sortReverse = !sortReverse">Apellidos</th>
                                                 <th class="hidden-sm hidden-xs" ng-click="sortType = 'fechaNacimiento'; sortReverse = !sortReverse">Fecha de Nacimiento</th>
                                                 <th ng-click="sortType = 'edad'; sortReverse = !sortReverse">Edad</th>
-                                                <th ng-click="sortType = 'talla'; sortReverse = !sortReverse">Talla (mts)</th>
-                                                <th ng-click="sortType = 'peso'; sortReverse = !sortReverse">Peso (kg)</th>
                                                 <th class="hidden-sm hidden-xs" ng-click="sortType = 'sexo'; sortReverse = !sortReverse">Sexo</th>
+                                                <th class="hidden-sm hidden-xs" ng-click="sortType = 'nacionalidad'; sortReverse = !sortReverse">Nacionalidad</th>
+                                                <th ng-click="sortType = 'talla'; sortReverse = !sortReverse">Talla (cm)</th>
+                                                <th ng-click="sortType = 'peso'; sortReverse = !sortReverse">Peso (kg)</th>
+                                                <th ng-click="sortType = 'imc'; sortReverse = !sortReverse">IMC (cm)</th>
+                                                <th class="hidden-sm hidden-xs" ng-click="sortType = 'detalleIMC'; sortReverse = !sortReverse">Detalle IMC</th>
+                                                <th ng-click="sortType = 'pc'; sortReverse = !sortReverse">PC (cm)</th>
+                                                <th ng-click="sortType = 'pmb'; sortReverse = !sortReverse">PMB (cm)</th>
                                                 <th class="hidden-sm hidden-xs" ng-click="sortType = 'observaciones'; sortReverse = !sortReverse">Observaciones</th>
                                                 <th>Acciones</th>
                                             </tr>
@@ -32,15 +37,20 @@
                                         <tbody>
                                             <tr ng-repeat="item in $data | orderBy:sortType:sortReverse">
                                                 <td>{{ $index + 1 }}</td>
+                                                <td class="hidden-sm hidden-xs">{{item.fechaCreacion | date : "dd/MM/yyyy"}}</td>
                                                 <td class="hidden-sm hidden-xs">{{item.identificacion}}</td>
-                                                <td class="hidden-sm hidden-xs">{{obtenerNacionalidad(item.idNacionalidad)}}</td>
                                                 <td>{{item.nombres}}</td>
                                                 <td>{{item.apellidos}}</td>
                                                 <td class="hidden-sm hidden-xs">{{item.fechaNacimiento | date : "dd/MM/yyyy"}}</td>
                                                 <td>{{item.edadAnios}} Años {{item.edadMeses}} Meses</td>
+                                                <td class="hidden-sm hidden-xs">{{obtenerSexo(item.idSexo)}}</td>
+                                                <td class="hidden-sm hidden-xs">{{obtenerNacionalidad(item.idNacionalidad)}}</td>
                                                 <td>{{item.talla}}</td>
                                                 <td>{{item.peso}}</td>
-                                                <td class="hidden-sm hidden-xs">{{obtenerSexo(item.idSexo)}}</td>
+                                                <td>{{item.imc}}</td>
+                                                <td class="hidden-sm hidden-xs">{{item.detalleIMC}}</td>
+                                                <td>{{item.perimCefalico}}</td>
+                                                <td>{{item.perimMedioBrazo}}</td>
                                                 <td class="hidden-sm hidden-xs">{{item.observaciones}}</td>
                                                 <td class="text-nowrap icon-wrap">
                                                     <a class="btn btn-primary btn-xs glyphicon glyphicon-th-list" ng-click="consultar(item.idChildren)"> Ver</a>
@@ -62,20 +72,28 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th class="hidden-sm hidden-xs" ng-click="sortType = 'fechaCreacion'; sortReverse = !sortReverse">Fecha</th>
+                                                <th ng-click="sortType = 'fechaCreacion'; sortReverse = !sortReverse">Fecha</th>
                                                 <th ng-click="sortType = 'edad'; sortReverse = !sortReverse">Edad</th>
-                                                <th ng-click="sortType = 'talla'; sortReverse = !sortReverse">Talla (mts)</th>
+                                                <th ng-click="sortType = 'talla'; sortReverse = !sortReverse">Talla (cm)</th>
                                                 <th ng-click="sortType = 'peso'; sortReverse = !sortReverse">Peso (kg)</th>
+                                                <th ng-click="sortType = 'imc'; sortReverse = !sortReverse">IMC (cm)</th>
+                                                <th ng-click="sortType = 'detalleIMC'; sortReverse = !sortReverse">Detalle IMC</th>
+                                                <th ng-click="sortType = 'pc'; sortReverse = !sortReverse">PC (cm)</th>
+                                                <th ng-click="sortType = 'pmb'; sortReverse = !sortReverse">PMB (cm)</th>
                                                 <th class="hidden-sm hidden-xs" ng-click="sortType = 'observaciones'; sortReverse = !sortReverse">Observaciones</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr ng-repeat="item in $data | orderBy:sortType:sortReverse">
                                                 <td>{{ $index + 1 }}</td>
-                                                <td class="hidden-sm hidden-xs">{{item.fechaCreacion | date : "dd/MM/yyyy"}}</td>
+                                                <td>{{item.fechaCreacion | date : "dd/MM/yyyy"}}</td>
                                                 <td>{{item.edadAnios}} Años {{item.edadMeses}} Meses</td>
                                                 <td>{{item.talla}}</td>
                                                 <td>{{item.peso}}</td>
+                                                <td>{{item.imc}}</td>
+                                                <td>{{item.detalleIMC}}</td>
+                                                <td>{{item.perimCefalico}}</td>
+                                                <td>{{item.perimMedioBrazo}}</td>
                                                 <td class="hidden-sm hidden-xs">{{item.observaciones}}</td>
                                             </tr>
                                         </tbody>

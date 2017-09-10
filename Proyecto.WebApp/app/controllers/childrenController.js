@@ -26,14 +26,40 @@ proyectoApp.controller('childrenController',
                 opened: false
             };
 
-            $scope.abrirCalendario = function () {
-                $scope.popup.opened = true;
+            $scope.abrirCalendarioFC = function () {
+                $scope.popup.openedFC = true;
+            };
+
+            $scope.abrirCalendarioFN = function () {
+                $scope.popup.openedFN = true;
             };
 
             $scope.datoChildren = {};
 
+            $scope.datoChildren.fechaCreacion = now;
             $scope.datoChildren.fechaNacimiento = now;
             ////////////////////////////////////////////////
+
+            $scope.ayudaIMC = function () {
+                $scope.ModalAyuda("Índice Masa Corporal (IMC)",
+                    "Clasificación según la Organización Mundial de la Salud:",
+                    "content/images/imcTabla.JPG"
+                );
+            }
+
+            $scope.ayudaPC = function () {
+                $scope.ModalAyuda("Perímetro Cefálico (PC)",
+                    "Es la medida en centímetros de la cabeza del niño:",
+                    "content/images/pc.JPG"
+                );
+            }
+
+            $scope.ayudaPMB = function () {
+                $scope.ModalAyuda("Perímetro Medio Del Brazo (PMB)",
+                    "Es la medida en centímetros del lado medio del brazo:",
+                    "content/images/pmb.JPG"
+                );
+            }
 
             $scope.calculateAge = function calculateAge(birthday) {
 
@@ -63,7 +89,41 @@ proyectoApp.controller('childrenController',
 
             $scope.calculateAge($scope.datoChildren.fechaNacimiento);
 
-            $scope.datos = [];
+            $scope.calculaIMC = function () {
+                var alturaCuadrado = Math.pow($scope.datoChildren.talla / 100, 2);
+                var imc = $scope.datoChildren.peso / alturaCuadrado;
+                $scope.datoChildren.imc = roundToTwo(imc);
+
+                /*Calculo descripcion IMC*/
+                if (imc < 16) {
+                    $scope.datoChildren.detalleIMC = "Delgadez Severa";
+                }
+                else if (imc < 17) {
+                    $scope.datoChildren.detalleIMC = "Delgadez Moderada";
+                }
+                else if (imc < 18.5) {
+                    $scope.datoChildren.detalleIMC = "Delgadez Aceptable";
+                }
+                else if (imc < 25) {
+                    $scope.datoChildren.detalleIMC = "Peso Normal";
+                }
+                else if (imc < 30) {
+                    $scope.datoChildren.detalleIMC = "Sobrepeso";
+                }
+                else if (imc < 35) {
+                    $scope.datoChildren.detalleIMC = "Obeso: Tipo I";
+                }
+                else if (imc < 40) {
+                    $scope.datoChildren.detalleIMC = "Obeso: Tipo II";
+                }
+                else if (imc >= 40) {
+                    $scope.datoChildren.detalleIMC = "Obeso: Tipo III";
+                }
+            }
+
+            function roundToTwo(num) {
+                return +(Math.round(num + "e+2") + "e-2");
+            }
 
             $scope.getListChildren = function () {
                 childrenService.getListChildren($rootScope.idRepresentante)
@@ -90,6 +150,7 @@ proyectoApp.controller('childrenController',
                     if (response.data.codError === "000") {
                         var children = response.data;
                         $scope.idChildren = children.data.idChildren;
+                        $scope.datoChildren.fechaCreacion = new Date(children.data.fechaCreacion);
                         $scope.datoChildren.identificacion = children.data.identificacion;
                         $scope.datoChildren.nombres = children.data.nombres;
                         $scope.datoChildren.apellidos = children.data.apellidos;
@@ -98,6 +159,10 @@ proyectoApp.controller('childrenController',
                         $scope.datoChildren.edadMeses = children.data.edadMeses;
                         $scope.datoChildren.talla = children.data.talla;
                         $scope.datoChildren.peso = children.data.peso;
+                        $scope.datoChildren.imc = children.data.imc;
+                        $scope.datoChildren.detalleIMC = children.data.detalleIMC;
+                        $scope.datoChildren.perimCefalico = children.data.perimCefalico;
+                        $scope.datoChildren.perimMedioBrazo = children.data.perimMedioBrazo;
                         $scope.datoChildren.sexo = children.data.idSexo;
                         $scope.datoChildren.observaciones = children.data.observaciones;
                         $scope.fechaCreacion = children.data.fechaCreacion;
@@ -112,6 +177,7 @@ proyectoApp.controller('childrenController',
 
             $scope.guardar = function () {
                 var children = $.param({
+                    FechaCreacion: $filter('date')($scope.datoChildren.fechaCreacion, 'yyyy/MM/dd'),
                     Identificacion: $scope.datoChildren.identificacion,
                     IdNacionalidad: $scope.datoChildren.nacionalidad,
                     Nombres: $scope.datoChildren.nombres,
@@ -121,6 +187,10 @@ proyectoApp.controller('childrenController',
                     EdadMeses: $scope.datoChildren.edadMeses,
                     Talla: $scope.datoChildren.talla,
                     Peso: $scope.datoChildren.peso,
+                    IMC: $scope.datoChildren.imc,
+                    DetalleIMC: $scope.datoChildren.detalleIMC,
+                    PerimCefalico: $scope.datoChildren.perimCefalico,
+                    PerimMedioBrazo: $scope.datoChildren.perimMedioBrazo,
                     IdSexo: $scope.datoChildren.sexo,
                     Observaciones: $scope.datoChildren.observaciones,
                     IdRepresentante: $rootScope.idRepresentante
@@ -138,6 +208,7 @@ proyectoApp.controller('childrenController',
             $scope.actualizar = function () {
                 var children = $.param({
                     IdChildren: $scope.idChildren,
+                    FechaCreacion: $filter('date')($scope.datoChildren.fechaCreacion, 'yyyy/MM/dd'),
                     Identificacion: $scope.datoChildren.identificacion,
                     Nombres: $scope.datoChildren.nombres,
                     Apellidos: $scope.datoChildren.apellidos,
@@ -146,6 +217,10 @@ proyectoApp.controller('childrenController',
                     EdadMeses: $scope.datoChildren.edadMeses,
                     Talla: $scope.datoChildren.talla,
                     Peso: $scope.datoChildren.peso,
+                    IMC: $scope.datoChildren.imc,
+                    DetalleIMC: $scope.datoChildren.detalleIMC,
+                    PerimCefalico: $scope.datoChildren.perimCefalico,
+                    PerimMedioBrazo: $scope.datoChildren.perimMedioBrazo,
                     IdSexo: $scope.datoChildren.sexo,
                     Observaciones: $scope.datoChildren.observaciones,
                     FechaCreacion: $scope.fechaCreacion,
@@ -205,6 +280,7 @@ proyectoApp.controller('childrenController',
 
             $scope.limpiar = function () {
                 $scope.idChildren = "";
+                $scope.datoChildren.fechaCreacion = now;
                 $scope.datoChildren.identificacion = "";
                 $scope.datoChildren.nombres = "";
                 $scope.datoChildren.apellidos = "";
@@ -213,10 +289,26 @@ proyectoApp.controller('childrenController',
                 $scope.datoChildren.edadMeses = "0";
                 $scope.datoChildren.talla = "";
                 $scope.datoChildren.peso = "";
+                $scope.datoChildren.imc = "";
+                $scope.datoChildren.detalleIMC = "";
+                $scope.datoChildren.perimCefalico = "";
+                $scope.datoChildren.perimMedioBrazo = "";
                 $scope.datoChildren.sexo = "";
                 $scope.datoChildren.observaciones = "";
                 $scope.fechaCreacion = "";
                 $scope.datoChildren.nacionalidad = "";
+            }
+
+            $scope.ModalAyuda = function (header, body, imageUrl) {
+                $scope.header = header;
+                $scope.body = body;
+                $scope.imageUrl = imageUrl;
+                $ekathuwa.modal({
+                    id: "ModalAyudaId",
+                    scope: $scope,
+                    backdrop: "static",
+                    templateURL: "app/components/modals/ayuda.html"
+                });
             }
 
             $scope.ModalMensaje = function (mensaje) {
