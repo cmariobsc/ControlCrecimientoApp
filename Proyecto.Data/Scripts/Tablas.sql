@@ -184,7 +184,7 @@ go
 create table OMSTallaxEdadMasculino
 (
 Meses					int  not null,
-L						int  not null,
+L						decimal(10,5) not null,
 M						decimal(10,5) not null,
 S						decimal(10,5) not null,
 SD						decimal(10,5) not null,
