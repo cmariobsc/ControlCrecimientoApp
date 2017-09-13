@@ -3,7 +3,7 @@ using System.Data;
 
 namespace Proyecto.Core.Contracts.SqlServices
 {
-    public interface IChildrenSqlService
+    public interface IChildrenSqlService : ISqlService
     {
         DataSet GetListChildren(int idRepresentante, out string codError, out string mensajeRetorno);
         DataSet GetChildren(int idChildren, out string codError, out string mensajeRetorno);

@@ -63,28 +63,52 @@ proyectoApp.controller('childrenController',
 
             $scope.calculateAge = function calculateAge(birthday) {
 
-                var dateOfBirtday = new Date(birthday);
+                var now = new Date($scope.datoChildren.fechaCreacion);
 
-                var dobYear = dateOfBirtday.getFullYear();
-                var dobMonth = dateOfBirtday.getMonth();
-                var dobDay = dateOfBirtday.getDate();
+                var yearNow = now.getYear();
+                var monthNow = now.getMonth();
+                var dateNow = now.getDate();
 
-                var ageyear = nowYear - dobYear;
-                var agemonth = nowMonth - dobMonth;
-                var ageday = nowDay - dobDay;
+                var dob = new Date(birthday);
 
-                if (agemonth < 0) {
-                    ageyear--;
-                    agemonth = (12 + agemonth);
+                var yearDob = dob.getYear();
+                var monthDob = dob.getMonth();
+                var dateDob = dob.getDate();
+                var age = {};
+                var ageString = "";
+                var yearString = "";
+                var monthString = "";
+                var dayString = "";
+
+                var yearAge = yearNow - yearDob;
+
+                if (monthNow >= monthDob)
+                    var monthAge = monthNow - monthDob;
+                else {
+                    yearAge--;
+                    var monthAge = 12 + monthNow - monthDob;
                 }
 
-                if (nowDay < dobDay) {
-                    agemonth--;
-                    ageday = 30 + ageday;
+                if (dateNow >= dateDob)
+                    var dateAge = dateNow - dateDob;
+                else {
+                    monthAge--;
+                    var dateAge = 31 + dateNow - dateDob;
+
+                    if (monthAge < 0) {
+                        monthAge = 11;
+                        yearAge--;
+                    }
                 }
 
-                $scope.datoChildren.edadAnios = ageyear;
-                $scope.datoChildren.edadMeses = agemonth;
+                age = {
+                    years: yearAge,
+                    months: monthAge,
+                    days: dateAge
+                };
+
+                $scope.datoChildren.edadAnios = age.years;
+                $scope.datoChildren.edadMeses = age.months;
             }
 
             $scope.calculateAge($scope.datoChildren.fechaNacimiento);

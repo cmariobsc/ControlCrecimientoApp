@@ -181,7 +181,25 @@ foreign key (IdChildren) references Children
 )
 go
 
+create table OMSTallaxEdadMasculino
+(
+Meses					int  not null,
+L						int  not null,
+M						decimal(10,5) not null,
+S						decimal(10,5) not null,
+SD						decimal(10,5) not null,
+SD3neg					decimal(10,5) not null,
+SD2neg					decimal(10,5) not null,
+SD1neg					decimal(10,5) not null,
+SD0						decimal(10,5) not null,
+SD1						decimal(10,5) not null,
+SD2						decimal(10,5) not null,
+SD3						decimal(10,5) not null,
+)
+go
+
 --drop table Parentesco
+--drop table Sexo
 --drop table Nacionalidad
 --drop table Provincia
 --drop table Ciudad
@@ -189,5 +207,6 @@ go
 --drop table Representante
 --drop table Children
 --drop table HistorialChildren
+--drop table OMSTallaxEdadMasculino
 
 --drop database DB_CNCAPP

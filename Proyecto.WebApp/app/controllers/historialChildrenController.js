@@ -1,7 +1,7 @@
 ﻿'use strict';
 proyectoApp.controller('historialChildrenController',
-    ['$ekathuwa', 'childrenService', '$filter', 'NgTableParams', '$scope', '$rootScope', 'AppConfig', 'catalogoService',
-        function ($ekathuwa, childrenService, $filter, NgTableParams, $scope, $rootScope, appConfig, catalogoService) {
+    ['$ekathuwa', 'childrenService', '$filter', 'NgTableParams', '$scope', '$rootScope', 'AppConfig', 'catalogoService', 'omsInfoService',
+        function ($ekathuwa, childrenService, $filter, NgTableParams, $scope, $rootScope, appConfig, catalogoService, omsInfoService) {
 
             $scope.listNacionalidad = catalogoService.catalogoNacionalidad();
             $scope.listSexo = catalogoService.catalogoSexo();
@@ -21,6 +21,15 @@ proyectoApp.controller('historialChildrenController',
                             {
                                 dataset: data
                             });
+
+                    }, function (error) { });
+
+
+                omsInfoService.getListTallaxEdadMasculino()
+                    .then(function (response) {
+                        console.log(response.mensajeRetorno);
+                        var data = response.data;
+                        console.log(data);
 
                     }, function (error) { });
             }

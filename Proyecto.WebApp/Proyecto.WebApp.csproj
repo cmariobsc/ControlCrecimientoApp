@@ -86,6 +86,7 @@
     <Content Include="app\controllers\childrenController.js" />
     <Content Include="app\controllers\registroController.js" />
     <Content Include="app\services\catalogoService.js" />
+    <Content Include="app\services\omsInfoService.js" />
     <Content Include="app\services\representanteService.js" />
     <Content Include="app\services\childrenService.js" />
     <Content Include="app\services\validaIdentificacionService.js" />

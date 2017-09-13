@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web.Http;
 using Proyecto.Core.Contracts.Services;
 using Proyecto.Core.Models;
 using Proyecto.Web.Core.Controllers;
 using Proyecto.Web.Core.Models;
-using System.Web;
 
 namespace Proyecto.WebApi.Controllers
 {

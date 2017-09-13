@@ -42,17 +42,20 @@
   <ItemGroup>
     <Compile Include="Contracts\ISqlService.cs" />
     <Compile Include="Contracts\Repositories\ICatalogoRepository.cs" />
+    <Compile Include="Contracts\Repositories\IOMSInfoRepository.cs" />
     <Compile Include="Contracts\Repositories\IRepresentanteRepository.cs" />
     <Compile Include="Contracts\Repositories\IChildrenRepository.cs" />
     <Compile Include="Contracts\Repositories\IParametroRepository.cs" />
     <Compile Include="Contracts\Repositories\ITokenRepository.cs" />
     <Compile Include="Contracts\Repositories\IUserRepository.cs" />
     <Compile Include="Contracts\Services\ICatalogoService.cs" />
+    <Compile Include="Contracts\Services\IOMSInfoService.cs" />
     <Compile Include="Contracts\Services\IRepresentanteService.cs" />
     <Compile Include="Contracts\Services\IChildrenService.cs" />
     <Compile Include="Contracts\Services\IAuthService.cs" />
     <Compile Include="Contracts\Services\IParametroService.cs" />
     <Compile Include="Contracts\SqlServices\ICatalogoSqlService.cs" />
+    <Compile Include="Contracts\SqlServices\IOMSInfoSqlService.cs" />
     <Compile Include="Contracts\SqlServices\IChildrenSqlService.cs" />
     <Compile Include="Contracts\SqlServices\IRepresentanteSqlService.cs" />
     <Compile Include="Contracts\SqlServices\IUserSqlService.cs" />
@@ -70,6 +73,7 @@
     <Compile Include="Models\Catalogos\Provincia.cs" />
     <Compile Include="Models\HistorialChildren.cs" />
     <Compile Include="Models\Children.cs" />
+    <Compile Include="Models\OMSAlturaxEdadMasculino.cs" />
     <Compile Include="Models\Parametro.cs" />
     <Compile Include="Models\Representante.cs" />
     <Compile Include="Models\Catalogos\Sexo.cs" />

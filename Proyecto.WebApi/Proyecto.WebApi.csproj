@@ -135,6 +135,7 @@
     <Compile Include="Controllers\CatalogoController.cs" />
     <Compile Include="Controllers\ChildrenController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\OMSInfoController.cs" />
     <Compile Include="Controllers\RepresentanteController.cs" />
     <Compile Include="Ioc\Installers\ControllerInstaller.cs" />
     <Compile Include="Ioc\Installers\DefaultInstaller.cs" />
