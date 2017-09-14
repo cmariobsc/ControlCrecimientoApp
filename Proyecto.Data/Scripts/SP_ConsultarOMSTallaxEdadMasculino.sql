@@ -27,7 +27,7 @@ BEGIN
 		  ,[SD1]
 		  ,[SD2]
 		  ,[SD3]
-		FROM [dbo].[OMSAlturaxEdadMasculino]
+		FROM [dbo].[OMSTallaxEdadMasculino]
 		
 		SET @codError='000'
 		SET @mensajeRetorno='Consulta OMSAlturaxEdadMasculino Ok.'

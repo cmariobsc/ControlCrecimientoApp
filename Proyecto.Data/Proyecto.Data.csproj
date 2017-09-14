@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Repositories\CatalogoRepository.cs" />
+    <Compile Include="Repositories\OMSInfoRepository.cs" />
     <Compile Include="Repositories\RepresentanteRepository.cs" />
     <Compile Include="SqlConnection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

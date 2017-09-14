@@ -3,7 +3,7 @@
     public class OMSTallaxEdadMasculino
     {
         public int Meses { get; set; }
-        public int L { get; set; }
+        public decimal L { get; set; }
         public decimal M { get; set; }
         public decimal S { get; set; }
         public decimal SD { get; set; }
