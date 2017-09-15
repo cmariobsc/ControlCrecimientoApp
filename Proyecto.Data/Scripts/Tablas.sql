@@ -198,6 +198,158 @@ SD3						decimal(10,5) not null,
 )
 go
 
+create table OMSTallaxEdadFemenino
+(
+Meses					int  not null,
+L						decimal(10,5) not null,
+M						decimal(10,5) not null,
+S						decimal(10,5) not null,
+SD						decimal(10,5) not null,
+SD3neg					decimal(10,5) not null,
+SD2neg					decimal(10,5) not null,
+SD1neg					decimal(10,5) not null,
+SD0						decimal(10,5) not null,
+SD1						decimal(10,5) not null,
+SD2						decimal(10,5) not null,
+SD3						decimal(10,5) not null,
+)
+go
+
+create table OMSPesoxEdadMasculino
+(
+Meses					int  not null,
+L						decimal(10,5) not null,
+M						decimal(10,5) not null,
+S						decimal(10,5) not null,
+SD3neg					decimal(10,5) not null,
+SD2neg					decimal(10,5) not null,
+SD1neg					decimal(10,5) not null,
+SD0						decimal(10,5) not null,
+SD1						decimal(10,5) not null,
+SD2						decimal(10,5) not null,
+SD3						decimal(10,5) not null,
+)
+go
+
+create table OMSPesoxEdadFemenino
+(
+Meses					int  not null,
+L						decimal(10,5) not null,
+M						decimal(10,5) not null,
+S						decimal(10,5) not null,
+SD						decimal(10,5) not null,
+SD3neg					decimal(10,5) not null,
+SD2neg					decimal(10,5) not null,
+SD1neg					decimal(10,5) not null,
+SD0						decimal(10,5) not null,
+SD1						decimal(10,5) not null,
+SD2						decimal(10,5) not null,
+SD3						decimal(10,5) not null,
+)
+go
+
+create table OMSPesoxTallaMasculino
+(
+Talla					int  not null,
+L						decimal(10,5) not null,
+M						decimal(10,5) not null,
+S						decimal(10,5) not null,
+SD						decimal(10,5) not null,
+SD3neg					decimal(10,5) not null,
+SD2neg					decimal(10,5) not null,
+SD1neg					decimal(10,5) not null,
+SD0						decimal(10,5) not null,
+SD1						decimal(10,5) not null,
+SD2						decimal(10,5) not null,
+SD3						decimal(10,5) not null,
+)
+go
+
+create table OMSPesoxTallaFemenino
+(
+Talla					int  not null,
+L						decimal(10,5) not null,
+M						decimal(10,5) not null,
+S						decimal(10,5) not null,
+SD						decimal(10,5) not null,
+SD3neg					decimal(10,5) not null,
+SD2neg					decimal(10,5) not null,
+SD1neg					decimal(10,5) not null,
+SD0						decimal(10,5) not null,
+SD1						decimal(10,5) not null,
+SD2						decimal(10,5) not null,
+SD3						decimal(10,5) not null,
+)
+go
+
+create table OMSPCxEdadMasculino
+(
+Meses					int  not null,
+L						decimal(10,5) not null,
+M						decimal(10,5) not null,
+S						decimal(10,5) not null,
+SD						decimal(10,5) not null,
+SD3neg					decimal(10,5) not null,
+SD2neg					decimal(10,5) not null,
+SD1neg					decimal(10,5) not null,
+SD0						decimal(10,5) not null,
+SD1						decimal(10,5) not null,
+SD2						decimal(10,5) not null,
+SD3						decimal(10,5) not null,
+)
+go
+
+create table OMSPCxEdadFemenino
+(
+Meses					int  not null,
+L						decimal(10,5) not null,
+M						decimal(10,5) not null,
+S						decimal(10,5) not null,
+SD						decimal(10,5) not null,
+SD3neg					decimal(10,5) not null,
+SD2neg					decimal(10,5) not null,
+SD1neg					decimal(10,5) not null,
+SD0						decimal(10,5) not null,
+SD1						decimal(10,5) not null,
+SD2						decimal(10,5) not null,
+SD3						decimal(10,5) not null,
+)
+go
+
+create table OMSPMBxEdadMasculino
+(
+Meses					int  not null,
+L						decimal(10,5) not null,
+M						decimal(10,5) not null,
+S						decimal(10,5) not null,
+SD						decimal(10,5) not null,
+SD3neg					decimal(10,5) not null,
+SD2neg					decimal(10,5) not null,
+SD1neg					decimal(10,5) not null,
+SD0						decimal(10,5) not null,
+SD1						decimal(10,5) not null,
+SD2						decimal(10,5) not null,
+SD3						decimal(10,5) not null,
+)
+go
+
+create table OMSPMBxEdadFemenino
+(
+Meses					int  not null,
+L						decimal(10,5) not null,
+M						decimal(10,5) not null,
+S						decimal(10,5) not null,
+SD						decimal(10,5) not null,
+SD3neg					decimal(10,5) not null,
+SD2neg					decimal(10,5) not null,
+SD1neg					decimal(10,5) not null,
+SD0						decimal(10,5) not null,
+SD1						decimal(10,5) not null,
+SD2						decimal(10,5) not null,
+SD3						decimal(10,5) not null,
+)
+go
+
 --drop table Parentesco
 --drop table Sexo
 --drop table Nacionalidad
@@ -208,5 +360,7 @@ go
 --drop table Children
 --drop table HistorialChildren
 --drop table OMSTallaxEdadMasculino
+--drop table OMSTallaxEdadFemenino
+--drop table OMSPesoxEdadMasculino
 
 --drop database DB_CNCAPP

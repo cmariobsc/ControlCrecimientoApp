@@ -68,6 +68,8 @@
   <ItemGroup>
     <Content Include="app\app.js" />
     <Content Include="app\components\calendar.html" />
+    <Content Include="app\components\charts\chart.directive.js" />
+    <Content Include="app\components\charts\chart-txe.html" />
     <Content Include="app\components\header\header-anon.directive.js" />
     <Content Include="app\components\header\header-anon.html" />
     <Content Include="app\components\header\header.directive.js" />
@@ -124,6 +126,7 @@
     <Content Include="lib\css\fonts\fontawesome-webfont.svg" />
     <Content Include="lib\css\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="lib\js\angular\angular-block-ui.min.js" />
+    <Content Include="lib\js\angular\angular-chart.min.js" />
     <Content Include="lib\js\angular\angular-growl.min.js" />
     <Content Include="lib\js\angular\angular-local-storage.min.js" />
     <Content Include="lib\js\angular\angular-locale_es-ec.js" />
@@ -135,6 +138,7 @@
     <Content Include="lib\js\bootstrap\bootstrap.min.js" />
     <Content Include="lib\js\angular\ekathuwa.min.js" />
     <Content Include="lib\js\bootstrap\ui-bootstrap-tpls-2.5.0.min.js" />
+    <Content Include="lib\js\chart\Chart.js" />
     <Content Include="lib\js\jquery\jquery-3.1.1.min.js" />
     <Content Include="lib\js\jquery\jquery-mask-plugin.min.js" />
     <Content Include="lib\js\jquery\jquery-ui.min.js" />

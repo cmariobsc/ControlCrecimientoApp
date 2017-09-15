@@ -8,6 +8,11 @@ proyectoApp.controller('historialChildrenController',
 
             $scope.datos = [];
 
+            $scope.listIndicadores = [{
+                idIndicador: '1',
+                descripcion: 'Talla para la edad'
+            }];
+
             $scope.getListChildren = function () {
                 childrenService.getListChildren($rootScope.idRepresentante)
                     .then(function (response) {
@@ -21,15 +26,6 @@ proyectoApp.controller('historialChildrenController',
                             {
                                 dataset: data
                             });
-
-                    }, function (error) { });
-
-
-                omsInfoService.getListTallaxEdadMasculino()
-                    .then(function (response) {
-                        console.log(response.mensajeRetorno);
-                        var data = response.data;
-                        console.log(data);
 
                     }, function (error) { });
             }
@@ -51,6 +47,8 @@ proyectoApp.controller('historialChildrenController',
                             {
                                 dataset: data
                             });
+
+                        
 
                     }, function (error) { });
             }
@@ -76,6 +74,25 @@ proyectoApp.controller('historialChildrenController',
 
                 return descripcion;
             }
+
+            $scope.cargaOMS = function () {
+                omsInfoService.getListTallaxEdadMasculino()
+                    .then(function (response) {
+                        console.log(response.mensajeRetorno);
+                        var data = response.data;
+                        $scope.meses = data;
+
+                    }, function (error) { });
+            }
+
+            $scope.cargaOMS();
+
+            $scope.cargarIndicador = function (indicador) {
+                
+                if (indicador === "1") {
+                    $scope.omsTxE();
+                }
+            } 
 
             $scope.ModalMensaje = function (mensaje) {
                 $scope.header = "Historial de Crecimientos";

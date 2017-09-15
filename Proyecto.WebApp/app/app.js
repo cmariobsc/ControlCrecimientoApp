@@ -10,7 +10,8 @@ var proyectoApp = angular.module('ProyectoApp',
         'angular-growl',
         'ngEkathuwa',
         'ui.bootstrap',
-        'blockUI'
+        'blockUI',
+        'chart.js'
 ]);
 
 proyectoApp.constant('AppConfig',

@@ -61,7 +61,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="row">
                             <div class="col-md-12">
                                 <h3 class="text-center">Historial de Crecimiento del Niño</h3>
@@ -100,6 +99,22 @@
                                     </table>
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label class="control-label col-md-4">Elija un Indicador:</label>
+                                    <div class="col-md-8">
+                                        <select class="form-control" name="indicador" ng-model="indicador" ng-change="cargarIndicador(indicador)"
+                                                ng-options="option.idIndicador as option.descripcion for option in listIndicadores">
+                                            <option value="" selected hidden />
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div chart-txe></div>
                         </div>
                     </form>
                 </div>
