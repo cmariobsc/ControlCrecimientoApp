@@ -5,6 +5,6 @@ namespace Proyecto.Core.Contracts.Services
 {
     public interface IOMSInfoService : IService
     {
-        IList<OMSTallaxEdadMasculino> GetListOMSTallaxEdad(int idSexo, out string codError, out string mensajeRetorno);
+        IList<OMSCamposIndicadores> GetListOMSTallaxEdad(int idSexo, out string codError, out string mensajeRetorno);
     }
 }

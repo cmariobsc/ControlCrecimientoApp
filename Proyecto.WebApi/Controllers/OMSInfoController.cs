@@ -18,17 +18,17 @@ namespace Proyecto.WebApi.Controllers
         }
 
         [HttpPost]
-        [ActionName("getListTallaxEdadMasculino")]
-        public ApiResult GetListOMSTallaxEdadMasculino()
+        [ActionName("getListTallaxEdad")]
+        public ApiResult GetListOMSTallaxEdadMasculino(int idSexo)
         {
             string codError;
             string mensajeRetorno;
             string status;
-            IList<OMSTallaxEdadMasculino> lista = null;
+            IList<OMSCamposIndicadores> lista = null;
 
             try
             {
-                lista = _omsInfoService.GetListOMSTallaxEdadMasculino(out codError, out mensajeRetorno);
+                lista = _omsInfoService.GetListOMSTallaxEdad(idSexo, out codError, out mensajeRetorno);
                 status = JsonStatus.Success();
             }
             catch (Exception exception)

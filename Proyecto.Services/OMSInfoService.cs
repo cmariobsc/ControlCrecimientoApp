@@ -15,9 +15,9 @@ namespace Proyecto.Services
             _OMSInfoRepository = omsInfoRepository;
         }
 
-        public IList<OMSTallaxEdadMasculino> GetListOMSTallaxEdad(int idEdad, out string codError, out string mensajeRetorno)
+        public IList<OMSCamposIndicadores> GetListOMSTallaxEdad(int idSexo, out string codError, out string mensajeRetorno)
         {
-            return _OMSInfoRepository.GetListOMSTallaxEdad(idEdad, out codError, out mensajeRetorno);
+            return _OMSInfoRepository.GetListOMSTallaxEdad(idSexo, out codError, out mensajeRetorno);
         }
     }
 }

@@ -17,9 +17,9 @@ namespace Proyecto.Data.Repositories
             _omsInfoSqlService = new OMSInfoSqlService();
         }
 
-        public IList<OMSTallaxEdadMasculino> GetListOMSTallaxEdad(int idSexo, out string codError, out string mensajeRetorno)
+        public IList<OMSCamposIndicadores> GetListOMSTallaxEdad(int idSexo, out string codError, out string mensajeRetorno)
         {
-            var listaTallaxEdad = new List<OMSTallaxEdadMasculino>();
+            var listaTallaxEdad = new List<OMSCamposIndicadores>();
             try
             {
                 var response = _omsInfoSqlService.GetListOMSTallaxEdad(idSexo, out codError, out mensajeRetorno);
