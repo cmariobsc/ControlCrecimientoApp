@@ -6,7 +6,8 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE PROCEDURE SP_ConsultarOMSTallaxEdadMasculino
+CREATE PROCEDURE SP_ConsultarOMSIMCxEdad
+	@idSexo int,
     @codError varchar(3) = '' OUTPUT,
 	@mensajeRetorno varchar(100) = '' OUTPUT
 AS
@@ -15,11 +16,12 @@ BEGIN
     SET NOCOUNT ON
 
 	BEGIN TRY
+	IF @idSexo = 1
+	BEGIN
 		SELECT [Meses]
 		  ,[L]
 		  ,[M]
 		  ,[S]
-		  ,[SD]
 		  ,[SD3neg]
 		  ,[SD2neg]
 		  ,[SD1neg]
@@ -30,7 +32,26 @@ BEGIN
 		FROM [dbo].[OMSTallaxEdadMasculino]
 		
 		SET @codError='000'
-		SET @mensajeRetorno='Consulta OMSAlturaxEdadMasculino Ok.'
+		SET @mensajeRetorno='Consulta OMSIMCxEdadMasculino Ok.'
+	END
+	IF @idSexo = 2
+	BEGIN
+		SELECT [Meses]
+		  ,[L]
+		  ,[M]
+		  ,[S]
+		  ,[SD3neg]
+		  ,[SD2neg]
+		  ,[SD1neg]
+		  ,[SD0]
+		  ,[SD1]
+		  ,[SD2]
+		  ,[SD3]
+		FROM [dbo].[OMSTallaxEdadFemenino]
+		
+		SET @codError='000'
+		SET @mensajeRetorno='Consulta OMSIMCxEdadFemenino Ok.'
+	END
 
     END TRY
 

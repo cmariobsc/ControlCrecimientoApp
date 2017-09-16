@@ -237,7 +237,6 @@ Meses					int  not null,
 L						decimal(10,5) not null,
 M						decimal(10,5) not null,
 S						decimal(10,5) not null,
-SD						decimal(10,5) not null,
 SD3neg					decimal(10,5) not null,
 SD2neg					decimal(10,5) not null,
 SD1neg					decimal(10,5) not null,
@@ -248,13 +247,12 @@ SD3						decimal(10,5) not null,
 )
 go
 
-create table OMSPesoxTallaMasculino
+create table OMSIMCxEdadMasculino
 (
-Talla					int  not null,
+Meses					int  not null,
 L						decimal(10,5) not null,
 M						decimal(10,5) not null,
 S						decimal(10,5) not null,
-SD						decimal(10,5) not null,
 SD3neg					decimal(10,5) not null,
 SD2neg					decimal(10,5) not null,
 SD1neg					decimal(10,5) not null,
@@ -265,13 +263,12 @@ SD3						decimal(10,5) not null,
 )
 go
 
-create table OMSPesoxTallaFemenino
+create table OMSIMCxEdadFemenino
 (
-Talla					int  not null,
+Meses					int  not null,
 L						decimal(10,5) not null,
 M						decimal(10,5) not null,
 S						decimal(10,5) not null,
-SD						decimal(10,5) not null,
 SD3neg					decimal(10,5) not null,
 SD2neg					decimal(10,5) not null,
 SD1neg					decimal(10,5) not null,
@@ -322,7 +319,6 @@ Meses					int  not null,
 L						decimal(10,5) not null,
 M						decimal(10,5) not null,
 S						decimal(10,5) not null,
-SD						decimal(10,5) not null,
 SD3neg					decimal(10,5) not null,
 SD2neg					decimal(10,5) not null,
 SD1neg					decimal(10,5) not null,
@@ -339,7 +335,6 @@ Meses					int  not null,
 L						decimal(10,5) not null,
 M						decimal(10,5) not null,
 S						decimal(10,5) not null,
-SD						decimal(10,5) not null,
 SD3neg					decimal(10,5) not null,
 SD2neg					decimal(10,5) not null,
 SD1neg					decimal(10,5) not null,
