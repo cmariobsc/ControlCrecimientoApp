@@ -108,7 +108,7 @@ proyectoApp.controller('childrenController',
                 };
 
                 $scope.datoChildren.edadAnios = age.years;
-                $scope.datoChildren.edadMeses = age.months;
+                $scope.datoChildren.edadMeses = (age.years*12) + age.months;
             }
 
             $scope.calculateAge($scope.datoChildren.fechaNacimiento);

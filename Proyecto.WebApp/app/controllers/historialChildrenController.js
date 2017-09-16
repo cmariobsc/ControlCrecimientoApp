@@ -40,6 +40,10 @@ proyectoApp.controller('historialChildrenController',
                         $scope.nombreCompleto = data[0].nombreCompleto;
                         $scope.idSexo = data[0].idSexo;
 
+                        $scope.listChildren = data;
+
+                        $scope.cargaOMS();
+
                         $scope.historyTable = new NgTableParams({
                             page: 1,
                             count: 10
@@ -47,8 +51,6 @@ proyectoApp.controller('historialChildrenController',
                             {
                                 dataset: data
                             });
-
-                        
 
                     }, function (error) { });
             }
@@ -78,14 +80,11 @@ proyectoApp.controller('historialChildrenController',
             $scope.cargaOMS = function () {
                 omsInfoService.getListTallaxEdadMasculino()
                     .then(function (response) {
-                        console.log(response.mensajeRetorno);
                         var data = response.data;
-                        $scope.meses = data;
+                        obtenerParametro(data);
 
                     }, function (error) { });
             }
-
-            $scope.cargaOMS();
 
             $scope.cargarIndicador = function (indicador) {
                 
@@ -102,6 +101,30 @@ proyectoApp.controller('historialChildrenController',
                     scope: $scope,
                     backdrop: "static",
                     templateURL: "app/components/modals/alerta.html"
+                });
+            }
+
+            var obtenerParametro = function (data) {
+                $scope.meses = [];
+                $scope.sD3neg = [];
+                $scope.sD2neg = [];
+                $scope.sD1neg = [];
+                $scope.sD0 = [];
+                $scope.sD1 = [];
+                $scope.sD2 = [];
+                $scope.sD3 = [];
+                angular.forEach(data, function (value, key) {
+                    if (key < ($scope.listChildren[$scope.listChildren.length - 1].edadMeses + 6)) {
+                        $scope.meses.push(value.meses);
+                        $scope.sD3neg.push(value.sD3neg);
+                        $scope.sD2neg.push(value.sD2neg);
+                        $scope.sD1neg.push(value.sD1neg);
+                        $scope.sD0.push(value.sD0);
+                        $scope.sD1.push(value.sD1);
+                        $scope.sD2.push(value.sD2);
+                        $scope.sD3.push(value.sD3);
+                    }
+                    
                 });
             }
         }]);
