@@ -5,6 +5,6 @@ namespace Proyecto.Core.Contracts.SqlServices
 {
     public interface IOMSInfoSqlService : ISqlService
     {
-        DataSet GetListOMSTallaxEdadMasculino(out string codError, out string mensajeRetorno);
+        DataSet GetListOMSTallaxEdad(int idSexo, out string codError, out string mensajeRetorno);
     }
 }

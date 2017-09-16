@@ -17,16 +17,16 @@ namespace Proyecto.Data.Repositories
             _omsInfoSqlService = new OMSInfoSqlService();
         }
 
-        public IList<OMSTallaxEdadMasculino> GetListOMSTallaxEdadMasculino(out string codError, out string mensajeRetorno)
+        public IList<OMSTallaxEdadMasculino> GetListOMSTallaxEdad(int idSexo, out string codError, out string mensajeRetorno)
         {
-            var listaTallaxEdadMasculino = new List<OMSTallaxEdadMasculino>();
+            var listaTallaxEdad = new List<OMSTallaxEdadMasculino>();
             try
             {
-                var response = _omsInfoSqlService.GetListOMSTallaxEdadMasculino(out codError, out mensajeRetorno);
+                var response = _omsInfoSqlService.GetListOMSTallaxEdad(idSexo, out codError, out mensajeRetorno);
 
                 foreach (DataRow dataRow in response.Tables[0].Rows)
                 {
-                    var tallaxEdadMasculino = new OMSTallaxEdadMasculino
+                    var tallaxEdad = new OMSCamposIndicadores
                     {
                         Meses = Convert.ToInt32(dataRow["Meses"]),
                         L = Convert.ToDecimal(dataRow["L"].ToString()),
@@ -42,7 +42,7 @@ namespace Proyecto.Data.Repositories
                         SD3 = Convert.ToDecimal(dataRow["SD3"].ToString()),
                     };
 
-                    listaTallaxEdadMasculino.Add(tallaxEdadMasculino);
+                    listaTallaxEdad.Add(tallaxEdad);
                 }
             }
             catch (Exception exception)
@@ -51,7 +51,7 @@ namespace Proyecto.Data.Repositories
                 mensajeRetorno = exception.Message;
             }
 
-            return listaTallaxEdadMasculino;
+            return listaTallaxEdad;
         }
 
     }

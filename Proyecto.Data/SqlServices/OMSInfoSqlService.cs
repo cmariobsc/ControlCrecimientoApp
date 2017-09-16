@@ -15,13 +15,14 @@ namespace Proyecto.Data.SqlServices
             _database = _connection.InitDatabase();
         }
         
-        public DataSet GetListOMSTallaxEdadMasculino(out string codError, out string mensajeRetorno)
+        public DataSet GetListOMSTallaxEdad(int idSexo, out string codError, out string mensajeRetorno)
         {
-            var storedProcedure = "[dbo].[SP_ConsultarOMSTallaxEdadMasculino]";
+            var storedProcedure = "[dbo].[SP_ConsultarOMSTallaxEdad]";
 
             var command = _database.GetStoredProcCommand(storedProcedure);
             command.CommandType = CommandType.StoredProcedure;
 
+            _database.AddInParameter(command, "@idSexo", DbType.Int32, idSexo);
             _database.AddOutParameter(command, "@codError", DbType.String, 3);
             _database.AddOutParameter(command, "@mensajeRetorno", DbType.String, 100);
 

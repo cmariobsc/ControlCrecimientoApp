@@ -1,6 +1,6 @@
 ﻿namespace Proyecto.Core.Models
 {
-    public class OMSTallaxEdadMasculino
+    public class OMSCamposIndicadores
     {
         public int Meses { get; set; }
         public decimal L { get; set; }
