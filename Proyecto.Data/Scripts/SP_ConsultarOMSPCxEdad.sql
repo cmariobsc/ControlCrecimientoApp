@@ -30,10 +30,10 @@ BEGIN
 		  ,[SD1]
 		  ,[SD2]
 		  ,[SD3]
-		FROM [dbo].[OMSTallaxEdadMasculino]
+		FROM [dbo].[OMSPCxEdadMasculino]
 		
 		SET @codError='000'
-		SET @mensajeRetorno='Consulta OMSPCxEdadMasculino Ok.'
+		SET @mensajeRetorno='Perímetro Cefálico Para la Edad en Niños'
 	END
 	IF @idSexo = 2
 	BEGIN
@@ -49,10 +49,10 @@ BEGIN
 		  ,[SD1]
 		  ,[SD2]
 		  ,[SD3]
-		FROM [dbo].[OMSTallaxEdadFemenino]
+		FROM [dbo].[OMSPCxEdadFemenino]
 		
 		SET @codError='000'
-		SET @mensajeRetorno='Consulta OMSPCxEdadFemenino Ok.'
+		SET @mensajeRetorno='Perímetro Cefálico Para la Edad en Niñas'
 	END
 
     END TRY

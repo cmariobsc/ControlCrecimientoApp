@@ -69,7 +69,7 @@
     <Content Include="app\app.js" />
     <Content Include="app\components\calendar.html" />
     <Content Include="app\components\charts\chart.directive.js" />
-    <Content Include="app\components\charts\chart-txe.html" />
+    <Content Include="app\components\charts\chart.html" />
     <Content Include="app\components\header\header-anon.directive.js" />
     <Content Include="app\components\header\header-anon.html" />
     <Content Include="app\components\header\header.directive.js" />
@@ -88,6 +88,7 @@
     <Content Include="app\controllers\childrenController.js" />
     <Content Include="app\controllers\registroController.js" />
     <Content Include="app\services\catalogoService.js" />
+    <Content Include="app\services\emailService.js" />
     <Content Include="app\services\omsInfoService.js" />
     <Content Include="app\services\representanteService.js" />
     <Content Include="app\services\childrenService.js" />

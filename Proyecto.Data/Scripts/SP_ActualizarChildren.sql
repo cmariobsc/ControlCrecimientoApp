@@ -14,6 +14,7 @@ CREATE PROCEDURE SP_ActualizarChildren
     @FechaNacimiento date,
 	@EdadAnios int,
 	@EdadMeses int,
+	@EdadTotalMeses int,
 	@Talla decimal(6,2),
 	@Peso decimal(6,2),
 	@IMC decimal(6,2),
@@ -32,22 +33,22 @@ BEGIN
 
     BEGIN TRY
 		UPDATE Children SET Identificacion = @Identificacion, Nombres = @Nombres, Apellidos = @Apellidos, 
-								FechaNacimiento = @FechaNacimiento, EdadAnios = @EdadAnios, EdadMeses = @EdadMeses, Talla = @Talla, Peso = @Peso,
+								FechaNacimiento = @FechaNacimiento, EdadAnios = @EdadAnios, EdadMeses = @EdadMeses, EdadTotalMeses = @EdadTotalMeses, Talla = @Talla, Peso = @Peso,
 								IMC = @IMC, DetalleIMC = @DetalleIMC, PerimCefalico = @PerimCefalico, PerimMedioBrazo = @PerimMedioBrazo,
 								Observaciones = @Observaciones, FechaModificacion = GETDATE(), IdNacionalidad = @IdNacionalidad, IdSexo = @IdSexo
 				WHERE IdChildren = @IdChildren
 
-		IF @FechaCreacion =  CONVERT(date, GETDATE(), 111)
+		IF EXISTS (SELECT 1 FROM Children WHERE IdChildren = @IdChildren AND FechaCreacion = @FechaCreacion)
 		BEGIN
-			UPDATE HistorialChildren SET EdadAnios = @EdadAnios, EdadMeses = @EdadMeses, Talla = @Talla, Peso = @Peso,
+			UPDATE HistorialChildren SET EdadAnios = @EdadAnios, EdadMeses = @EdadMeses, EdadTotalMeses = @EdadTotalMeses, Talla = @Talla, Peso = @Peso,
 										IMC = @IMC, DetalleIMC = @DetalleIMC, PerimCefalico = @PerimCefalico, PerimMedioBrazo = @PerimMedioBrazo,
 										Observaciones = @Observaciones,	FechaModificacion = GETDATE()
 				WHERE IdChildren = @IdChildren AND FechaCreacion = @FechaCreacion
 		END
 		ELSE
 		BEGIN
-			INSERT INTO HistorialChildren(EdadAnios, EdadMeses, Talla, Peso, IMC, DetalleIMC, PerimCefalico, PerimMedioBrazo, Observaciones, FechaCreacion, FechaModificacion, IdChildren)
-			VALUES (@EdadAnios, @EdadMeses, @Talla, @Peso, @IMC, @DetalleIMC, @PerimCefalico, @PerimMedioBrazo, @Observaciones, @FechaCreacion, GETDATE(), @IdChildren)
+			INSERT INTO HistorialChildren(EdadAnios, EdadMeses, EdadTotalMeses, Talla, Peso, IMC, DetalleIMC, PerimCefalico, PerimMedioBrazo, Observaciones, FechaCreacion, FechaModificacion, IdChildren)
+			VALUES (@EdadAnios, @EdadMeses, @EdadTotalMeses, @Talla, @Peso, @IMC, @DetalleIMC, @PerimCefalico, @PerimMedioBrazo, @Observaciones, @FechaCreacion, GETDATE(), @IdChildren)
 		END
 
 		SET @codError='000'

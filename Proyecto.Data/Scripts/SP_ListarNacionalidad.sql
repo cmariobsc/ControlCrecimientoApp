@@ -6,7 +6,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE PROCEDURE SP_ConsultarNacionalidad
+CREATE PROCEDURE SP_ListarNacionalidad
     @codError varchar(3) = '' OUTPUT,
 	@mensajeRetorno varchar(100) = '' OUTPUT
 AS

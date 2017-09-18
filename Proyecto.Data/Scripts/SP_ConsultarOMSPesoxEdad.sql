@@ -29,10 +29,10 @@ BEGIN
 		  ,[SD1]
 		  ,[SD2]
 		  ,[SD3]
-		FROM [dbo].[OMSTallaxEdadMasculino]
+		FROM [dbo].[OMSPesoxEdadMasculino]
 		
 		SET @codError='000'
-		SET @mensajeRetorno='Consulta OMSPesoxEdadMasculino Ok.'
+		SET @mensajeRetorno='Peso Para la Edad en Niños'
 	END
 	IF @idSexo = 2
 	BEGIN
@@ -50,7 +50,7 @@ BEGIN
 		FROM [dbo].[OMSTallaxEdadFemenino]
 		
 		SET @codError='000'
-		SET @mensajeRetorno='Consulta OMSPesoxEdadFemenino Ok.'
+		SET @mensajeRetorno='Peso Para la Edad en Niñas'
 	END
 
     END TRY

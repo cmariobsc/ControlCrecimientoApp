@@ -1,28 +1,53 @@
-﻿proyectoApp.directive('chartTxe', [
+﻿proyectoApp.directive('chart', [
     function () {
         return {
             restrict: 'A',
-            template: '<div ng-include="\'app/components/charts/chart-txe.html\'"/>',
+            template: '<div ng-include="\'app/components/charts/chart.html\'"/>',
             controller: [
                 '$scope',
                 function ($scope) {
 
-                    $scope.omsTxE = function () {
+                    $scope.omsBuildChart = function (indicador) {
 
                         $scope.labels = $scope.meses;
-                        $scope.series = ['Talla Niño', '+3DE', '+2DE', '+1DE',
+                        $scope.series = [$scope.indicatorTitle, '+3DE', '+2DE', '+1DE',
                             'Mediana', '-1DE', '-2DE', '-3DE'];
 
-                        $scope.talla = [];
+                        $scope.childrenData = [];
 
-                        angular.forEach($scope.listChildren, function (value, key) {
-                            $scope.talla.push({ x: value.edadMeses, y: value.talla });
-                        });
+                        switch (indicador) {
+                            case '1':
+                                angular.forEach($scope.listChildren, function (value, key) {
+                                    $scope.childrenData.push({ x: value.edadTotalMeses, y: value.talla });
+                                });
+                                break;
+                            case '2':
+                                angular.forEach($scope.listChildren, function (value, key) {
+                                    $scope.childrenData.push({ x: value.edadTotalMeses, y: value.peso });
+                                });
+                                break;
+                            case '3':
+                                angular.forEach($scope.listChildren, function (value, key) {
+                                    $scope.childrenData.push({ x: value.edadTotalMeses, y: value.imc });
+                                });
+                                break;
+                            case '4':
+                                angular.forEach($scope.listChildren, function (value, key) {
+                                    $scope.childrenData.push({ x: value.edadTotalMeses, y: value.perimCefalico });
+                                });
+                                break;
+                            case '5':
+                                angular.forEach($scope.listChildren, function (value, key) {
+                                    $scope.childrenData.push({ x: value.edadTotalMeses, y: value.perimMedioBrazo });
+                                });
+                                break;
+                            default:
+                        }
 
                         $scope.data = [];
 
                         $scope.data.push(
-                            $scope.talla,
+                            $scope.childrenData,
                             $scope.sD3,
                             $scope.sD2,
                             $scope.sD1,
@@ -35,11 +60,11 @@
                         $scope.onClick = function (points, evt) {
                             console.log(points, evt);
                         };
-                        //$scope.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-2' }];
+                        $scope.datasetOverride = [];
                         $scope.options = {
                             title: {
                                 display: true,
-                                text: 'Talla Para la Edad en Varones'
+                                text: $scope.chartTitle
                             },
                             scales: {
                                 yAxes: [

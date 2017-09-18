@@ -9,32 +9,36 @@ namespace Proyecto.Services
 {
     public class CatalogoService : ICatalogoService, IService
     {
-        private readonly ICatalogoRepository _CatalogoRepository;
+        private readonly ICatalogoRepository _catalogoRepository;
 
-        public CatalogoService(ICatalogoRepository CatalogoRepository)
+        public CatalogoService(ICatalogoRepository catalogoRepository)
         {
-            _CatalogoRepository = CatalogoRepository;
+            _catalogoRepository = catalogoRepository;
         }
 
         public IList<Parentesco> GetListParentesco(out string codError, out string mensajeRetorno)
         {
-            return _CatalogoRepository.GetListParentesco(out codError, out mensajeRetorno);
+            return _catalogoRepository.GetListParentesco(out codError, out mensajeRetorno);
         }
         public IList<Sexo> GetListSexo(out string codError, out string mensajeRetorno)
         {
-            return _CatalogoRepository.GetListSexo(out codError, out mensajeRetorno);
+            return _catalogoRepository.GetListSexo(out codError, out mensajeRetorno);
         }
         public IList<Nacionalidad> GetListNacionalidad(out string codError, out string mensajeRetorno)
         {
-            return _CatalogoRepository.GetListNacionalidad(out codError, out mensajeRetorno);
+            return _catalogoRepository.GetListNacionalidad(out codError, out mensajeRetorno);
         }
         public IList<Provincia> GetListProvincia(out string codError, out string mensajeRetorno)
         {
-            return _CatalogoRepository.GetListProvincia(out codError, out mensajeRetorno);
+            return _catalogoRepository.GetListProvincia(out codError, out mensajeRetorno);
         }
         public IList<Ciudad> GetListCiudad(out string codError, out string mensajeRetorno)
         {
-            return _CatalogoRepository.GetListCiudad(out codError, out mensajeRetorno);
+            return _catalogoRepository.GetListCiudad(out codError, out mensajeRetorno);
+        }
+        public IList<Doctor> GetListDoctor(out string codError, out string mensajeRetorno)
+        {
+            return _catalogoRepository.GetListDoctor(out codError, out mensajeRetorno);
         }
     }
 }

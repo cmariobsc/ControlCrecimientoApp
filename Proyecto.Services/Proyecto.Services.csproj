@@ -41,10 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CatalogoService.cs" />
+    <Compile Include="EmailService.cs" />
     <Compile Include="ChildrenService.cs" />
     <Compile Include="Auth\AuthService.cs" />
     <Compile Include="OMSInfoService.cs" />
-    <Compile Include="ParametroService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepresentanteService.cs" />
   </ItemGroup>

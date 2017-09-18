@@ -23,6 +23,7 @@ BEGIN
 		  ,C.[IdSexo]
 		  ,HC.[EdadAnios]
 		  ,HC.[EdadMeses]
+		  ,HC.[EdadTotalMeses]
 		  ,HC.[Talla]
 		  ,HC.[Peso]
 		  ,HC.[IMC]

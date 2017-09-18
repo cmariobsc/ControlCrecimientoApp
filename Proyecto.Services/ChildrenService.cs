@@ -9,41 +9,41 @@ namespace Proyecto.Services
 {
     public class ChildrenService : IChildrenService, IService
     {
-        private readonly IChildrenRepository _ChildrenRepository;
+        private readonly IChildrenRepository _childrenRepository;
 
-        public ChildrenService(IChildrenRepository ChildrenRepository)
+        public ChildrenService(IChildrenRepository childrenRepository)
         {
-            _ChildrenRepository = ChildrenRepository;
+            _childrenRepository = childrenRepository;
         }
 
         public IList<Children> GetListChildren(int idRepresentante, out string codError, out string mensajeRetorno)
         {
-            return _ChildrenRepository.GetListChildren(idRepresentante, out codError, out mensajeRetorno);
+            return _childrenRepository.GetListChildren(idRepresentante, out codError, out mensajeRetorno);
         }
 
         public Children GetChildren(int idChildren, out string codError, out string mensajeRetorno)
         {
-            return _ChildrenRepository.GetChildren(idChildren, out codError, out mensajeRetorno);
+            return _childrenRepository.GetChildren(idChildren, out codError, out mensajeRetorno);
         }
 
         public bool GuardarChildren(Children Children, out string codError, out string mensajeRetorno)
         {
-            return _ChildrenRepository.GuardarChildren(Children, out codError, out mensajeRetorno);
+            return _childrenRepository.GuardarChildren(Children, out codError, out mensajeRetorno);
         }
 
         public bool ActualizarChildren(Children children, out string codError, out string mensajeRetorno)
         {
-            return _ChildrenRepository.ActualizarChildren(children, out codError, out mensajeRetorno);
+            return _childrenRepository.ActualizarChildren(children, out codError, out mensajeRetorno);
         }
 
         public bool EliminarChildren(int idChildren, out string codError, out string mensajeRetorno)
         {
-            return _ChildrenRepository.EliminarChildren(idChildren, out codError, out mensajeRetorno);
+            return _childrenRepository.EliminarChildren(idChildren, out codError, out mensajeRetorno);
         }
 
         public IList<HistorialChildren> GetListHistorialChildren(int idChildren, out string codError, out string mensajeRetorno)
         {
-            return _ChildrenRepository.GetListHistorialChildren(idChildren, out codError, out mensajeRetorno);
+            return _childrenRepository.GetListHistorialChildren(idChildren, out codError, out mensajeRetorno);
         }
     }
 }

@@ -17,7 +17,7 @@
                                     <div class="col-md-9">
                                         <div class="input-group">
                                             <input type="text" class="form-control" datepicker-popup-template-url="app/components/calendar.html" uib-datepicker-popup="dd/MM/yyyy"
-                                                   ng-model="datoChildren.fechaCreacion" is-open="popup.openedFC"
+                                                   ng-model="datoChildren.fechaCreacion" is-open="popup.openedFC" ng-change="calculateAge(datoChildren.fechaNacimiento)"
                                                    datepicker-options="dateOptions" close-text="Cerrar" current-text="Hoy" popup-placement="bottom" show-button-bar="true"
                                                    readonly="readonly" />
                                             <span class="input-group-btn">
@@ -89,17 +89,23 @@
                                     <div class="col-md-1">
                                         <label class="control-label">Años:</label>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         <input type="text" class="form-control" disabled
                                                ng-model="datoChildren.edadAnios" />
                                     </div>
-                                    <div class="col-md-1"></div>
                                     <div class="col-md-1">
                                         <label class="control-label">Meses:</label>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         <input type="text" class="form-control" disabled
                                                ng-model="datoChildren.edadMeses" />
+                                    </div>
+                                    <div class="col-md-1">
+                                        <label class="control-label">(Total Meses)</label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" class="form-control" disabled
+                                               ng-model="datoChildren.edadTotalMeses" />
                                     </div>
                                 </div>
                             </div>
@@ -118,7 +124,7 @@
                                 <div class="col-md-6">
                                     <label class="control-label col-md-3">Nacionalidad:</label>
                                     <div class="col-md-9">
-                                        <select class="form-control" name="nacionalidad" ng-model="datoChildren.nacionalidad"
+                                        <select class="form-control" name="nacionalidad" ng-model="datoChildren.nacionalidad" required
                                                 ng-options="option.idNacionalidad as option.descripcion for option in listNacionalidad">
                                             <option value="" selected hidden />
                                         </select>
@@ -269,7 +275,7 @@
                                                 <td>{{item.nombres}}</td>
                                                 <td>{{item.apellidos}}</td>
                                                 <td class="hidden-sm hidden-xs">{{item.fechaNacimiento | date : "dd/MM/yyyy"}}</td>
-                                                <td>{{item.edadAnios}} Años {{item.edadMeses}} Meses</td>
+                                                <td>{{item.edadAnios}} Años {{item.edadMeses}} Meses (Total Meses: {{item.edadTotalMeses}})</td>
                                                 <td class="hidden-sm hidden-xs">{{obtenerSexo(item.idSexo)}}</td>
                                                 <td class="hidden-sm hidden-xs">{{obtenerNacionalidad(item.idNacionalidad)}}</td>
                                                 <td>{{item.talla}}</td>

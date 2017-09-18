@@ -6,7 +6,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE PROCEDURE SP_ConsultarCiudad
+CREATE PROCEDURE SP_ListarCiudad
     @codError varchar(3) = '' OUTPUT,
 	@mensajeRetorno varchar(100) = '' OUTPUT
 AS

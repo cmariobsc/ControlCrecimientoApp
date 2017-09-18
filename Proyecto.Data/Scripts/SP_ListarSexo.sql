@@ -6,7 +6,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE PROCEDURE SP_ConsultarProvincia
+CREATE PROCEDURE SP_ListarSexo
     @codError varchar(3) = '' OUTPUT,
 	@mensajeRetorno varchar(100) = '' OUTPUT
 AS
@@ -15,11 +15,11 @@ BEGIN
     SET NOCOUNT ON
 
 	BEGIN TRY
-		SELECT [IdProvincia],[Descripcion],[CodigoArea]
-		FROM [dbo].[Provincia]
+		SELECT [IdSexo],[Descripcion]
+		FROM [dbo].[Sexo]
 		
 		SET @codError='000'
-		SET @mensajeRetorno='Consulta Provincia Ok.'
+		SET @mensajeRetorno='Consulta Sexo Ok.'
 
     END TRY
 

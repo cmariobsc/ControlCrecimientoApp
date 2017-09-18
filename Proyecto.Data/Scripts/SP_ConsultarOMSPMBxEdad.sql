@@ -29,10 +29,10 @@ BEGIN
 		  ,[SD1]
 		  ,[SD2]
 		  ,[SD3]
-		FROM [dbo].[OMSTallaxEdadMasculino]
+		FROM [dbo].[OMSPMBxEdadMasculino]
 		
 		SET @codError='000'
-		SET @mensajeRetorno='Consulta OMSPMBxEdadMasculino Ok.'
+		SET @mensajeRetorno='Perímetro Medio del Brazo para la Edad en Niños'
 	END
 	IF @idSexo = 2
 	BEGIN
@@ -47,10 +47,10 @@ BEGIN
 		  ,[SD1]
 		  ,[SD2]
 		  ,[SD3]
-		FROM [dbo].[OMSTallaxEdadFemenino]
+		FROM [dbo].[OMSPMBxEdadFemenino]
 		
 		SET @codError='000'
-		SET @mensajeRetorno='Consulta OMSPMBxEdadFemenino Ok.'
+		SET @mensajeRetorno='Perímetro Medio del Brazo para la Edad en Niñas'
 	END
 
     END TRY

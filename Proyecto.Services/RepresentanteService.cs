@@ -7,21 +7,21 @@ namespace Proyecto.Services
 {
     public class RepresentanteService : IRepresentanteService, IService
     {
-        private readonly IRepresentanteRepository _RepresentanteRepository;
+        private readonly IRepresentanteRepository _representanteRepository;
 
-        public RepresentanteService(IRepresentanteRepository RepresentanteRepository)
+        public RepresentanteService(IRepresentanteRepository representanteRepository)
         {
-            _RepresentanteRepository = RepresentanteRepository;
+            _representanteRepository = representanteRepository;
         }
 
         public Representante GetRepresentante(int idUsuario, out string codError, out string mensajeRetorno)
         {
-            return _RepresentanteRepository.GetRepresentante(idUsuario, out codError, out mensajeRetorno);
+            return _representanteRepository.GetRepresentante(idUsuario, out codError, out mensajeRetorno);
         }
 
         public bool ActualizarRepresentante(Representante representante, out string codError, out string mensajeRetorno)
         {
-            return _RepresentanteRepository.ActualizarRepresentante(representante, out codError, out mensajeRetorno);
+            return _representanteRepository.ActualizarRepresentante(representante, out codError, out mensajeRetorno);
         }
     }
 }

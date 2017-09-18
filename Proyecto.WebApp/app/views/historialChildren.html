@@ -42,7 +42,7 @@
                                                 <td>{{item.nombres}}</td>
                                                 <td>{{item.apellidos}}</td>
                                                 <td class="hidden-sm hidden-xs">{{item.fechaNacimiento | date : "dd/MM/yyyy"}}</td>
-                                                <td>{{item.edadAnios}} Años {{item.edadMeses}} Meses</td>
+                                                <td>{{item.edadAnios}} Años {{item.edadMeses}} Meses (Total Meses: {{item.edadTotalMeses}})</td>
                                                 <td class="hidden-sm hidden-xs">{{obtenerSexo(item.idSexo)}}</td>
                                                 <td class="hidden-sm hidden-xs">{{obtenerNacionalidad(item.idNacionalidad)}}</td>
                                                 <td>{{item.talla}}</td>
@@ -86,7 +86,7 @@
                                             <tr ng-repeat="item in $data | orderBy:sortType:sortReverse">
                                                 <td>{{ $index + 1 }}</td>
                                                 <td>{{item.fechaCreacion | date : "dd/MM/yyyy"}}</td>
-                                                <td>{{item.edadAnios}} Años {{item.edadMeses}} Meses</td>
+                                                <td>{{item.edadAnios}} Años {{item.edadMeses}} Meses (Total Meses: {{item.edadTotalMeses}})</td>
                                                 <td>{{item.talla}}</td>
                                                 <td>{{item.peso}}</td>
                                                 <td>{{item.imc}}</td>
@@ -100,21 +100,102 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="form-group">
-                                <div class="col-md-6">
-                                    <label class="control-label col-md-4">Elija un Indicador:</label>
-                                    <div class="col-md-8">
-                                        <select class="form-control" name="indicador" ng-model="indicador" ng-change="cargarIndicador(indicador)"
-                                                ng-options="option.idIndicador as option.descripcion for option in listIndicadores">
-                                            <option value="" selected hidden />
-                                        </select>
+                        <div ng-show="listChildren != ''">
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <label class="control-label col-md-4">Elija un Indicador:</label>
+                                        <div class="col-md-8">
+                                            <select class="form-control" name="indicador" ng-model="indicador" ng-change="cargarGrafica(indicador)"
+                                                    ng-options="option.idIndicador as option.descripcion for option in listIndicadores">
+                                                <option value="0"></option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div chart-txe></div>
+                            <div ng-show="indicador != '0'">
+                                <div class="row">
+                                    <div chart></div>
+                                </div>
+                                <hr />
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div style="text-align:center">
+                                            <input type="checkbox" name="fancy-checkbox-success" id="fancy-checkbox-success" 
+                                                   ng-model="checkDoctores" autocomplete="off">
+                                            <div class="btn-group">
+                                                <label for="fancy-checkbox-success" class="btn btn-success">
+                                                    <span class="glyphicon glyphicon-ok"></span>
+                                                    <span>&nbsp;</span>
+                                                </label>
+                                                <label for="fancy-checkbox-success" class="btn btn-default active">
+                                                    Enviar esta información a un especialista
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-show="checkDoctores">
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <div class="col-md-6">
+                                                <label class="control-label col-md-4">Doctores Disponibles:</label>
+                                                <div class="col-md-8">
+                                                    <select class="form-control" name="doctor" ng-model="doctor" ng-change="consultarDoctor(doctor)"
+                                                            ng-options="option.idDoctor as option.nombre for option in listDoctores">
+                                                        <option value="0"></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-show="doctor != '0'">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h3 class="text-center">Detalles del Doctor</h3>
+                                                <div>
+                                                    <table ng-table="doctorTable" class="table table-condensed table-bordered table-striped table-hover" show-filter="false">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>#</th>
+                                                                <th class="hidden-sm hidden-xs" ng-click="sortType = 'nombre'; sortReverse = !sortReverse">Nombre</th>
+                                                                <th ng-click="sortType = 'especialidad'; sortReverse = !sortReverse">Especialidad</th>
+                                                                <th ng-click="sortType = 'lugarTrabajo'; sortReverse = !sortReverse">Lugar de Trabajo</th>
+                                                                <th class="hidden-sm hidden-xs" ng-click="sortType = 'provincia'; sortReverse = !sortReverse">Provincia</th>
+                                                                <th ng-click="sortType = 'ciudad'; sortReverse = !sortReverse">Ciudad</th>
+                                                                <th class="hidden-sm hidden-xs" ng-click="sortType = 'direccion'; sortReverse = !sortReverse">Direccion</th>
+                                                                <th ng-click="sortType = 'email'; sortReverse = !sortReverse">Email</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="item in $data | orderBy:sortType:sortReverse">
+                                                                <td>{{ $index + 1 }}</td>
+                                                                <td class="hidden-sm hidden-xs">{{item.nombre}}</td>
+                                                                <td>{{item.especialidad}}</td>
+                                                                <td>{{item.lugarTrabajo}}</td>
+                                                                <td class="hidden-sm hidden-xs">{{obtenerProvincia(item.idProvincia)}}</td>
+                                                                <td>{{obtenerCiudad(item.idCiudad)}}</td>
+                                                                <td class="hidden-sm hidden-xs">{{item.direccion}}</td>
+                                                                <td>{{item.email}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group" style="text-align: center">
+                                                <button type="submit" class="btn btn-primary glyphicon glyphicon-envelope"
+                                                        ng-click="sendEmail()">
+                                                    Enviar Email
+                                                </button>
+                                                <img src="{{prueba}}" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>

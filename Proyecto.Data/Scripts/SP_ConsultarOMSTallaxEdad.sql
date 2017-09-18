@@ -33,7 +33,7 @@ BEGIN
 		FROM [dbo].[OMSTallaxEdadMasculino]
 		
 		SET @codError='000'
-		SET @mensajeRetorno='Consulta OMSTallaxEdadMasculino Ok.'
+		SET @mensajeRetorno='Talla Para la Edad en Niños'
 	END
 	IF @idSexo = 2
 	BEGIN
@@ -52,7 +52,7 @@ BEGIN
 		FROM [dbo].[OMSTallaxEdadFemenino]
 		
 		SET @codError='000'
-		SET @mensajeRetorno='Consulta OMSTallaxEdadFemenino Ok.'
+		SET @mensajeRetorno='Talla Para la Edad en Niñas'
 	END
 
     END TRY

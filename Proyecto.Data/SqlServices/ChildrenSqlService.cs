@@ -67,6 +67,7 @@ namespace Proyecto.Data.SqlServices
             _database.AddInParameter(command, "@FechaNacimiento", DbType.DateTime, children.FechaNacimiento);
             _database.AddInParameter(command, "@EdadAnios", DbType.Int32, children.EdadAnios);
             _database.AddInParameter(command, "@EdadMeses", DbType.Int32, children.EdadMeses);
+            _database.AddInParameter(command, "@EdadTotalMeses", DbType.Int32, children.EdadTotalMeses);
             _database.AddInParameter(command, "@Talla", DbType.Decimal, children.Talla);
             _database.AddInParameter(command, "@Peso", DbType.Decimal, children.Peso);
             _database.AddInParameter(command, "@IMC", DbType.Decimal, children.IMC);
@@ -100,6 +101,7 @@ namespace Proyecto.Data.SqlServices
             _database.AddInParameter(command, "@FechaNacimiento", DbType.DateTime, children.FechaNacimiento);
             _database.AddInParameter(command, "@EdadAnios", DbType.Int32, children.EdadAnios);
             _database.AddInParameter(command, "@EdadMeses", DbType.Int32, children.EdadMeses);
+            _database.AddInParameter(command, "@EdadTotalMeses", DbType.Int32, children.EdadTotalMeses);
             _database.AddInParameter(command, "@Talla", DbType.Decimal, children.Talla);
             _database.AddInParameter(command, "@Peso", DbType.Decimal, children.Peso);
             _database.AddInParameter(command, "@IMC", DbType.Decimal, children.IMC);

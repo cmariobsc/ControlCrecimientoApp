@@ -12,6 +12,7 @@ namespace Proyecto.Core.Models
         public DateTime FechaNacimiento { get; set; }
         public int EdadAnios { get; set; }
         public int EdadMeses { get; set; }
+        public int EdadTotalMeses { get; set; }
         public decimal Talla { get; set; }
         public decimal Peso { get; set; }
         public decimal IMC { get; set; }

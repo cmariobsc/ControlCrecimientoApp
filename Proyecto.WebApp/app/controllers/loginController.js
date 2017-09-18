@@ -29,6 +29,7 @@ proyectoApp.controller('loginController',
                         catalogoService.catalogoNacionalidad();
                         catalogoService.catalogoProvincia();
                         catalogoService.catalogoCiudad();
+                        catalogoService.catalogoDoctor();
                         var datoUsuario = usuarioService.getDatosSesion();
                         $location.path('/home');
                     }, function (error) {

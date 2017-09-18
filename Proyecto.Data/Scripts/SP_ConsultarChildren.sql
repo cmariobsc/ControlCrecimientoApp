@@ -24,6 +24,7 @@ BEGIN
 		  ,[FechaNacimiento]
 		  ,[EdadAnios]
 		  ,[EdadMeses]
+		  ,[EdadTotalMeses]
 		  ,[Talla]
 		  ,[Peso]
 		  ,[IMC]

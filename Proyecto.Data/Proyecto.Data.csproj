@@ -48,12 +48,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Repositories\CatalogoRepository.cs" />
+    <Compile Include="Repositories\EmailRepository.cs" />
     <Compile Include="Repositories\OMSInfoRepository.cs" />
     <Compile Include="Repositories\RepresentanteRepository.cs" />
     <Compile Include="SqlConnection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ChildrenRepository.cs" />
-    <Compile Include="Repositories\ParametroRepository.cs" />
     <Compile Include="Repositories\TokenRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="SqlServices\CatalogoSqlService.cs" />

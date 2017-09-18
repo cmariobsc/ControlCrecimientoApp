@@ -13,6 +13,7 @@ CREATE PROCEDURE SP_GuardarChildren
     @FechaNacimiento date,
 	@EdadAnios int,
 	@EdadMeses int,
+	@EdadTotalMeses int,
 	@Talla decimal(6,2),
 	@Peso decimal(6,2),
 	@IMC decimal(6,2),
@@ -49,11 +50,11 @@ BEGIN
 			SELECT @IdChildren = COUNT(*) FROM Children
 			SET @IdChildren = @IdChildren + 1
 
-			INSERT INTO Children(IdChildren, Identificacion, Nombres, Apellidos, FechaNacimiento, EdadAnios, EdadMeses, Talla, Peso, IMC, DetalleIMC, PerimCefalico, PerimMedioBrazo, Observaciones, FechaCreacion, FechaModificacion, IdSexo, IdRepresentante, IdNacionalidad)
-			VALUES (@IdChildren, @Identificacion, @Nombres, @Apellidos, @FechaNacimiento, @EdadAnios, @EdadMeses, @Talla, @Peso, @IMC, @DetalleIMC, @PerimCefalico, @PerimMedioBrazo, @Observaciones, @FechaCreacion, GETDATE(), @IdSexo, @IdRepresentante, @IdNacionalidad)
+			INSERT INTO Children(IdChildren, Identificacion, Nombres, Apellidos, FechaNacimiento, EdadAnios, EdadMeses, EdadTotalMeses, Talla, Peso, IMC, DetalleIMC, PerimCefalico, PerimMedioBrazo, Observaciones, FechaCreacion, FechaModificacion, IdSexo, IdRepresentante, IdNacionalidad)
+			VALUES (@IdChildren, @Identificacion, @Nombres, @Apellidos, @FechaNacimiento, @EdadAnios, @EdadMeses, @EdadTotalMeses, @Talla, @Peso, @IMC, @DetalleIMC, @PerimCefalico, @PerimMedioBrazo, @Observaciones, @FechaCreacion, GETDATE(), @IdSexo, @IdRepresentante, @IdNacionalidad)
 
-			INSERT INTO HistorialChildren(EdadAnios, EdadMeses, Talla, Peso, IMC, DetalleIMC, PerimCefalico, PerimMedioBrazo, Observaciones, FechaCreacion, FechaModificacion, IdChildren)
-			VALUES (@EdadAnios, @EdadMeses, @Talla, @Peso, @IMC, @DetalleIMC, @PerimCefalico, @PerimMedioBrazo, @Observaciones, @FechaCreacion, GETDATE(), @IdChildren)
+			INSERT INTO HistorialChildren(EdadAnios, EdadMeses, EdadTotalMeses, Talla, Peso, IMC, DetalleIMC, PerimCefalico, PerimMedioBrazo, Observaciones, FechaCreacion, FechaModificacion, IdChildren)
+			VALUES (@EdadAnios, @EdadMeses, @EdadTotalMeses, @Talla, @Peso, @IMC, @DetalleIMC, @PerimCefalico, @PerimMedioBrazo, @Observaciones, @FechaCreacion, GETDATE(), @IdChildren)
 
 			SET @codError='000'
 			SET @mensajeRetorno='Se ha registrado al niño correctamente.'

@@ -18,8 +18,7 @@ proyectoApp.controller('childrenController',
 
             //Configuraciones para el popup fecha
             $scope.dateOptions = {
-                minDate: dateMin,
-                maxDate: now
+                minDate: dateMin
             };
 
             $scope.popup = {
@@ -108,7 +107,8 @@ proyectoApp.controller('childrenController',
                 };
 
                 $scope.datoChildren.edadAnios = age.years;
-                $scope.datoChildren.edadMeses = (age.years*12) + age.months;
+                $scope.datoChildren.edadMeses = age.months;
+                $scope.datoChildren.edadTotalMeses = (age.years * 12) + age.months;
             }
 
             $scope.calculateAge($scope.datoChildren.fechaNacimiento);
@@ -181,6 +181,7 @@ proyectoApp.controller('childrenController',
                         $scope.datoChildren.fechaNacimiento = new Date(children.data.fechaNacimiento);
                         $scope.datoChildren.edadAnios = children.data.edadAnios;
                         $scope.datoChildren.edadMeses = children.data.edadMeses;
+                        $scope.datoChildren.edadTotalMeses = children.data.edadTotalMeses;
                         $scope.datoChildren.talla = children.data.talla;
                         $scope.datoChildren.peso = children.data.peso;
                         $scope.datoChildren.imc = children.data.imc;
@@ -189,7 +190,6 @@ proyectoApp.controller('childrenController',
                         $scope.datoChildren.perimMedioBrazo = children.data.perimMedioBrazo;
                         $scope.datoChildren.sexo = children.data.idSexo;
                         $scope.datoChildren.observaciones = children.data.observaciones;
-                        $scope.fechaCreacion = children.data.fechaCreacion;
                         $scope.datoChildren.nacionalidad = children.data.idNacionalidad;
 
                         $scope.modificando = true;
@@ -209,6 +209,7 @@ proyectoApp.controller('childrenController',
                     FechaNacimiento: $filter('date')($scope.datoChildren.fechaNacimiento, 'yyyy/MM/dd'),
                     EdadAnios: $scope.datoChildren.edadAnios,
                     EdadMeses: $scope.datoChildren.edadMeses,
+                    EdadTotalMeses: $scope.datoChildren.edadTotalMeses,
                     Talla: $scope.datoChildren.talla,
                     Peso: $scope.datoChildren.peso,
                     IMC: $scope.datoChildren.imc,
@@ -239,6 +240,7 @@ proyectoApp.controller('childrenController',
                     FechaNacimiento: $filter('date')($scope.datoChildren.fechaNacimiento, 'yyyy/MM/dd'),
                     EdadAnios: $scope.datoChildren.edadAnios,
                     EdadMeses: $scope.datoChildren.edadMeses,
+                    EdadTotalMeses: $scope.datoChildren.edadTotalMeses,
                     Talla: $scope.datoChildren.talla,
                     Peso: $scope.datoChildren.peso,
                     IMC: $scope.datoChildren.imc,
@@ -247,7 +249,6 @@ proyectoApp.controller('childrenController',
                     PerimMedioBrazo: $scope.datoChildren.perimMedioBrazo,
                     IdSexo: $scope.datoChildren.sexo,
                     Observaciones: $scope.datoChildren.observaciones,
-                    FechaCreacion: $scope.fechaCreacion,
                     IdNacionalidad: $scope.datoChildren.nacionalidad
                 });
 
@@ -311,6 +312,7 @@ proyectoApp.controller('childrenController',
                 $scope.datoChildren.fechaNacimiento = now;
                 $scope.datoChildren.edadAnios = "0";
                 $scope.datoChildren.edadMeses = "0";
+                $scope.datoChildren.edadTotalMeses = "0";
                 $scope.datoChildren.talla = "";
                 $scope.datoChildren.peso = "";
                 $scope.datoChildren.imc = "";
@@ -319,7 +321,6 @@ proyectoApp.controller('childrenController',
                 $scope.datoChildren.perimMedioBrazo = "";
                 $scope.datoChildren.sexo = "";
                 $scope.datoChildren.observaciones = "";
-                $scope.fechaCreacion = "";
                 $scope.datoChildren.nacionalidad = "";
             }
 
