@@ -31,6 +31,8 @@ namespace Proyecto.Data.SqlServices
             codError = _database.GetParameterValue(command, "@codError").ToString();
             mensajeRetorno = _database.GetParameterValue(command, "@mensajeRetorno").ToString();
 
+            command.Dispose();
+
             return result;
         }
 
@@ -65,6 +67,8 @@ namespace Proyecto.Data.SqlServices
 
             codError = _database.GetParameterValue(command, "@codError").ToString();
             mensajeRetorno = _database.GetParameterValue(command, "@mensajeRetorno").ToString();
+
+            command.Dispose();
         }
     }
 }

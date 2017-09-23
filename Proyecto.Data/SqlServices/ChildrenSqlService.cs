@@ -31,6 +31,8 @@ namespace Proyecto.Data.SqlServices
             codError = _database.GetParameterValue(command, "@codError").ToString();
             mensajeRetorno = _database.GetParameterValue(command, "@mensajeRetorno").ToString();
 
+            command.Dispose();
+
             return result;
         }
 
@@ -49,6 +51,8 @@ namespace Proyecto.Data.SqlServices
 
             codError = _database.GetParameterValue(command, "@codError").ToString();
             mensajeRetorno = _database.GetParameterValue(command, "@mensajeRetorno").ToString();
+
+            command.Dispose();
 
             return result;
         }
@@ -85,6 +89,8 @@ namespace Proyecto.Data.SqlServices
 
             codError = _database.GetParameterValue(command, "@codError").ToString();
             mensajeRetorno = _database.GetParameterValue(command, "@mensajeRetorno").ToString();
+
+            command.Dispose();
         }
 
         public void ActualizarChildren(Children children, out string codError, out string mensajeRetorno)
@@ -119,6 +125,8 @@ namespace Proyecto.Data.SqlServices
 
             codError = _database.GetParameterValue(command, "@codError").ToString();
             mensajeRetorno = _database.GetParameterValue(command, "@mensajeRetorno").ToString();
+
+            command.Dispose();
         }
 
         public void EliminarChildren(int idChildren, out string codError, out string mensajeRetorno)
@@ -136,6 +144,8 @@ namespace Proyecto.Data.SqlServices
 
             codError = _database.GetParameterValue(command, "@codError").ToString();
             mensajeRetorno = _database.GetParameterValue(command, "@mensajeRetorno").ToString();
+
+            command.Dispose();
         }
 
         public DataSet GetListHistorialChildren(int idChildren, out string codError, out string mensajeRetorno)
@@ -153,6 +163,8 @@ namespace Proyecto.Data.SqlServices
 
             codError = _database.GetParameterValue(command, "@codError").ToString();
             mensajeRetorno = _database.GetParameterValue(command, "@mensajeRetorno").ToString();
+
+            command.Dispose();
 
             return result;
         }

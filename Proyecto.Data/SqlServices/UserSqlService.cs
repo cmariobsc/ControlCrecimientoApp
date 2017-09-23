@@ -34,6 +34,8 @@ namespace Proyecto.Data.SqlServices
 
             codError = _database.GetParameterValue(command, "@codError").ToString();
             mensajeRetorno = _database.GetParameterValue(command, "@mensajeRetorno").ToString();
+
+            command.Dispose();
         }
 
         public void AutenticarUsuario(string usuario, string contrasenia, out string codError, out string mensajeRetorno)
@@ -52,6 +54,8 @@ namespace Proyecto.Data.SqlServices
 
             codError = _database.GetParameterValue(command, "@codError").ToString();
             mensajeRetorno = _database.GetParameterValue(command, "@mensajeRetorno").ToString();
+
+            command.Dispose();
         }
 
         public DataSet ConsultarUsuario(string usuario, out string codError, out string mensajeRetorno)
@@ -69,6 +73,8 @@ namespace Proyecto.Data.SqlServices
 
             codError = _database.GetParameterValue(command, "@codError").ToString();
             mensajeRetorno = _database.GetParameterValue(command, "@mensajeRetorno").ToString();
+
+            command.Dispose();
 
             return result;
         }
