@@ -34,8 +34,13 @@ proyectoApp.controller('registroController',
                 });
             }
 
+            $scope.go_back = function () {
+                window.history.back();
+                window.scrollTo(0, 0);
+            }
+
             $scope.cerrar = function () {
                 $location.path('/login');
             }
-     }
+        }
     ]);

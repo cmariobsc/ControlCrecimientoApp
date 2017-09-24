@@ -1,7 +1,98 @@
 ﻿<div header-anon-proyecto ></div>
-<div class="container-fluid track-container">
-    <h1>Proyecto App</h1>
-    <p class="lead">
-        MVC Angular Application
-    </p>
+<div class="container">
+    <h2 style="text-align:center">Controle adecuadamente el crecimiento de su hijo</h2>
+    <h4 style="text-align:left">
+        Con la ayuda de la aplicación usted podrá registrar periódicamente y de manera sistemática
+        el crecimiento y desarrollo del niño, con el fin de detectar cambios y riesgos en su estado de salud.
+    </h4>
+    <br />
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="responsive-video">
+                <iframe src="https://www.youtube.com/embed/pNm8BeT1z94"></iframe>
+            </div>
+        </div>
+    </div>
+    <h3 style="text-align:center">Beneficios del aplicativo:</h3>
+    <div class="row">
+        <div class="list-notice">
+            <div class="oalist success">
+                <h5>Identificación inmediata de niños con retardo de crecimiento.</h5>
+            </div>
+            <div class="oalist warning">
+                <h5>Indicadores como el IMC (Índice de masa corporal) será útil para medir la creciente epidemia mundial de obesidad.</h5>
+            </div>
+            <div class="oalist info">
+                <h5>Con la ayuda de las gráficas se podrán observar los patrones uniformes de la velocidad del crecimiento esperado en el tiempo.</h5>
+            </div>
+            <div class="oalist danger">
+                <h5>Podrá enviar un email con todos los resultados a un especialista.</h5>
+            </div>
+            <div class="oalist blue">
+                <h5>El especialista podrá identificar tempranamente los riesgos relacionados al crecimiento y nutrición del niño.</h5>
+            </div>
+        </div>
+    </div>
+
+    <h3 style="text-align:center">Cálculo del índice de masa corporal (IMC):</h3>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="control-label col-md-3">Talla (cm):</label>
+                                <div class="col-md-9">
+                                    <input decimals-only type="text" name="talla" class="form-control" placeholder="Talla (cm):"
+                                           ng-model="datoChildren.talla" ng-change="calculaIMC()" autofocus maxlength="6" required />
+                                    <span class="messages" ng-show="datosChildrenForm.$submitted || datosChildrenForm.talla.$touched">
+                                        <span class="text-danger" ng-show="datosChildrenForm.talla.$error.required">El campo es obligatorio.</span>
+                                        <span class="text-danger" ng-show="datoChildren.talla < 20">Ha introducido la talla en metros. Debe multiplicarla por 100 para convertirla a centímetros.</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="control-label col-md-3">Peso (kg):</label>
+                                <div class="col-md-9">
+                                    <input decimals-only name="peso" class="form-control" placeholder="Peso (kg):"
+                                           ng-model="datoChildren.peso" ng-change="calculaIMC()" autofocus maxlength="6" required />
+                                    <span class="messages" ng-show="datosChildrenForm.$submitted || datosChildrenForm.peso.$touched">
+                                        <span class="text-danger" ng-show="datosChildrenForm.peso.$error.required">El campo es obligatorio.</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="control-label col-md-3">Índice Masa Corporal (IMC):</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <input type="text" name="imc" class="form-control" placeholder="Índice Masa Corporal (IMC)"
+                                               ng-model="datoChildren.imc" autofocus disabled />
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-info" ng-click="ayudaIMC()"><i class="glyphicon glyphicon-question-sign"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="control-label col-md-3">Según el IMC, tiene:</label>
+                                <div class="col-md-9">
+                                    <input type="text" name="detalleIMC" class="form-control" placeholder="Detalle IMC"
+                                           ng-model="datoChildren.detalleIMC" autofocus disabled />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h3 style="text-align:center">Empiece ya a controlar el crecimiento de su hijo</h3>
+    <div class="form-group" style="text-align:center">
+        <a class="btn btn-primary glyphicon glyphicon-new-window" ng-href="#!/registro"> Registrarse</a>
+    </div>
 </div>

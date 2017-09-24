@@ -7,14 +7,11 @@ proyectoApp.controller('appController',
 
             if ($scope.isLoggedIn) {
 
-                if ($location.path() !== '/home') {
-
-                } else {
-                    $location.path('/home');
-                }
+                $location.path('/home');
 
             } else {
-                $location.path('/login');
+                $location.path('/app');
+                $scope.appActive = true;
             }
         }
     ]);

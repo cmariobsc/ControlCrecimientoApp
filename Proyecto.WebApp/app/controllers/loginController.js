@@ -3,6 +3,8 @@ proyectoApp.controller('loginController',
     ['$location', '$scope', 'authService', 'usuarioService', '$ekathuwa', 'catalogoService',
         function ($location, $scope, authService, usuarioService, $ekathuwa, catalogoService) {
 
+            $scope.appActive = false;
+
             $scope.loginData = {
                 username: "",
                 password: ""
