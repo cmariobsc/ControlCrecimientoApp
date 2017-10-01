@@ -68,6 +68,8 @@
   <ItemGroup>
     <Content Include="app\app.js" />
     <Content Include="app\components\calendar.html" />
+    <Content Include="app\components\carousel\carousel.html" />
+    <Content Include="app\components\carousel\carousel.js" />
     <Content Include="app\components\charts\chart.directive.js" />
     <Content Include="app\components\charts\chart.html" />
     <Content Include="app\components\header\header-anon.directive.js" />

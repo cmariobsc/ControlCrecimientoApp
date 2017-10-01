@@ -1,6 +1,9 @@
-﻿<div header-anon-proyecto ></div>
+﻿<div header-anon-proyecto></div>
 <div class="container">
     <h2 style="text-align:center">Controle adecuadamente el crecimiento de su hijo</h2>
+    <br />
+    <carousel links="links"></carousel>
+    <br />
     <h4 style="text-align:left">
         Con la ayuda de la aplicación usted podrá registrar periódicamente y de manera sistemática
         el crecimiento y desarrollo del niño, con el fin de detectar cambios y riesgos en su estado de salud.
@@ -33,12 +36,55 @@
             </div>
         </div>
     </div>
-
-    <h3 style="text-align:center">Cálculo del índice de masa corporal (IMC):</h3>
+    <h3 style="text-align:center">Pruébelo Usted Mismo</h3>
     <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-body">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <h4 style="text-align:center">¿Cuándo nació el niño?</h4>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="control-label col-md-3">Fecha Nacimiento:</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" datepicker-popup-template-url="app/components/calendar.html" uib-datepicker-popup="dd/MM/yyyy"
+                                               ng-model="datoChildren.fechaNacimiento" is-open="popup.openedFN"
+                                               datepicker-options="dateOptions" close-text="Cerrar" current-text="Hoy" popup-placement="bottom" show-button-bar="true"
+                                               readonly="readonly" ng-change="calculateAge(datoChildren.fechaNacimiento)" />
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-success" ng-click="abrirCalendarioFN()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="control-label col-md-3">Edad:</label>
+                                <div class="col-md-1">
+                                    <label class="control-label">Años:</label>
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control" disabled
+                                           ng-model="datoChildren.edadAnios" />
+                                </div>
+                                <div class="col-md-1">
+                                    <label class="control-label">Meses:</label>
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control" disabled
+                                           ng-model="datoChildren.edadMeses" />
+                                </div>
+                                <div class="col-md-1">
+                                    <label class="control-label">(Total Meses)</label>
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control" disabled
+                                           ng-model="datoChildren.edadTotalMeses" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 style="text-align:center">¿Cuál es la talla y peso del niño?</h4>
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-6">
@@ -64,6 +110,7 @@
                             </div>
                         </div>
                     </div>
+                    <h4 style="text-align:center">Cálculo del índice de masa corporal (IMC):</h4>
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-6">
