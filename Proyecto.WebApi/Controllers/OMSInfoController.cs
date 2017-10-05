@@ -64,6 +64,7 @@ namespace Proyecto.WebApi.Controllers
 
             return new ApiResult(status, codError, mensajeRetorno, lista);
         }
+        [AllowAnonymous]
         [HttpPost]
         [ActionName("getListIMCxEdad")]
         public ApiResult GetListOMSIMCxEdad(int idSexo)

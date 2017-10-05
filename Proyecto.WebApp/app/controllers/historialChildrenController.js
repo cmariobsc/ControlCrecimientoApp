@@ -205,6 +205,7 @@ proyectoApp.controller('historialChildrenController',
                 $scope.sD1 = [];
                 $scope.sD2 = [];
                 $scope.sD3 = [];
+
                 angular.forEach(data, function (value, key) {
                     if (key < ($scope.listChildren[$scope.listChildren.length - 1].edadTotalMeses + 6)) {
                         $scope.meses.push(value.meses);

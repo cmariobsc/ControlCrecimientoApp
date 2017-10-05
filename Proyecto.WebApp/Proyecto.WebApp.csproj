@@ -112,6 +112,16 @@
     <Content Include="app\views\login.html" />
     <Content Include="content\css\bg-theme.css" />
     <Content Include="content\css\styles.css" />
+    <Content Include="content\images\banners\banner1.png" />
+    <Content Include="content\images\banners\banner10.jpg" />
+    <Content Include="content\images\banners\banner2.jpg" />
+    <Content Include="content\images\banners\banner3.jpg" />
+    <Content Include="content\images\banners\banner4.jpg" />
+    <Content Include="content\images\banners\banner5.jpg" />
+    <Content Include="content\images\banners\banner6.jpg" />
+    <Content Include="content\images\banners\banner7.jpg" />
+    <Content Include="content\images\banners\banner8.jpg" />
+    <Content Include="content\images\banners\banner9.jpg" />
     <Content Include="content\images\imcTabla.JPG" />
     <Content Include="content\images\logo_pro.png" />
     <Content Include="content\images\pc.JPG" />
