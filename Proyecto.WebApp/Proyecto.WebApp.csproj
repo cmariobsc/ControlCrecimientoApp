@@ -110,7 +110,7 @@
     <Content Include="app\views\representante.html" />
     <Content Include="app\views\registro.html" />
     <Content Include="app\views\login.html" />
-    <Content Include="content\css\bg-theme.css" />
+    <Content Include="content\css\pro-theme.css" />
     <Content Include="content\css\styles.css" />
     <Content Include="content\images\banners\banner1.png" />
     <Content Include="content\images\banners\banner10.jpg" />
