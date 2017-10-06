@@ -43,6 +43,11 @@ BEGIN
 			SET @codError='001'
 			SET @mensajeRetorno='Sólo puede ingresar la cantidad de hijos que especificó en los Datos del Representante.'
 		END
+		ELSE IF EXISTS (SELECT 1 FROM Children WHERE Identificacion = @Identificacion)
+		BEGIN
+			SET @codError='002'
+			SET @mensajeRetorno='El número de cédula que ingresó ya existe en un registro de otro niño.'
+		END
 		ELSE
 		BEGIN
 			DECLARE @IdChildren int

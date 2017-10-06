@@ -101,7 +101,7 @@ FechaCreacion		date			not null
 create table Representante
 (
 IdRepresentante		int				not null primary key,
-Identificacion      varchar(10)		null unique,
+Identificacion      varchar(10)		not null,
 Nombres			    varchar(100)	not null,
 Apellidos			varchar(100)	not null,
 FechaNacimiento     date			null,
@@ -132,7 +132,7 @@ go
 create table Children
 (
 IdChildren			int not null primary key,
-Identificacion      varchar(10) null unique,
+Identificacion      varchar(10) null,
 Nombres			    varchar(100)  not null,
 Apellidos			varchar(100)  not null,
 FechaNacimiento     date  not null,
