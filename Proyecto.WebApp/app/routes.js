@@ -3,7 +3,7 @@ proyectoApp.config(
     ['$routeProvider',
         function ($routeProvider) {
 
-            $routeProvider.when('/',
+            $routeProvider.when('/app',
                 {
                     templateUrl: 'app/views/app.html',
                     controller: 'appController'

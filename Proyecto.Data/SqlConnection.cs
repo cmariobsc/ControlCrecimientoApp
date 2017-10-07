@@ -9,7 +9,7 @@ namespace Proyecto.Data
     {
         public Database InitDatabase()
         {
-            var databaseConnection = ConfigurationManager.AppSettings["databaseConnection"];
+            var databaseConnection = ConfigurationManager.AppSettings["DatabaseConnection"];
             if (string.IsNullOrEmpty(databaseConnection))
                 throw new Exception("Hace falta configuracion de databaseConnection en web.config");
 

@@ -1,6 +1,6 @@
 ﻿<div header-anon-proyecto></div>
 <div class="container-fluid">
-    <h1 style="text-align:center">Control de Nutrición y Crecimiento Infantil</h1>
+    <h2 style="text-align:center">Regístrese</h2>
     <br />
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
@@ -8,7 +8,7 @@
                 <div class="panel-body">
                     <form name="registroForm">
                         <fieldset>
-                            <legend>Registrarse</legend>
+                            <legend>Llenar los siguientes campos</legend>
                             <div data-ng-hide="message == ''" class="alert alert-danger">
                                 {{message}}
                             </div>
@@ -73,7 +73,7 @@
                                 <button type="submit" class="btn btn-primary glyphicon glyphicon-send"
                                         ng-click="registrar()" ng-disabled="!registroForm.$valid"> Enviar Registro
                                 </button>
-                                <a class="btn btn-primary glyphicon glyphicon-chevron-left" ng-click="regresar()"> Regresar</a>
+                                <a class="btn btn-primary glyphicon glyphicon-chevron-left" ng-click="go_back()"> Regresar</a>
                             </div>
                         </fieldset>
                     </form>

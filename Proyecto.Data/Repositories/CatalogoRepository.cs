@@ -20,7 +20,7 @@ namespace Proyecto.Data.Repositories
             var listaParentesco = new List<Parentesco>();
             try
             {
-                var response = _catalogoSqlService.ConsultarParentesco(out codError, out mensajeRetorno);
+                var response = _catalogoSqlService.GetListParentesco(out codError, out mensajeRetorno);
 
                 foreach (DataRow dataRow in response.Tables[0].Rows)
                 {
@@ -39,12 +39,36 @@ namespace Proyecto.Data.Repositories
 
             return listaParentesco;
         }
+        public IList<Sexo> GetListSexo(out string codError, out string mensajeRetorno)
+        {
+            var listaSexo = new List<Sexo>();
+            try
+            {
+                var response = _catalogoSqlService.GetListSexo(out codError, out mensajeRetorno);
+
+                foreach (DataRow dataRow in response.Tables[0].Rows)
+                {
+                    listaSexo.Add(new Sexo
+                    {
+                        IdSexo = Convert.ToInt32(dataRow["IdSexo"]),
+                        Descripcion = dataRow["Descripcion"].ToString(),
+                    });
+                }
+            }
+            catch (Exception exception)
+            {
+                codError = "999";
+                mensajeRetorno = exception.Message;
+            }
+
+            return listaSexo;
+        }
         public IList<Nacionalidad> GetListNacionalidad(out string codError, out string mensajeRetorno)
         {
             var listaNacionalidad = new List<Nacionalidad>();
             try
             {
-                var response = _catalogoSqlService.ConsultarNacionalidad(out codError, out mensajeRetorno);
+                var response = _catalogoSqlService.GetListNacionalidad(out codError, out mensajeRetorno);
 
                 foreach (DataRow dataRow in response.Tables[0].Rows)
                 {
@@ -68,7 +92,7 @@ namespace Proyecto.Data.Repositories
             var listaProvincia = new List<Provincia>();
             try
             {
-                var response = _catalogoSqlService.ConsultarProvincia(out codError, out mensajeRetorno);
+                var response = _catalogoSqlService.GetListProvincia(out codError, out mensajeRetorno);
 
                 foreach (DataRow dataRow in response.Tables[0].Rows)
                 {
@@ -93,7 +117,7 @@ namespace Proyecto.Data.Repositories
             var listaCiudad = new List<Ciudad>();
             try
             {
-                var response = _catalogoSqlService.ConsultarCiudad(out codError, out mensajeRetorno);
+                var response = _catalogoSqlService.GetListCiudad(out codError, out mensajeRetorno);
 
                 foreach (DataRow dataRow in response.Tables[0].Rows)
                 {
@@ -112,6 +136,37 @@ namespace Proyecto.Data.Repositories
             }
 
             return listaCiudad;
+        }
+
+        public IList<Doctor> GetListDoctor(out string codError, out string mensajeRetorno)
+        {
+            var listaDoctor = new List<Doctor>();
+            try
+            {
+                var response = _catalogoSqlService.GetListDoctor(out codError, out mensajeRetorno);
+
+                foreach (DataRow dataRow in response.Tables[0].Rows)
+                {
+                    listaDoctor.Add(new Doctor
+                    {
+                        IdDoctor = Convert.ToInt32(dataRow["IdDoctor"]),
+                        Nombre = dataRow["Nombre"].ToString(),
+                        Especialidad = dataRow["Especialidad"].ToString(),
+                        LugarTrabajo = dataRow["LugarTrabajo"].ToString(),
+                        IdProvincia = Convert.ToInt32(dataRow["IdProvincia"]),
+                        IdCiudad = Convert.ToInt32(dataRow["IdCiudad"]),
+                        Direccion = dataRow["Direccion"].ToString(),
+                        Email = dataRow["Email"].ToString(),
+                    });
+                }
+            }
+            catch (Exception exception)
+            {
+                codError = "999";
+                mensajeRetorno = exception.Message;
+            }
+
+            return listaDoctor;
         }
     }
 }

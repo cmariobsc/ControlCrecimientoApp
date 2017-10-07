@@ -42,6 +42,30 @@ namespace Proyecto.WebApi.Controllers
         }
 
         [HttpPost]
+        [ActionName("listSexo")]
+        public ApiResult GetListSexo()
+        {
+            string codError = "";
+            string mensajeRetorno = "";
+            string status;
+            IList<Sexo> lista = null;
+
+            try
+            {
+                lista = _catalogoService.GetListSexo(out codError, out mensajeRetorno);
+                status = JsonStatus.Success();
+            }
+            catch (Exception exception)
+            {
+                status = JsonStatus.Error();
+                codError = "999";
+                mensajeRetorno = exception.Message;
+            }
+
+            return new ApiResult(status, codError, mensajeRetorno, lista);
+        }
+
+        [HttpPost]
         [ActionName("listNacionalidad")]
         public ApiResult GetListNacionalidad()
         {
@@ -101,6 +125,29 @@ namespace Proyecto.WebApi.Controllers
             try
             {
                 lista = _catalogoService.GetListCiudad(out codError, out mensajeRetorno);
+                status = JsonStatus.Success();
+            }
+            catch (Exception exception)
+            {
+                status = JsonStatus.Error();
+                codError = "999";
+                mensajeRetorno = exception.Message;
+            }
+
+            return new ApiResult(status, codError, mensajeRetorno, lista);
+        }
+        [HttpPost]
+        [ActionName("listDoctor")]
+        public ApiResult GetListDoctor()
+        {
+            string codError = "";
+            string mensajeRetorno = "";
+            string status;
+            IList<Doctor> lista = null;
+
+            try
+            {
+                lista = _catalogoService.GetListDoctor(out codError, out mensajeRetorno);
                 status = JsonStatus.Success();
             }
             catch (Exception exception)

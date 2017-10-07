@@ -20,9 +20,16 @@ BEGIN
 
 		SELECT [IdHistorialChildren]
 		  ,C.[Nombres] + ' ' + C.[Apellidos] AS NombreCompleto
-		  ,HC.[Edad]
+		  ,C.[IdSexo]
+		  ,HC.[EdadAnios]
+		  ,HC.[EdadMeses]
+		  ,HC.[EdadTotalMeses]
 		  ,HC.[Talla]
 		  ,HC.[Peso]
+		  ,HC.[IMC]
+		  ,HC.[DetalleIMC]
+		  ,HC.[PerimCefalico]
+		  ,HC.[PerimMedioBrazo]
 		  ,HC.[Observaciones]
 		  ,HC.[FechaCreacion]
 		  ,HC.[FechaModificacion]

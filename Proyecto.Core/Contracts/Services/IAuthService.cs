@@ -12,12 +12,5 @@ namespace Proyecto.Core.Contracts.Services
         bool AddRefreshToken(RefreshToken token);
         RefreshToken FindToken(string tokenId);
         bool RemoveToken(string tokenId);
-
-
-        #region Acciones Por Perfil
-
-        IList<Accion> FindAcciones(string perfil);
-
-        #endregion
     }
 }

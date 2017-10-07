@@ -14,9 +14,9 @@ namespace Proyecto.Data.SqlServices
             _database = _connection.InitDatabase();
         }
 
-        public DataSet ConsultarParentesco(out string codError, out string mensajeRetorno)
+        public DataSet GetListParentesco(out string codError, out string mensajeRetorno)
         {
-            var storedProcedure = "[dbo].[SP_ConsultarParentesco]";
+            var storedProcedure = "[dbo].[SP_ListarParentesco]";
 
             var command = _database.GetStoredProcCommand(storedProcedure);
             command.CommandType = CommandType.StoredProcedure;
@@ -28,12 +28,14 @@ namespace Proyecto.Data.SqlServices
 
             codError = _database.GetParameterValue(command, "@codError").ToString();
             mensajeRetorno = _database.GetParameterValue(command, "@mensajeRetorno").ToString();
+
+            command.Dispose();
 
             return result;
         }
-        public DataSet ConsultarNacionalidad(out string codError, out string mensajeRetorno)
+        public DataSet GetListSexo(out string codError, out string mensajeRetorno)
         {
-            var storedProcedure = "[dbo].[SP_ConsultarNacionalidad]";
+            var storedProcedure = "[dbo].[SP_ListarSexo]";
 
             var command = _database.GetStoredProcCommand(storedProcedure);
             command.CommandType = CommandType.StoredProcedure;
@@ -45,12 +47,14 @@ namespace Proyecto.Data.SqlServices
 
             codError = _database.GetParameterValue(command, "@codError").ToString();
             mensajeRetorno = _database.GetParameterValue(command, "@mensajeRetorno").ToString();
+
+            command.Dispose();
 
             return result;
         }
-        public DataSet ConsultarProvincia(out string codError, out string mensajeRetorno)
+        public DataSet GetListNacionalidad(out string codError, out string mensajeRetorno)
         {
-            var storedProcedure = "[dbo].[SP_ConsultarProvincia]";
+            var storedProcedure = "[dbo].[SP_ListarNacionalidad]";
 
             var command = _database.GetStoredProcCommand(storedProcedure);
             command.CommandType = CommandType.StoredProcedure;
@@ -62,12 +66,14 @@ namespace Proyecto.Data.SqlServices
 
             codError = _database.GetParameterValue(command, "@codError").ToString();
             mensajeRetorno = _database.GetParameterValue(command, "@mensajeRetorno").ToString();
+
+            command.Dispose();
 
             return result;
         }
-        public DataSet ConsultarCiudad(out string codError, out string mensajeRetorno)
+        public DataSet GetListProvincia(out string codError, out string mensajeRetorno)
         {
-            var storedProcedure = "[dbo].[SP_ConsultarCiudad]";
+            var storedProcedure = "[dbo].[SP_ListarProvincia]";
 
             var command = _database.GetStoredProcCommand(storedProcedure);
             command.CommandType = CommandType.StoredProcedure;
@@ -79,6 +85,47 @@ namespace Proyecto.Data.SqlServices
 
             codError = _database.GetParameterValue(command, "@codError").ToString();
             mensajeRetorno = _database.GetParameterValue(command, "@mensajeRetorno").ToString();
+
+            command.Dispose();
+
+            return result;
+        }
+        public DataSet GetListCiudad(out string codError, out string mensajeRetorno)
+        {
+            var storedProcedure = "[dbo].[SP_ListarCiudad]";
+
+            var command = _database.GetStoredProcCommand(storedProcedure);
+            command.CommandType = CommandType.StoredProcedure;
+
+            _database.AddOutParameter(command, "@codError", DbType.String, 3);
+            _database.AddOutParameter(command, "@mensajeRetorno", DbType.String, 100);
+
+            var result = _database.ExecuteDataSet(command);
+
+            codError = _database.GetParameterValue(command, "@codError").ToString();
+            mensajeRetorno = _database.GetParameterValue(command, "@mensajeRetorno").ToString();
+
+            command.Dispose();
+
+            return result;
+        }
+
+        public DataSet GetListDoctor(out string codError, out string mensajeRetorno)
+        {
+            var storedProcedure = "[dbo].[SP_ListarDoctor]";
+
+            var command = _database.GetStoredProcCommand(storedProcedure);
+            command.CommandType = CommandType.StoredProcedure;
+
+            _database.AddOutParameter(command, "@codError", DbType.String, 3);
+            _database.AddOutParameter(command, "@mensajeRetorno", DbType.String, 100);
+
+            var result = _database.ExecuteDataSet(command);
+
+            codError = _database.GetParameterValue(command, "@codError").ToString();
+            mensajeRetorno = _database.GetParameterValue(command, "@mensajeRetorno").ToString();
+
+            command.Dispose();
 
             return result;
         }

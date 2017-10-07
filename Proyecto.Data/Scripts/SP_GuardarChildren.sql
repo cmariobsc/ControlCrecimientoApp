@@ -11,10 +11,18 @@ CREATE PROCEDURE SP_GuardarChildren
     @Nombres varchar(100), 
     @Apellidos varchar(100), 
     @FechaNacimiento date,
-	@Edad int,
+	@EdadAnios int,
+	@EdadMeses int,
+	@EdadTotalMeses int,
 	@Talla decimal(6,2),
-	@Peso int,
+	@Peso decimal(6,2),
+	@IMC decimal(6,2),
+	@DetalleIMC varchar(100),
+	@PerimCefalico decimal(6,2),
+	@PerimMedioBrazo decimal(6,2),
 	@Observaciones varchar(100),
+	@FechaCreacion date,
+	@IdSexo int,
 	@IdRepresentante int,
 	@IdNacionalidad int,
     @codError varchar(3) = '' OUTPUT,
@@ -35,6 +43,11 @@ BEGIN
 			SET @codError='001'
 			SET @mensajeRetorno='Sólo puede ingresar la cantidad de hijos que especificó en los Datos del Representante.'
 		END
+		ELSE IF EXISTS (SELECT 1 FROM Children WHERE Identificacion = @Identificacion)
+		BEGIN
+			SET @codError='002'
+			SET @mensajeRetorno='El número de cédula que ingresó ya existe en un registro de otro niño.'
+		END
 		ELSE
 		BEGIN
 			DECLARE @IdChildren int
@@ -42,11 +55,11 @@ BEGIN
 			SELECT @IdChildren = COUNT(*) FROM Children
 			SET @IdChildren = @IdChildren + 1
 
-			INSERT INTO Children(IdChildren, Identificacion, Nombres, Apellidos, FechaNacimiento, Edad, Talla, Peso, Observaciones, FechaCreacion, FechaModificacion, IdRepresentante, IdNacionalidad)
-			VALUES (@IdChildren, @Identificacion, @Nombres, @Apellidos, @FechaNacimiento, @Edad, @Talla, @Peso, @Observaciones, GETDATE(), GETDATE(), @IdRepresentante, @IdNacionalidad)
+			INSERT INTO Children(IdChildren, Identificacion, Nombres, Apellidos, FechaNacimiento, EdadAnios, EdadMeses, EdadTotalMeses, Talla, Peso, IMC, DetalleIMC, PerimCefalico, PerimMedioBrazo, Observaciones, FechaCreacion, FechaModificacion, IdSexo, IdRepresentante, IdNacionalidad)
+			VALUES (@IdChildren, @Identificacion, @Nombres, @Apellidos, @FechaNacimiento, @EdadAnios, @EdadMeses, @EdadTotalMeses, @Talla, @Peso, @IMC, @DetalleIMC, @PerimCefalico, @PerimMedioBrazo, @Observaciones, @FechaCreacion, GETDATE(), @IdSexo, @IdRepresentante, @IdNacionalidad)
 
-			INSERT INTO HistorialChildren(Edad, Talla, Peso, Observaciones, FechaCreacion, FechaModificacion, IdChildren)
-			VALUES (@Edad, @Talla, @Peso, @Observaciones, GETDATE(), GETDATE(), @IdChildren)
+			INSERT INTO HistorialChildren(EdadAnios, EdadMeses, EdadTotalMeses, Talla, Peso, IMC, DetalleIMC, PerimCefalico, PerimMedioBrazo, Observaciones, FechaCreacion, FechaModificacion, IdChildren)
+			VALUES (@EdadAnios, @EdadMeses, @EdadTotalMeses, @Talla, @Peso, @IMC, @DetalleIMC, @PerimCefalico, @PerimMedioBrazo, @Observaciones, @FechaCreacion, GETDATE(), @IdChildren)
 
 			SET @codError='000'
 			SET @mensajeRetorno='Se ha registrado al niño correctamente.'

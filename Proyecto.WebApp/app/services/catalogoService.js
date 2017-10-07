@@ -27,6 +27,27 @@ proyectoApp.factory('catalogoService',
                 return deferred.promise;
             };
 
+            var _getSexo = function () {
+                var url = serviceUrl + '/catalogo/listSexo';
+                var deferred = $q.defer();
+                $http({
+                    method: 'POST',
+                    url: url,
+                    crossDomain: true
+                }).then(function (response) {
+                    var result = response.data;
+                    if (result.codError === "000") {
+                        localStorageService.set('catalogoSexo', result.data);
+                    }
+                    deferred.resolve(response);
+
+                }, function (error) {
+                    deferred.reject(error);
+                });
+
+                return deferred.promise;
+            };
+
             var _getNacionalidad = function () {
                 var url = serviceUrl + '/catalogo/listNacionalidad';
                 var deferred = $q.defer();
@@ -81,6 +102,27 @@ proyectoApp.factory('catalogoService',
                     if (result.codError === "000") {
                         localStorageService.set('catalogoCiudad', result.data);
                     }
+                    deferred.resolve(result);
+
+                }, function (error) {
+                    deferred.reject(error);
+                });
+
+                return deferred.promise;
+            };
+
+            var _getDoctor = function () {
+                var url = serviceUrl + '/catalogo/listDoctor';
+                var deferred = $q.defer();
+                $http({
+                    method: 'POST',
+                    url: url,
+                    crossDomain: true
+                }).then(function (response) {
+                    var result = response.data;
+                    if (result.codError === "000") {
+                        localStorageService.set('catalogoDoctor', result.data);
+                    }
                     deferred.resolve(response);
 
                 }, function (error) {
@@ -95,6 +137,19 @@ proyectoApp.factory('catalogoService',
                 if (storageCatalogo == null) {
                     _getParentesco().then(function (response) {
                         storageCatalogo = localStorageService.get('catalogoParentesco');
+
+                        return storageCatalogo;
+                    });
+                }
+
+                return storageCatalogo;
+            };
+
+            var _catalogoSexo = function () {
+                var storageCatalogo = localStorageService.get('catalogoSexo');
+                if (storageCatalogo == null) {
+                    _getSexo().then(function (response) {
+                        storageCatalogo = localStorageService.get('catalogoSexo');
 
                         return storageCatalogo;
                     });
@@ -142,10 +197,25 @@ proyectoApp.factory('catalogoService',
                 return storageCatalogo;
             };
 
+            var _catalogoDoctor = function () {
+                var storageCatalogo = localStorageService.get('catalogoDoctor');
+                if (storageCatalogo == null) {
+                    _getDoctor().then(function (response) {
+                        storageCatalogo = localStorageService.get('catalogoDoctor');
+
+                        return storageCatalogo;
+                    });
+                }
+
+                return storageCatalogo;
+            };
+
             catalogoServiceFactory.catalogoParentesco = _catalogoParentesco;
+            catalogoServiceFactory.catalogoSexo = _catalogoSexo;
             catalogoServiceFactory.catalogoNacionalidad = _catalogoNacionalidad;
             catalogoServiceFactory.catalogoProvincia = _catalogoProvincia;
             catalogoServiceFactory.catalogoCiudad = _catalogoCiudad;
+            catalogoServiceFactory.catalogoDoctor = _catalogoDoctor;
 
             return catalogoServiceFactory;
         }

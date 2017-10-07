@@ -3,6 +3,8 @@ proyectoApp.controller('loginController',
     ['$location', '$scope', 'authService', 'usuarioService', '$ekathuwa', 'catalogoService',
         function ($location, $scope, authService, usuarioService, $ekathuwa, catalogoService) {
 
+            $scope.appActive = false;
+
             $scope.loginData = {
                 username: "",
                 password: ""
@@ -25,9 +27,11 @@ proyectoApp.controller('loginController',
                 usuarioService.getUserData(loginData.username, loginData.password)
                     .then(function (response) {
                         catalogoService.catalogoParentesco();
+                        catalogoService.catalogoSexo();
                         catalogoService.catalogoNacionalidad();
                         catalogoService.catalogoProvincia();
                         catalogoService.catalogoCiudad();
+                        catalogoService.catalogoDoctor();
                         var datoUsuario = usuarioService.getDatosSesion();
                         $location.path('/home');
                     }, function (error) {

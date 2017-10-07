@@ -31,6 +31,8 @@ namespace Proyecto.Data.SqlServices
             codError = _database.GetParameterValue(command, "@codError").ToString();
             mensajeRetorno = _database.GetParameterValue(command, "@mensajeRetorno").ToString();
 
+            command.Dispose();
+
             return result;
         }
 
@@ -50,6 +52,8 @@ namespace Proyecto.Data.SqlServices
             codError = _database.GetParameterValue(command, "@codError").ToString();
             mensajeRetorno = _database.GetParameterValue(command, "@mensajeRetorno").ToString();
 
+            command.Dispose();
+
             return result;
         }
 
@@ -60,14 +64,22 @@ namespace Proyecto.Data.SqlServices
             var command = _database.GetStoredProcCommand(storedProcedure);
             command.CommandType = CommandType.StoredProcedure;
 
+            _database.AddInParameter(command, "@FechaCreacion", DbType.DateTime, children.FechaCreacion);
             _database.AddInParameter(command, "@Identificacion", DbType.String, children.Identificacion);
             _database.AddInParameter(command, "@Nombres", DbType.String, children.Nombres);
             _database.AddInParameter(command, "@Apellidos", DbType.String, children.Apellidos);
             _database.AddInParameter(command, "@FechaNacimiento", DbType.DateTime, children.FechaNacimiento);
-            _database.AddInParameter(command, "@Edad", DbType.Int32, children.Edad);
+            _database.AddInParameter(command, "@EdadAnios", DbType.Int32, children.EdadAnios);
+            _database.AddInParameter(command, "@EdadMeses", DbType.Int32, children.EdadMeses);
+            _database.AddInParameter(command, "@EdadTotalMeses", DbType.Int32, children.EdadTotalMeses);
             _database.AddInParameter(command, "@Talla", DbType.Decimal, children.Talla);
-            _database.AddInParameter(command, "@Peso", DbType.Int32, children.Peso);
+            _database.AddInParameter(command, "@Peso", DbType.Decimal, children.Peso);
+            _database.AddInParameter(command, "@IMC", DbType.Decimal, children.IMC);
+            _database.AddInParameter(command, "@DetalleIMC", DbType.String, children.DetalleIMC);
+            _database.AddInParameter(command, "@PerimCefalico", DbType.Decimal, children.PerimCefalico);
+            _database.AddInParameter(command, "@PerimMedioBrazo", DbType.Decimal, children.PerimMedioBrazo);
             _database.AddInParameter(command, "@Observaciones", DbType.String, children.Observaciones);
+            _database.AddInParameter(command, "@IdSexo", DbType.Int32, children.IdSexo);
             _database.AddInParameter(command, "@IdRepresentante", DbType.Int32, children.IdRepresentante);
             _database.AddInParameter(command, "@IdNacionalidad", DbType.Int32, children.IdNacionalidad);
             _database.AddOutParameter(command, "@codError", DbType.String, 3);
@@ -77,6 +89,8 @@ namespace Proyecto.Data.SqlServices
 
             codError = _database.GetParameterValue(command, "@codError").ToString();
             mensajeRetorno = _database.GetParameterValue(command, "@mensajeRetorno").ToString();
+
+            command.Dispose();
         }
 
         public void ActualizarChildren(Children children, out string codError, out string mensajeRetorno)
@@ -91,11 +105,18 @@ namespace Proyecto.Data.SqlServices
             _database.AddInParameter(command, "@Nombres", DbType.String, children.Nombres);
             _database.AddInParameter(command, "@Apellidos", DbType.String, children.Apellidos);
             _database.AddInParameter(command, "@FechaNacimiento", DbType.DateTime, children.FechaNacimiento);
-            _database.AddInParameter(command, "@Edad", DbType.Int32, children.Edad);
+            _database.AddInParameter(command, "@EdadAnios", DbType.Int32, children.EdadAnios);
+            _database.AddInParameter(command, "@EdadMeses", DbType.Int32, children.EdadMeses);
+            _database.AddInParameter(command, "@EdadTotalMeses", DbType.Int32, children.EdadTotalMeses);
             _database.AddInParameter(command, "@Talla", DbType.Decimal, children.Talla);
-            _database.AddInParameter(command, "@Peso", DbType.Int32, children.Peso);
+            _database.AddInParameter(command, "@Peso", DbType.Decimal, children.Peso);
+            _database.AddInParameter(command, "@IMC", DbType.Decimal, children.IMC);
+            _database.AddInParameter(command, "@DetalleIMC", DbType.String, children.DetalleIMC);
+            _database.AddInParameter(command, "@PerimCefalico", DbType.Decimal, children.PerimCefalico);
+            _database.AddInParameter(command, "@PerimMedioBrazo", DbType.Decimal, children.PerimMedioBrazo);
             _database.AddInParameter(command, "@Observaciones", DbType.String, children.Observaciones);
             _database.AddInParameter(command, "@FechaCreacion", DbType.DateTime, children.FechaCreacion);
+            _database.AddInParameter(command, "@IdSexo", DbType.Int32, children.IdSexo);
             _database.AddInParameter(command, "@IdNacionalidad", DbType.Int32, children.IdNacionalidad);
             _database.AddOutParameter(command, "@codError", DbType.String, 3);
             _database.AddOutParameter(command, "@mensajeRetorno", DbType.String, 100);
@@ -104,6 +125,8 @@ namespace Proyecto.Data.SqlServices
 
             codError = _database.GetParameterValue(command, "@codError").ToString();
             mensajeRetorno = _database.GetParameterValue(command, "@mensajeRetorno").ToString();
+
+            command.Dispose();
         }
 
         public void EliminarChildren(int idChildren, out string codError, out string mensajeRetorno)
@@ -121,6 +144,8 @@ namespace Proyecto.Data.SqlServices
 
             codError = _database.GetParameterValue(command, "@codError").ToString();
             mensajeRetorno = _database.GetParameterValue(command, "@mensajeRetorno").ToString();
+
+            command.Dispose();
         }
 
         public DataSet GetListHistorialChildren(int idChildren, out string codError, out string mensajeRetorno)
@@ -138,6 +163,8 @@ namespace Proyecto.Data.SqlServices
 
             codError = _database.GetParameterValue(command, "@codError").ToString();
             mensajeRetorno = _database.GetParameterValue(command, "@mensajeRetorno").ToString();
+
+            command.Dispose();
 
             return result;
         }

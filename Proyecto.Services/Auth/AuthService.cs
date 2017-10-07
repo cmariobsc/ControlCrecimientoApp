@@ -12,16 +12,13 @@ namespace Proyecto.Services.Auth
     {
         private readonly ITokenRepository _tokenRepository;
         private readonly IUserRepository _authRepository;
-        private readonly IParametroService _parametroService;
 
         public AuthService(
             ITokenRepository tokenRepository,
-            IUserRepository authRepository,
-            IParametroService parametroService)
+            IUserRepository authRepository)
         {
             _tokenRepository = tokenRepository;
             _authRepository = authRepository;
-            _parametroService = parametroService;
         }
 
         public ClientApp FindClientApp(string clientId)
@@ -53,34 +50,5 @@ namespace Proyecto.Services.Auth
         {
             return _tokenRepository.RemoveToken(tokenId);
         }
-
-
-        #region Acciones por Perfil
-        public IList<Accion> FindAcciones(string perfil)
-        {
-            IList<Accion> acciones = new List<Accion>();
-
-            var parametros = _parametroService.GetList();
-
-            if (parametros != null && parametros.Count > 0)
-            {
-                var paramAcciones = parametros.Where(p => p.Codigo.Contains(perfil)).ToList();
-
-                foreach (var parametro in paramAcciones)
-                {
-                    var accion = new Accion
-                    {
-                        Codigo = parametro.Codigo,
-                        Descripcion = parametro.Descripcion,
-                        Id = parametro.Id,
-                        Nombre = parametro.Nombre,
-                        Url = parametro.Valor
-                    };
-                    acciones.Add(accion);
-                }
-            }
-            return acciones;
-        }
-        #endregion
     }
 }

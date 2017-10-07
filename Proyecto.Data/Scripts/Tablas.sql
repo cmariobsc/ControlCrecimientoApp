@@ -16,6 +16,16 @@ insert into Parentesco values ('Tío')
 insert into Parentesco values ('Tía')
 go
 
+create table Sexo
+(
+	IdSexo					int not null identity(1,1) primary key,
+	Descripcion				varchar(50) not null,
+)
+
+insert into Sexo values ('Masculino')
+insert into Sexo values ('Femenino')
+go
+
 create table Nacionalidad
 (
 	IdNacionalidad			int not null identity(1,1) primary key,
@@ -88,13 +98,10 @@ Habilitado			bit				not null,
 FechaCreacion		date			not null
 )
 
---EXEC dbo.SP_RegistrarUsuario 'admin', '123456', 'Carlos Mario', 'Gonzalez Luna', 'cmario1982@hotmail.com';  
---GO
-
 create table Representante
 (
 IdRepresentante		int				not null primary key,
-Identificacion      varchar(10)		null unique,
+Identificacion      varchar(10)		not null,
 Nombres			    varchar(100)	not null,
 Apellidos			varchar(100)	not null,
 FechaNacimiento     date			null,
@@ -122,24 +129,29 @@ foreign key (IdCiudad) references Ciudad
 )
 go
 
---insert into Representante values ('0928133099', 'Carlos', 'Gonzalez', GETDATE(), 27, 'Muey', 'cmario1982@hotmail.com', 
---									'0996368611',NULL, 1.75, 65, 1, GETDATE(), GETDATE(), 1, 2, 1, 1, 1)
-
 create table Children
 (
 IdChildren			int not null primary key,
-Identificacion      varchar(10) null unique,
+Identificacion      varchar(10) null,
 Nombres			    varchar(100)  not null,
 Apellidos			varchar(100)  not null,
 FechaNacimiento     date  not null,
-Edad				int  not null,
+EdadAnios			int  not null,
+EdadMeses			int  not null,
+EdadTotalMeses		int  not null,
 Talla		        decimal(6,2) not null,
-Peso			    int  not null,
+Peso			    decimal(6,2) not null,
+IMC					decimal(6,2) not null,
+DetalleIMC			varchar(100)  not null,
+PerimCefalico		decimal(6,2) not null,
+PerimMedioBrazo		decimal(6,2) not null,
 Observaciones		varchar(100) null,
 FechaCreacion		date  not null,
 FechaModificacion	date  not null,
+IdSexo			    int  not null,
 IdRepresentante		int  not null,
 IdNacionalidad      int  not null,
+foreign key (IdSexo) references Sexo,
 foreign key (IdRepresentante) references Representante,
 foreign key (IdNacionalidad) references Nacionalidad,
 )
@@ -148,9 +160,15 @@ go
 create table HistorialChildren
 (
 IdHistorialChildren		int not null identity(1,1) primary key,
-Edad					int  not null,
+EdadAnios				int  not null,
+EdadMeses				int  not null,
+EdadTotalMeses			int  not null,
 Talla					decimal(6,2) not null,
-Peso					int  not null,
+Peso					decimal(6,2) not null,
+IMC						decimal(6,2) not null,
+DetalleIMC				varchar(100)  not null,
+PerimCefalico			decimal(6,2) not null,
+PerimMedioBrazo			decimal(6,2) not null,
 Observaciones			varchar(100) null,
 FechaCreacion			date  not null,
 FechaModificacion		date  not null,
@@ -159,7 +177,188 @@ foreign key (IdChildren) references Children
 )
 go
 
+create table OMSTallaxEdadMasculino
+(
+Meses					int  not null,
+L						decimal(10,5) not null,
+M						decimal(10,5) not null,
+S						decimal(10,5) not null,
+SD						decimal(10,5) not null,
+SD3neg					decimal(10,5) not null,
+SD2neg					decimal(10,5) not null,
+SD1neg					decimal(10,5) not null,
+SD0						decimal(10,5) not null,
+SD1						decimal(10,5) not null,
+SD2						decimal(10,5) not null,
+SD3						decimal(10,5) not null,
+)
+go
+
+create table OMSTallaxEdadFemenino
+(
+Meses					int  not null,
+L						decimal(10,5) not null,
+M						decimal(10,5) not null,
+S						decimal(10,5) not null,
+SD						decimal(10,5) not null,
+SD3neg					decimal(10,5) not null,
+SD2neg					decimal(10,5) not null,
+SD1neg					decimal(10,5) not null,
+SD0						decimal(10,5) not null,
+SD1						decimal(10,5) not null,
+SD2						decimal(10,5) not null,
+SD3						decimal(10,5) not null,
+)
+go
+
+create table OMSPesoxEdadMasculino
+(
+Meses					int  not null,
+L						decimal(10,5) not null,
+M						decimal(10,5) not null,
+S						decimal(10,5) not null,
+SD3neg					decimal(10,5) not null,
+SD2neg					decimal(10,5) not null,
+SD1neg					decimal(10,5) not null,
+SD0						decimal(10,5) not null,
+SD1						decimal(10,5) not null,
+SD2						decimal(10,5) not null,
+SD3						decimal(10,5) not null,
+)
+go
+
+create table OMSPesoxEdadFemenino
+(
+Meses					int  not null,
+L						decimal(10,5) not null,
+M						decimal(10,5) not null,
+S						decimal(10,5) not null,
+SD3neg					decimal(10,5) not null,
+SD2neg					decimal(10,5) not null,
+SD1neg					decimal(10,5) not null,
+SD0						decimal(10,5) not null,
+SD1						decimal(10,5) not null,
+SD2						decimal(10,5) not null,
+SD3						decimal(10,5) not null,
+)
+go
+
+create table OMSIMCxEdadMasculino
+(
+Meses					int  not null,
+L						decimal(10,5) not null,
+M						decimal(10,5) not null,
+S						decimal(10,5) not null,
+SD3neg					decimal(10,5) not null,
+SD2neg					decimal(10,5) not null,
+SD1neg					decimal(10,5) not null,
+SD0						decimal(10,5) not null,
+SD1						decimal(10,5) not null,
+SD2						decimal(10,5) not null,
+SD3						decimal(10,5) not null,
+)
+go
+
+create table OMSIMCxEdadFemenino
+(
+Meses					int  not null,
+L						decimal(10,5) not null,
+M						decimal(10,5) not null,
+S						decimal(10,5) not null,
+SD3neg					decimal(10,5) not null,
+SD2neg					decimal(10,5) not null,
+SD1neg					decimal(10,5) not null,
+SD0						decimal(10,5) not null,
+SD1						decimal(10,5) not null,
+SD2						decimal(10,5) not null,
+SD3						decimal(10,5) not null,
+)
+go
+
+create table OMSPCxEdadMasculino
+(
+Meses					int  not null,
+L						decimal(10,5) not null,
+M						decimal(10,5) not null,
+S						decimal(10,5) not null,
+SD						decimal(10,5) not null,
+SD3neg					decimal(10,5) not null,
+SD2neg					decimal(10,5) not null,
+SD1neg					decimal(10,5) not null,
+SD0						decimal(10,5) not null,
+SD1						decimal(10,5) not null,
+SD2						decimal(10,5) not null,
+SD3						decimal(10,5) not null,
+)
+go
+
+create table OMSPCxEdadFemenino
+(
+Meses					int  not null,
+L						decimal(10,5) not null,
+M						decimal(10,5) not null,
+S						decimal(10,5) not null,
+SD						decimal(10,5) not null,
+SD3neg					decimal(10,5) not null,
+SD2neg					decimal(10,5) not null,
+SD1neg					decimal(10,5) not null,
+SD0						decimal(10,5) not null,
+SD1						decimal(10,5) not null,
+SD2						decimal(10,5) not null,
+SD3						decimal(10,5) not null,
+)
+go
+
+create table OMSPMBxEdadMasculino
+(
+Meses					int  not null,
+L						decimal(10,5) not null,
+M						decimal(10,5) not null,
+S						decimal(10,5) not null,
+SD3neg					decimal(10,5) not null,
+SD2neg					decimal(10,5) not null,
+SD1neg					decimal(10,5) not null,
+SD0						decimal(10,5) not null,
+SD1						decimal(10,5) not null,
+SD2						decimal(10,5) not null,
+SD3						decimal(10,5) not null,
+)
+go
+
+create table OMSPMBxEdadFemenino
+(
+Meses					int  not null,
+L						decimal(10,5) not null,
+M						decimal(10,5) not null,
+S						decimal(10,5) not null,
+SD3neg					decimal(10,5) not null,
+SD2neg					decimal(10,5) not null,
+SD1neg					decimal(10,5) not null,
+SD0						decimal(10,5) not null,
+SD1						decimal(10,5) not null,
+SD2						decimal(10,5) not null,
+SD3						decimal(10,5) not null,
+)
+go
+
+create table Doctor
+(
+IdDoctor				int not null identity(1,1) primary key,
+Nombre					varchar(100) null,
+Especialidad			varchar(100) null,
+LugarTrabajo			varchar(100) null,
+IdProvincia				int	null,
+IdCiudad				int	null,
+DIreccion				varchar(100) null,
+Email					varchar(50)	not null
+)
+
+insert into Doctor values ('Mario Alberto Proaño Baca', 'Pediatra', 'Clínica San Francisco', 10, 1, 'Cdla Kennedy Norte Av. Andrade Coello y Juan Rolando', 'cmario1982@gmail.com')
+insert into Doctor values ('Mildred Alexandra Tamariz Gutierrez', 'Obstetriz', 'Hospital Universitario', 10, 1, 'Vía Perimetral & Calle 24A', 'milyomos2085@gmail.com')
+go
+
 --drop table Parentesco
+--drop table Sexo
 --drop table Nacionalidad
 --drop table Provincia
 --drop table Ciudad
@@ -167,5 +366,16 @@ go
 --drop table Representante
 --drop table Children
 --drop table HistorialChildren
+--drop table OMSTallaxEdadMasculino
+--drop table OMSTallaxEdadFemenino
+--drop table OMSPesoxEdadMasculino
+--drop table OMSPesoxEdadFemenino
+--drop table OMSIMCxEdadMasculino
+--drop table OMSIMCxEdadFemenino
+--drop table OMSPCxEdadMasculino
+--drop table OMSPCxEdadFemenino
+--drop table OMSPMBxEdadMasculino
+--drop table OMSPMBxEdadFemenino
+
 
 --drop database DB_CNCAPP

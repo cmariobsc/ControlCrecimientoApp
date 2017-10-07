@@ -68,10 +68,15 @@
   <ItemGroup>
     <Content Include="app\app.js" />
     <Content Include="app\components\calendar.html" />
+    <Content Include="app\components\carousel\carousel.html" />
+    <Content Include="app\components\carousel\carousel.js" />
+    <Content Include="app\components\charts\chart.directive.js" />
+    <Content Include="app\components\charts\chart.html" />
     <Content Include="app\components\header\header-anon.directive.js" />
     <Content Include="app\components\header\header-anon.html" />
     <Content Include="app\components\header\header.directive.js" />
     <Content Include="app\components\header\header.html" />
+    <Content Include="app\components\modals\ayuda.html" />
     <Content Include="app\components\modals\alerta.html" />
     <Content Include="app\components\modals\confirmacion.html" />
     <Content Include="app\components\modals\opciones.html" />
@@ -85,6 +90,8 @@
     <Content Include="app\controllers\childrenController.js" />
     <Content Include="app\controllers\registroController.js" />
     <Content Include="app\services\catalogoService.js" />
+    <Content Include="app\services\emailService.js" />
+    <Content Include="app\services\omsInfoService.js" />
     <Content Include="app\services\representanteService.js" />
     <Content Include="app\services\childrenService.js" />
     <Content Include="app\services\validaIdentificacionService.js" />
@@ -103,9 +110,22 @@
     <Content Include="app\views\representante.html" />
     <Content Include="app\views\registro.html" />
     <Content Include="app\views\login.html" />
-    <Content Include="content\css\bg-theme.css" />
+    <Content Include="content\css\pro-theme.css" />
     <Content Include="content\css\styles.css" />
+    <Content Include="content\images\banners\banner1.png" />
+    <Content Include="content\images\banners\banner10.jpg" />
+    <Content Include="content\images\banners\banner2.jpg" />
+    <Content Include="content\images\banners\banner3.jpg" />
+    <Content Include="content\images\banners\banner4.jpg" />
+    <Content Include="content\images\banners\banner5.jpg" />
+    <Content Include="content\images\banners\banner6.jpg" />
+    <Content Include="content\images\banners\banner7.jpg" />
+    <Content Include="content\images\banners\banner8.jpg" />
+    <Content Include="content\images\banners\banner9.jpg" />
+    <Content Include="content\images\imcTabla.JPG" />
     <Content Include="content\images\logo_pro.png" />
+    <Content Include="content\images\pc.JPG" />
+    <Content Include="content\images\pmb.JPG" />
     <Content Include="favicon.ico" />
     <Content Include="index.html" />
     <Content Include="lib\css\angular\angular-block-ui.min.css" />
@@ -119,6 +139,7 @@
     <Content Include="lib\css\fonts\fontawesome-webfont.svg" />
     <Content Include="lib\css\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="lib\js\angular\angular-block-ui.min.js" />
+    <Content Include="lib\js\angular\angular-chart.min.js" />
     <Content Include="lib\js\angular\angular-growl.min.js" />
     <Content Include="lib\js\angular\angular-local-storage.min.js" />
     <Content Include="lib\js\angular\angular-locale_es-ec.js" />
@@ -130,6 +151,7 @@
     <Content Include="lib\js\bootstrap\bootstrap.min.js" />
     <Content Include="lib\js\angular\ekathuwa.min.js" />
     <Content Include="lib\js\bootstrap\ui-bootstrap-tpls-2.5.0.min.js" />
+    <Content Include="lib\js\chart\Chart.js" />
     <Content Include="lib\js\jquery\jquery-3.1.1.min.js" />
     <Content Include="lib\js\jquery\jquery-mask-plugin.min.js" />
     <Content Include="lib\js\jquery\jquery-ui.min.js" />
@@ -143,6 +165,7 @@
     <Content Include="lib\css\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="lib\css\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="lib\css\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

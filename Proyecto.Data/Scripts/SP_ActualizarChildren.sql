@@ -12,12 +12,19 @@ CREATE PROCEDURE SP_ActualizarChildren
     @Nombres varchar(100), 
     @Apellidos varchar(100), 
     @FechaNacimiento date,
-	@Edad int,
+	@EdadAnios int,
+	@EdadMeses int,
+	@EdadTotalMeses int,
 	@Talla decimal(6,2),
-	@Peso int,
+	@Peso decimal(6,2),
+	@IMC decimal(6,2),
+	@DetalleIMC varchar(100),
+	@PerimCefalico decimal(6,2),
+	@PerimMedioBrazo decimal(6,2),
 	@Observaciones varchar(100),
 	@FechaCreacion date,
 	@IdNacionalidad int,
+	@IdSexo int,
     @codError varchar(3) = '' OUTPUT,
 	@mensajeRetorno varchar(100) = '' OUTPUT
 AS
@@ -26,20 +33,22 @@ BEGIN
 
     BEGIN TRY
 		UPDATE Children SET Identificacion = @Identificacion, Nombres = @Nombres, Apellidos = @Apellidos, 
-								FechaNacimiento = @FechaNacimiento, Edad = @Edad, Talla = @Talla, Peso = @Peso,
-								Observaciones = @Observaciones, FechaModificacion = GETDATE(), IdNacionalidad = @IdNacionalidad
+								FechaNacimiento = @FechaNacimiento, EdadAnios = @EdadAnios, EdadMeses = @EdadMeses, EdadTotalMeses = @EdadTotalMeses, Talla = @Talla, Peso = @Peso,
+								IMC = @IMC, DetalleIMC = @DetalleIMC, PerimCefalico = @PerimCefalico, PerimMedioBrazo = @PerimMedioBrazo,
+								Observaciones = @Observaciones, FechaModificacion = GETDATE(), IdNacionalidad = @IdNacionalidad, IdSexo = @IdSexo
 				WHERE IdChildren = @IdChildren
 
-		IF @FechaCreacion =  CONVERT(date, GETDATE(), 111)
+		IF EXISTS (SELECT 1 FROM Children WHERE IdChildren = @IdChildren AND FechaCreacion = @FechaCreacion)
 		BEGIN
-			UPDATE HistorialChildren SET Edad = @Edad, Talla = @Talla, Peso = @Peso, Observaciones = @Observaciones,
-								FechaModificacion = GETDATE()
+			UPDATE HistorialChildren SET EdadAnios = @EdadAnios, EdadMeses = @EdadMeses, EdadTotalMeses = @EdadTotalMeses, Talla = @Talla, Peso = @Peso,
+										IMC = @IMC, DetalleIMC = @DetalleIMC, PerimCefalico = @PerimCefalico, PerimMedioBrazo = @PerimMedioBrazo,
+										Observaciones = @Observaciones,	FechaModificacion = GETDATE()
 				WHERE IdChildren = @IdChildren AND FechaCreacion = @FechaCreacion
 		END
 		ELSE
 		BEGIN
-			INSERT INTO HistorialChildren(Edad, Talla, Peso, Observaciones, FechaCreacion, FechaModificacion, IdChildren)
-			VALUES (@Edad, @Talla, @Peso, @Observaciones, GETDATE(), GETDATE(), @IdChildren)
+			INSERT INTO HistorialChildren(EdadAnios, EdadMeses, EdadTotalMeses, Talla, Peso, IMC, DetalleIMC, PerimCefalico, PerimMedioBrazo, Observaciones, FechaCreacion, FechaModificacion, IdChildren)
+			VALUES (@EdadAnios, @EdadMeses, @EdadTotalMeses, @Talla, @Peso, @IMC, @DetalleIMC, @PerimCefalico, @PerimMedioBrazo, @Observaciones, @FechaCreacion, GETDATE(), @IdChildren)
 		END
 
 		SET @codError='000'
