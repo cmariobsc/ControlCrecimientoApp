@@ -128,7 +128,9 @@ proyectoApp.controller('historialChildrenController',
                         omsInfoService.getListTallaxEdad($scope.idSexo)
                             .then(function (response) {
                                 var data = response.data;
-                                $scope.indicatorTitle = 'Talla del Niño'
+                                $scope.indicatorTitle = 'Talla del Niño';
+                                $scope.xAxesLabel = "Edad (meses)";
+                                $scope.yAxesLabel = "Talla (cm)";
                                 $scope.chartTitle = response.mensajeRetorno;
                                 obtenerParametro(data);
                                 $scope.omsBuildChart(indicador);
@@ -138,7 +140,9 @@ proyectoApp.controller('historialChildrenController',
                         omsInfoService.getListPesoxEdad($scope.idSexo)
                             .then(function (response) {
                                 var data = response.data;
-                                $scope.indicatorTitle = 'Peso del Niño'
+                                $scope.indicatorTitle = 'Peso del Niño';
+                                $scope.xAxesLabel = "Edad (meses)";
+                                $scope.yAxesLabel = "Peso (kg)";
                                 $scope.chartTitle = response.mensajeRetorno;
                                 obtenerParametro(data);
                                 $scope.omsBuildChart(indicador);
@@ -148,7 +152,9 @@ proyectoApp.controller('historialChildrenController',
                         omsInfoService.getListIMCxEdad($scope.idSexo)
                             .then(function (response) {
                                 var data = response.data;
-                                $scope.indicatorTitle = 'Masa Corporal del Niño'
+                                $scope.indicatorTitle = 'Masa Corporal del Niño';
+                                $scope.xAxesLabel = "Edad (meses)";
+                                $scope.yAxesLabel = "IMC";
                                 $scope.chartTitle = response.mensajeRetorno;
                                 obtenerParametro(data);
                                 $scope.omsBuildChart(indicador);
@@ -158,7 +164,9 @@ proyectoApp.controller('historialChildrenController',
                         omsInfoService.getListPCxEdad($scope.idSexo)
                             .then(function (response) {
                                 var data = response.data;
-                                $scope.indicatorTitle = 'Perímetro Cefálico del Niño'
+                                $scope.indicatorTitle = 'Perímetro Cefálico del Niño';
+                                $scope.xAxesLabel = "Edad (meses)";
+                                $scope.yAxesLabel = "Perímetro Cefálico (cm)";
                                 $scope.chartTitle = response.mensajeRetorno;
                                 obtenerParametro(data);
                                 $scope.omsBuildChart(indicador);
@@ -168,7 +176,9 @@ proyectoApp.controller('historialChildrenController',
                         omsInfoService.getListPMBxEdad($scope.idSexo)
                             .then(function (response) {
                                 var data = response.data;
-                                $scope.indicatorTitle = 'Perímetro Medio del Brazo del Niño'
+                                $scope.indicatorTitle = 'Perímetro Medio del Brazo del Niño';
+                                $scope.xAxesLabel = "Edad (meses)";
+                                $scope.yAxesLabel = "Perímetro Medio del Brazo (cm)";
                                 $scope.chartTitle = response.mensajeRetorno;
                                 obtenerParametro(data);
                                 $scope.omsBuildChart(indicador);

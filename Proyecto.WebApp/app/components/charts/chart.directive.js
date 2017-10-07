@@ -69,16 +69,24 @@
                             scales: {
                                 yAxes: [
                                     {
-                                        id: 'y-axis-1',
-                                        type: 'linear',
-                                        display: true,
-                                        position: 'left'
+                                        scaleLabel: {
+                                            display: true,
+                                            labelString: $scope.yAxesLabel,
+                                        }
                                     },
                                     {
                                         id: 'y-axis-2',
                                         type: 'linear',
                                         display: true,
                                         position: 'right'
+                                    }
+                                ],
+                                xAxes: [
+                                    {
+                                        scaleLabel: {
+                                            display: true,
+                                            labelString: $scope.xAxesLabel,
+                                        }
                                     }
                                 ]
                             }
